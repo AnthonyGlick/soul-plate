@@ -1,17 +1,28 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <the-header v-if="showHeader"/>
+    <router-view />
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import TheHeader from './components/layout/TheHeader.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    HelloWorld,
+    TheHeader
+  },
+  computed: {
+    /**
+     * Indicates if the header should be visible.
+     */
+    showHeader() {
+      const noHeaderPages = ["login"];
+      return noHeaderPages.indexOf(this.$route.name) === -1;
+    }
   }
 }
 </script>
