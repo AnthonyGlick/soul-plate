@@ -1,27 +1,15 @@
 USE master;
-GO;
+GO
 
-IF EXISTS(select * from sys.databases where name='resturanttinder')
-DROP DATABASE resturanttinder;
-GO;
+IF EXISTS(select * from sys.databases where name='soulplate')
+DROP DATABASE soulplate;
+GO
 
-CREATE DATABASE resturanttinder
-GO;
+CREATE DATABASE soulplate
+GO
 
-USE resturanttinder;
-GO;
-
-CREATE TABLE [users] (
-	[id]			int				IDENTITY (1, 1) NOT NULL,
-	[username]		nvarchar(50)	NOT NULL,
-	[password]		varchar(50)		NOT NULL,
-	[salt]			varchar(50)		NOT NULL,
-	[firstname]		nvarchar(50)	NOT NULL,
-	[lastname]		nvarchar(50)	NOT NULL,
-	[addressid]		int				NOT NULL,
-	CONSTRAINT fk_address FOREIGN KEY (addressid),
-	CONSTRAINT pk_user PRIMARY KEY (id),
-);
+USE soulplate;
+GO
 
 CREATE TABLE [address] (
 	[id]			int				IDENTITY (1, 1) NOT NULL,
@@ -31,6 +19,21 @@ CREATE TABLE [address] (
 	[state]			nvarchar(50)	NOT NULL,
 	[postalcode]	char(5)			NOT NULL,
 	CONSTRAINT pk_address PRIMARY KEY (id),
+);
+
+CREATE TABLE [users] (
+	[id]			int				IDENTITY (1, 1) NOT NULL,
+	[username]		nvarchar(50)	NOT NULL,
+	[password]		varchar(50)		NOT NULL,
+	[salt]			varchar(50)		NOT NULL,
+	[role]			varchar(50)		NULL,	
+	[firstname]		nvarchar(50)	NULL,
+	[lastname]		nvarchar(50)	NULL,
+	[addressid]		int				NULL,
+	
+	CONSTRAINT pk_user PRIMARY KEY (id),
+	CONSTRAINT fk_address FOREIGN KEY (addressid) references address (id)
+
 );
 
 
