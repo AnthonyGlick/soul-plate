@@ -42,7 +42,7 @@ namespace SampleApi.Controllers
         /// <returns></returns>
         [HttpPost("register")]
         public IActionResult Register(AuthenticationModel model)
-        {            
+        {
             // Does user already exist
             if (userDao.GetUser(model.Username) != null)
             {
@@ -94,6 +94,33 @@ namespace SampleApi.Controllers
             }
 
             return result;
+        }
+
+        [HttpPut("{username}")]
+        public ActionResult UpdateProfile([FromRoute]string username, [FromBody] User user)
+        {
+            // Get the record that we want to update
+            var existingUser = userDao.GetUser(username);
+
+            if (existingUser == null)
+            {
+                return NotFound();
+            }
+
+            // Copy over fields from review to existingReview
+            existingUser.FirstName = user.FirstName;
+            existingUser.LastName = user.LastName;
+            existingUser.AddressOne = user.AddressOne;
+            existingUser.AddressTwo = user.AddressTwo;
+            existingUser.City = user.City;
+            existingUser.State = user.State;
+            existingUser.PostalCode = user.PostalCode;
+
+            // Save back to the database
+            userDao.UpdateProfile(existingUser);
+
+            // Return 200
+            return Ok();
         }
     }
 }

@@ -40,15 +40,15 @@ namespace SampleApi.Models
 
         public string LastName { get; set; }
 
-        public int AddressId { get; set; }
-
         public string AddressOne { get; set; }
+
+        public string AddressTwo { get; set; }
 
         public string City { get; set; }
 
         public string State { get; set; }
 
-        public int PostalCode { get; set; }
+        public string PostalCode { get; set; }
 
     }
 }

@@ -144,10 +144,21 @@ namespace SampleApi.DAL
                 Username = Convert.ToString(reader["username"]),
                 Password = Convert.ToString(reader["password"]),
                 Salt = Convert.ToString(reader["salt"]),
-                Role = Convert.ToString(reader["role"])
+                Role = Convert.ToString(reader["role"]),
+                FirstName = Convert.ToString(reader["firstname"]),
+                LastName = Convert.ToString(reader["lastname"]),
+                AddressOne = Convert.ToString(reader["address1"]),
+                AddressTwo = Convert.ToString(reader["address2"]),
+                City = Convert.ToString(reader["city"]),
+                State = Convert.ToString(reader["state"]),
+                PostalCode = Convert.ToString(reader["postalcode"])
             };
         }
 
+        /// <summary>
+        /// Method to update a users profile given a certain id
+        /// </summary>
+        /// <param name="user"></param>
         public void UpdateProfile(User user)
         {
             try
@@ -155,12 +166,16 @@ namespace SampleApi.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO users (username, password, salt, role) VALUES (@username, @password, @salt, @role);", conn);
+                    SqlCommand cmd = new SqlCommand("UPDATE users SET firstname = @firstname, lastname = @lastname, address1 = @address1, address2 = @address2, city = @city, state = @state, postalcode = @postalcode WHERE username = @username;", conn);
+                    cmd.Parameters.AddWithValue("@firstname", user.FirstName);
+                    cmd.Parameters.AddWithValue("@lastname", user.LastName);
+                    cmd.Parameters.AddWithValue("@address1", user.AddressOne);
+                    cmd.Parameters.AddWithValue("@address2", user.AddressTwo);
+                    cmd.Parameters.AddWithValue("@city", user.City);
+                    cmd.Parameters.AddWithValue("@state", user.State);
+                    cmd.Parameters.AddWithValue("@postalcode", user.PostalCode);
                     cmd.Parameters.AddWithValue("@username", user.Username);
-                    cmd.Parameters.AddWithValue("@password", user.Password);
-                    cmd.Parameters.AddWithValue("@salt", user.Salt);
-                    cmd.Parameters.AddWithValue("@role", user.Role);
-
+              
                     cmd.ExecuteNonQuery();
 
                     return;

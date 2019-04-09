@@ -35,5 +35,11 @@ namespace SampleApi.DAL
         /// </summary>
         /// <param name="user"></param>
         void DeleteUser(User user);
+
+        /// <summary>
+        /// Updates the user profile with lastname, firstname,etc.
+        /// </summary>
+        /// <param name="user"></param>
+        void UpdateProfile(User user);
     }
 }
