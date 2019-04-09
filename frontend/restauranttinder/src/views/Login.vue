@@ -23,7 +23,7 @@
     </section>
     <section id="login-signup" v-bind:class="{ showSignupForm: !showLoginForm }">
       <form v-if="showLoginForm" v-on:submit.prevent="login">
-        <h1>Welcome Back!</h1>
+        <h1>Welcome!</h1>
 
         <error-message v-bind:error="error"></error-message>
 
@@ -31,7 +31,7 @@
         <input
           v-model.trim="loginForm.username"
           type="text"
-          placeholder="Captain America"
+          placeholder="Indecisive Foodie"
           id="email"
         />
 
@@ -211,7 +211,7 @@ export default {
   height: 100vh;
   flex-direction: column;
   /* width: 1000px; */
-  height: 30rem;
+  height: 35rem;
   justify-content: center;
   margin: 4rem auto;
   
@@ -228,6 +228,10 @@ export default {
   border-bottom-left-radius: 10px; */
 }
 
+#login {
+  padding-top: 0px;
+}
+
 #login-signup {
     /* border-bottom-right-radius: 10px;
     border-top-right-radius: 10px; */
@@ -241,7 +245,7 @@ export default {
 
 #content h1,
 #login-signup h1 {
-  margin-bottom: 2rem;
+ margin-bottom: 2rem;
     font-family: 'Vollkorn', sans-serif;
 }
 
@@ -323,7 +327,11 @@ form button {
   }
 
   #login-signup.showSignupForm {
-    padding-top: 15vh;
+    padding-top: 8vh;
   }
+}
+
+a {
+  cursor: pointer;
 }
 </style>
