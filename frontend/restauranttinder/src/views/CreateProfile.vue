@@ -28,14 +28,44 @@
             </section>
 
             <section class="button">
-                <button>Submit</button>
+                <button v-on:click="submitInfo">Submit</button>
             </section>
         </form>
     </div>
 </template>
 
 <script>
+import auth from "@/shared/auth";
 export default {
+
+    props: {
+        VUE_APP_REMOTE_API: String,
+        
+    },
+    data() {
+        return {
+            user: {
+                firstName: '',
+                lastName: '',
+                streetAddress: '',
+                state: '',
+                zipCode: ''
+            },
+            username: auth.getUser().sub
+        }
+    },
+methods: {
+    submitInfo() {
+        fetch(`${this.VUE_APP_REMOTE_API})/Account/${this.username}`, {
+            method:'PUT',
+            headers: {
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify(this.user)
+        }).then((response) => {
+        }).catch((error) => console.error(error));
+    }
+}
 
 }
 </script>

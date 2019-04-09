@@ -60,7 +60,7 @@
         <input
           v-model.trim="signupForm.username"
           type="text"
-          placeholder="Captain America"
+          placeholder="New User!"
           id="email2"
         />
 
