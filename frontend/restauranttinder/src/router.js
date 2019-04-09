@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Login from "./views/Login.vue";
 import Home from "./views/Home.vue";
 import auth from "./shared/auth";
+import CreateProfile from "./views/CreateProfile";
 
 Vue.use(Router);
 
@@ -23,6 +24,14 @@ const router = new Router({
       path: "/login",
       name: "login",
       component: Login,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/createprofile",
+      name: "createprofile",
+      component: CreateProfile,
       meta: {
         requiresAuth: false
       }
