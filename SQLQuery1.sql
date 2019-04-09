@@ -24,7 +24,6 @@ CREATE TABLE [users] (
 	[city]			nvarchar(50)	NULL,
 	[state]			nvarchar(50)	NULL,
 	[postalcode]	char(5)			NULL,
-	[userid]		int				NULL,
 	
 	CONSTRAINT pk_user PRIMARY KEY (id),
 );
