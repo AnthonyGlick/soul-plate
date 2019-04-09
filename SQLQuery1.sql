@@ -19,23 +19,14 @@ CREATE TABLE [users] (
 	[role]			varchar(50)		NULL,	
 	[firstname]		nvarchar(50)	NULL,
 	[lastname]		nvarchar(50)	NULL,
-	--[addressid]		int				NULL,
+	[address1]		nvarchar(100)	NULL,
+	[address2]		nvarchar(100),
+	[city]			nvarchar(50)	NULL,
+	[state]			nvarchar(50)	NULL,
+	[postalcode]	char(5)			NULL,
+	[userid]		int				NULL,
 	
 	CONSTRAINT pk_user PRIMARY KEY (id),
-	--CONSTRAINT fk_address FOREIGN KEY (addressid) references address (id)
-
 );
-CREATE TABLE [address] (
-	[id]			int				IDENTITY (1, 1) NOT NULL,
-	[address1]		nvarchar(100)	NOT NULL,
-	[address2]		nvarchar(100),
-	[city]			nvarchar(50)	NOT NULL,
-	[state]			nvarchar(50)	NOT NULL,
-	[postalcode]	char(5)			NOT NULL,
-	[userid]		int				NOT NULL,
-	CONSTRAINT pk_address PRIMARY KEY (id),
-	CONSTRAINT fk_user FOREIGN KEY (userid) references users (id)
-);
-
 
 
