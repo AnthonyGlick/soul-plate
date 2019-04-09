@@ -35,5 +35,11 @@ namespace SampleApi.Models
         /// The user's role.
         /// </summary>
         public string Role { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public Address address { get; set; }
     }
 }
