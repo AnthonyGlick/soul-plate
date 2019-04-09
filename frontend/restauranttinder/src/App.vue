@@ -39,7 +39,6 @@ export default {
 }
 body {
   margin: 0;
-  background-color: 0;
 }
 html {
     background-image: url('imgs/knife-2879328.jpg');
