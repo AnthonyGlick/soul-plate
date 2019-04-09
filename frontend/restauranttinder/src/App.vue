@@ -28,12 +28,20 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Vollkorn');
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+body {
+  margin: 0;
+}
+html {
+    background-image: url('imgs/knife-2879328.jpg');
+    background-size: cover;
 }
 </style>

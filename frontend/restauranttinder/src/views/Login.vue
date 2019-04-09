@@ -15,6 +15,7 @@
 <template>
   <div id="login">
     <section id="content">
+        <img class="logo" v-bind:src='image' />
       <h1>Soul Plate</h1>
       <p>
         Find what belongs in your stomach~
@@ -80,7 +81,7 @@
         />
 
         <div class="form-actions">
-          <button>Sign Up</button>
+          <button class="btn btn-primary">Sign Up</button>
           <div class="extras">
             <a v-on:click="toggleForm">Back to Login</a>
           </div>
@@ -110,7 +111,8 @@ export default {
         password: "",
         username: "",
         role: "user"
-      }
+      },
+      image: 'https://via.placeholder.com/200'
     };
   },
   methods: {
@@ -208,12 +210,28 @@ export default {
   display: flex;
   height: 100vh;
   flex-direction: column;
+  /* width: 1000px; */
+  height: 30rem;
+  justify-content: center;
+  margin: 4rem auto;
+  
+}
+
+.logo {
 }
 
 #content {
   display: initial;
-  background-color: #00adee;
+  background-color: #ff9933;
   color: #fff;
+  /* border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px; */
+}
+
+#login-signup {
+    /* border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px; */
+    background-color: #fcfcfc;
 }
 
 #content,
@@ -224,6 +242,11 @@ export default {
 #content h1,
 #login-signup h1 {
   margin-bottom: 2rem;
+    font-family: 'Vollkorn', sans-serif;
+}
+
+#content h1 {
+      font-size: 3rem;
 }
 
 form h1 {
@@ -253,7 +276,7 @@ form button {
   padding: 0.8rem 1rem;
   background: var(--primary-color);
 
-  color: #fff;
+  color: #000;
 
   border-radius: 3px;
 }
@@ -296,7 +319,7 @@ form button {
   #content,
   #login-signup {
     flex: 1;
-    padding: 25vh 1rem 1rem 1rem;
+    padding: 5rem 1rem 5rem 1rem;
   }
 
   #login-signup.showSignupForm {
