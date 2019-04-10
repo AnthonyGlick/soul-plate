@@ -1,7 +1,8 @@
 <template>
     <div class="profile-form">   
-        <form class="form" v-on:submit.prevent="submitInfo">
+        <form class="form" v-on:submit.prevent="submitInfo" @submit="checkForm">
         <h1 class="create-profile">Create Profile</h1>
+
             <section>
                 <label>First Name:</label>
                 <input type="text" v-model.trim="user.firstName">
@@ -46,6 +47,8 @@
 
 <script>
 import auth from "@/shared/auth";
+// import {required,minLength} from 'vuelidate/lib/validators'
+
 export default {
 
     data() {
@@ -59,9 +62,17 @@ export default {
                 state: '',
                 postalCode: ''
             },
+
             username: auth.getUser().sub
         }
     },
+    // validations: {
+    //     firstName: {
+    //         required,
+    //         minLength: minLength(6)
+    //     }
+    // },
+
 methods: {
     /**
      * Navigates the user to the home route.
@@ -69,8 +80,7 @@ methods: {
      */
     goHome() {
       this.$router.push("/");
-    },
-    
+    },    
     submitInfo() {
         fetch(`${process.env.VUE_APP_REMOTE_API}/Account/${this.username}`, {
             method:'PUT',
@@ -81,7 +91,7 @@ methods: {
         }).then((response) => {
             this.goHome();
         }).catch((error) => console.error(error));
-    }
+    },  
 }
 
 }
