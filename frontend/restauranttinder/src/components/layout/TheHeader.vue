@@ -16,11 +16,13 @@
 </template>
 
 <script>
+import auth from "@/shared/auth";
+
 export default {
   name: "the-header",
 data() {
     return {
-        isAuthenticated: getUser() !== null
+        isAuthenticated: auth.getUser() !== null
     };
 },
 methods: {
