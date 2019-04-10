@@ -1,34 +1,34 @@
 <template>
     <div class="profile-form">   
-        <form class="form">
+        <form class="form" v-on:submit.prevent="submitInfo" >
         <h1 class="create-profile">Create Profile</h1>
             <section>
                 <label>First Name:</label>
-                <input type="text">
+                <input type="text" v-model.trim="user.firstName">
             </section>
             
             <section>
                 <label>Last Name:</label>
-                <input type="text">
+                <input type="text" v-model.trim ="user.lastName">
             </section>
 
             <section>
                 <label>Street Address</label>
-                <input type="text">
+                <input type="text" v-model.trim="user.streetAddress">
             </section>
 
             <section>
                 <label>State</label>
-                <input type="text">
+                <input type="text" v-model.trim="user.state">
             </section>
 
             <section>
                 <label>Zip Code</label>
-                <input type="text">
+                <input type="text" v-model.trim="user.zipCode">
             </section>
 
             <section class="button">
-                <button v-on:click="submitInfo">Submit</button>
+                <button>Submit</button>
             </section>
         </form>
     </div>
@@ -38,10 +38,7 @@
 import auth from "@/shared/auth";
 export default {
 
-    props: {
-        VUE_APP_REMOTE_API: String,
-        
-    },
+
     data() {
         return {
             user: {
