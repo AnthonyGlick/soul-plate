@@ -200,10 +200,6 @@ export default {
         if (response.status === 400) {
           this.error = data.message
         }
-        // Fix this.
-        else if(!this.loginForm.password || !this.loginForm.username){
-          this.error = "Must provide a username and password";
-        }
          else {
           auth.saveToken(data);
           this.goCreateProfile();
