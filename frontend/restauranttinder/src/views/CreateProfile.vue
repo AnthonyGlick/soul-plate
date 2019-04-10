@@ -56,10 +56,11 @@ export default {
     },
 methods: {
     submitInfo() {
-        fetch(`${this.VUE_APP_REMOTE_API})/Account/${this.username}`, {
+        fetch(`${process.env.VUE_APP_REMOTE_API})/Account/${this.username}`, {
             method:'PUT',
             headers: {
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                "Authorization": 'Bearer ' + auth.getToken() 
             },
             body: JSON.stringify(this.user)
         }).then((response) => {
