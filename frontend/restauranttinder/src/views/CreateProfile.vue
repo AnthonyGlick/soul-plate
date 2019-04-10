@@ -14,7 +14,17 @@
 
             <section>
                 <label>Street Address</label>
-                <input type="text" v-model.trim="user.streetAddress">
+                <input type="text" v-model.trim="user.addressOne">
+            </section>
+
+            <section>
+                <label>Address 2</label>
+                <input type="text" v-model.trim="user.addressTwo">
+            </section>
+
+            <section>
+                <label>City</label>
+                <input type="text" v-model.trim="user.city">
             </section>
 
             <section>
@@ -23,8 +33,8 @@
             </section>
 
             <section>
-                <label>Zip Code</label>
-                <input type="text" v-model.trim="user.zipCode">
+                <label>Postal Code</label>
+                <input type="text" v-model.trim="user.postalCode">
             </section>
 
             <section class="button">
@@ -43,9 +53,11 @@ export default {
             user: {
                 firstName: '',
                 lastName: '',
-                streetAddress: '',
+                addressOne: '',
+                addressTwo: '',
+                city: '',
                 state: '',
-                zipCode: ''
+                postalCode: ''
             },
             username: auth.getUser().sub
         }
