@@ -97,7 +97,7 @@ namespace SampleApi.Controllers
         }
 
         [HttpPut("{username}")]
-        public ActionResult UpdateProfile([FromRoute]string username, [FromBody] User user)
+        public ActionResult UpdateProfile([FromRoute]string username, [FromBody] SampleApi.Models.User user)
         {
             // Get the record that we want to update
             var existingUser = userDao.GetUser(username);

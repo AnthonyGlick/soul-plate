@@ -53,7 +53,7 @@ export default {
     },
 methods: {
     submitInfo() {
-        fetch(`${process.env.VUE_APP_REMOTE_API})/Account/${this.username}`, {
+        fetch(`${process.env.VUE_APP_REMOTE_API}/Account/${this.username}`, {
             method:'PUT',
             headers: {
                 "Content-Type":"application/json",
