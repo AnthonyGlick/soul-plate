@@ -41,7 +41,7 @@ body {
   margin: 0;
 }
 html {
-    background-image: url('imgs/platter-2009590_1280.jpg');
+    background-image: url('assets/imgs/platter-2009590_1280.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

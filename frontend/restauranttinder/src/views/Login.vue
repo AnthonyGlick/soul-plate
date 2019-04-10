@@ -112,7 +112,7 @@ export default {
         username: "",
         role: "user"
       },
-      image: 'https://via.placeholder.com/200'
+      image: require('../assets/imgs/restaurant-1724294_1280.png')
     };
   },
   methods: {
@@ -226,6 +226,11 @@ export default {
 }
 
 .logo {
+  height: 200px;
+  width:auto;
+  padding-bottom: 10px;
+  filter: grayscale(100%)
+  
 }
 
 #content {
