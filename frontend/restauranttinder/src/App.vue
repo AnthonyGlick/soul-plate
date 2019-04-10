@@ -41,10 +41,11 @@ body {
   margin: 0;
 }
 html {
-    /* background-image: url('imgs/knife-2879328.jpg');
+    background-image: url('imgs/platter-2009590_1280.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed; */
-    background-color: blue;
+    background-attachment: fixed;
+    background-color: rgb(255,153,110, .5);
+    background-blend-mode: screen;
 }
 </style>

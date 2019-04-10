@@ -90,12 +90,14 @@ methods: {
 <style scoped>
 #app > div > form {
     border-radius: 50px;
-    background-color: #FF9933;
+    background-color:rgb(255,153,51, .8);
     padding: 50px;
     right: 0;
     left: 0;
     margin: auto;
     margin-top: 50px;
+    
+    
 }
 
 .form {
@@ -104,7 +106,8 @@ methods: {
     width: 50%;
     position: absolute;
     padding-top: 50px;
-    padding-left: 50px;      
+    padding-left: 50px;   
+    color: white;   
 }
 
 .create-profile {
