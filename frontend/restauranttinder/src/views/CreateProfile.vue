@@ -63,6 +63,14 @@ export default {
         }
     },
 methods: {
+    /**
+     * Navigates the user to the home route.
+     * @function
+     */
+    goHome() {
+      this.$router.push("/");
+    },
+    
     submitInfo() {
         fetch(`${process.env.VUE_APP_REMOTE_API}/Account/${this.username}`, {
             method:'PUT',
@@ -71,6 +79,7 @@ methods: {
             },
             body: JSON.stringify(this.user)
         }).then((response) => {
+            this.goHome();
         }).catch((error) => console.error(error));
     }
 }
