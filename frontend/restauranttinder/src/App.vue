@@ -41,7 +41,10 @@ body {
   margin: 0;
 }
 html {
-    background-image: url('imgs/knife-2879328.jpg');
+    /* background-image: url('imgs/knife-2879328.jpg');
     background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; */
+    background-color: blue;
 }
 </style>

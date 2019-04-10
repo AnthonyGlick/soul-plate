@@ -13,27 +13,27 @@
             </section>
 
             <section>
-                <label>Street Address</label>
+                <label>Street Address:</label>
                 <input type="text" v-model.trim="user.addressOne">
             </section>
 
             <section>
-                <label>Address 2</label>
+                <label>Address 2:</label>
                 <input type="text" v-model.trim="user.addressTwo">
             </section>
 
             <section>
-                <label>City</label>
+                <label>City:</label>
                 <input type="text" v-model.trim="user.city">
             </section>
 
             <section>
-                <label>State</label>
+                <label>State:</label>
                 <input type="text" v-model.trim="user.state">
             </section>
 
             <section>
-                <label>Postal Code</label>
+                <label>Postal Code:</label>
                 <input type="text" v-model.trim="user.postalCode">
             </section>
 
@@ -125,10 +125,13 @@ label {
     }
     #app > div > form {
         border-radius: 0;
-        padding: 50px 5px;
+        padding: 50px 25px;
     }
     label {
         text-align: left;
+    }
+    form section {
+        flex-direction: column;
     }
 }
 
