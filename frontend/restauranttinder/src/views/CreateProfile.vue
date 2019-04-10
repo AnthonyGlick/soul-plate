@@ -38,7 +38,6 @@
 import auth from "@/shared/auth";
 export default {
 
-
     data() {
         return {
             user: {
@@ -56,8 +55,7 @@ methods: {
         fetch(`${process.env.VUE_APP_REMOTE_API}/Account/${this.username}`, {
             method:'PUT',
             headers: {
-                "Content-Type":"application/json",
-                "Authorization": 'Bearer ' + auth.getToken() 
+                "Content-Type":"application/json"
             },
             body: JSON.stringify(this.user)
         }).then((response) => {
@@ -71,7 +69,7 @@ methods: {
 <style scoped>
 #app > div > form {
     border-radius: 50px;
-    background-color: orange;
+    background-color: #FF9933;
     padding: 50px;
     right: 0;
     left: 0;
@@ -82,7 +80,7 @@ methods: {
 .form {
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 50%;
     position: absolute;
     padding-top: 50px;
     padding-left: 50px;      
@@ -108,4 +106,18 @@ label {
     border-radius: 5px;
     justify-content: flex-end;
 }
+
+@media screen and (max-width: 768px) {
+    .form {
+        width: 100%;
+    }
+    #app > div > form {
+        border-radius: 0;
+        padding: 50px 5px;
+    }
+    label {
+        text-align: left;
+    }
+}
+
 </style>
