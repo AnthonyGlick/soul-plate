@@ -18,12 +18,15 @@ namespace SampleApi.Models
 
         /// <summary>
         /// The user's username.
-        /// </summary>        
+        /// </summary>   
+        [Required]
         public string Username { get; set; }
 
         /// <summary>
         /// The user's password.
         /// </summary>
+        [Required]
+        [MinLength(6)]
         public string Password { get; set; }
 
         /// <summary>
@@ -36,18 +39,45 @@ namespace SampleApi.Models
         /// </summary>
         public string Role { get; set; }
 
+        /// <summary>
+        /// The user's first name.
+        /// </summary>
+        [Required]
         public string FirstName { get; set; }
 
+        /// <summary>
+        /// The user's last name.
+        /// </summary>
+        [Required]
         public string LastName { get; set; }
 
+        /// <summary>
+        /// The user's address.
+        /// </summary>
+        [Required]
         public string AddressOne { get; set; }
 
+        /// <summary>
+        /// The user's second address if applicable
+        /// </summary>
         public string AddressTwo { get; set; }
 
+        /// <summary>
+        /// The user's city.
+        /// </summary>
+        [Required]
         public string City { get; set; }
 
+        /// <summary>
+        /// The user's state
+        /// </summary>
+        [Required]
         public string State { get; set; }
 
+        /// <summary>
+        /// The user's postal code.
+        /// </summary>
+        [Required]
         public string PostalCode { get; set; }
 
     }

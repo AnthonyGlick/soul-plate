@@ -1,6 +1,6 @@
 <template>
     <div class="profile-form">   
-        <form class="form" v-on:submit.prevent="submitInfo" >
+        <form class="form" v-on:submit.prevent="submitInfo">
         <h1 class="create-profile">Create Profile</h1>
             <section>
                 <label>First Name:</label>

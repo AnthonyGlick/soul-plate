@@ -1,12 +1,14 @@
 <template>
   <header>
     <div>
+        <nav>
       <li v-if="isAuthenticated">
         <button class="btn btn-primary" href="/logout" v-on:click.prevent="logout">Logout</button>
       </li>
       <li v-else>
         <router-link to="/login">Login</router-link>
       </li>
+      </nav>
     </div>
   </header>
 </template>
