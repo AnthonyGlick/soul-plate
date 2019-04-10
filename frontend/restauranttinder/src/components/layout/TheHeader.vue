@@ -1,18 +1,14 @@
 <template>
-    <header>
+  <header>
     <div>
-    <nav>
-    <ul>
-        <li v-if="isAuthenticated">
-            <a href="/logout" v-on:click.prevent="logout">Logout</a>
-        </li>
-        <li v-else>
-            <router-link to="/login">Login</router-link>
-        </li>
-    </ul>
-    </nav>
+      <li v-if="isAuthenticated">
+        <button class="btn btn-primary" href="/logout" v-on:click.prevent="logout">Logout</button>
+      </li>
+      <li v-else>
+        <router-link to="/login">Login</router-link>
+      </li>
     </div>
-    </header>
+  </header>
 </template>
 
 <script>
@@ -20,12 +16,12 @@ import auth from "@/shared/auth";
 
 export default {
   name: "the-header",
-data() {
+  data() {
     return {
-        isAuthenticated: auth.getUser() !== null
+      isAuthenticated: auth.getUser() !== null
     };
-},
-methods: {
+  },
+  methods: {
     /**
      * Logs the user out and takes them to the login page
      * @function
@@ -34,15 +30,14 @@ methods: {
       auth.destroyToken();
       this.$router.push("/login");
     }
-},
-computed: {
+  },
+  computed: {
     getUser() {
-        return auth.getUser();
+      return auth.getUser();
     }
-}
-}
+  }
+};
 </script>
 
-<style>
-
+<style scoped>
 </style>

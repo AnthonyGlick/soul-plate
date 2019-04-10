@@ -44,7 +44,7 @@
         />
 
         <div class="form-actions">
-          <button class="login">Log In</button>
+          <button class="btn btn-primary">Log In</button>
           <div class="extras">
             <a v-on:click="toggleForm">Create an Account</a>
           </div>
