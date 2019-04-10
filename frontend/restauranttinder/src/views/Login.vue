@@ -132,6 +132,13 @@ export default {
       this.$router.push("/");
     },
     /**
+     * Navigates the user to the Create Profile route.
+     * @function
+     */
+    goCreateProfile() {
+      this.$router.push("/createprofile");
+    },
+    /**
      * Logs the user in and then sends them to the dashboard.
      * NOTE: Uses async/await
      */
@@ -194,7 +201,7 @@ export default {
           this.error = data.message;
         } else {
           auth.saveToken(data);
-          this.goHome();
+          this.goCreateProfile();
         }
       } catch (error) {
         console.error(error);
