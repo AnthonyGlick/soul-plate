@@ -2,21 +2,24 @@
     <div class="profile-form">   
         <form class="form" v-on:submit.prevent="submitInfo">
         <h1 class="create-profile">Create Profile</h1>
-
+        <div class="error" v-if="$v.user.$invalid">*Please complete all required fields*</div>
             <section>
-                <label>First Name:</label>
+                <label>*First Name:</label>
                 <input type="text" v-model.trim="user.firstName">
             </section>
+                <div class="error" v-if="!$v.user.firstName.required"></div>
             
             <section>
-                <label>Last Name:</label>
+                <label>*Last Name:</label>
                 <input type="text" v-model.trim ="user.lastName">
             </section>
+            <div class="error" v-if="!$v.user.lastName.required"></div>
 
             <section>
-                <label>Street Address:</label>
+                <label>*Street Address:</label>
                 <input type="text" v-model.trim="user.addressOne">
             </section>
+                <div class="error" v-if="!$v.user.addressOne.required"></div>
 
             <section>
                 <label>Address 2:</label>
@@ -24,19 +27,22 @@
             </section>
 
             <section>
-                <label>City:</label>
+                <label>*City:</label>
                 <input type="text" v-model.trim="user.city">
             </section>
+                <div class="error" v-if="!$v.user.city.required"></div>
 
             <section>
-                <label>State:</label>
+                <label>*State:</label>
                 <input type="text" v-model.trim="user.state">
             </section>
+                <div class="error" v-if="!$v.user.state.required"></div>
 
             <section>
-                <label>Postal Code:</label>
+                <label>*Postal Code:</label>
                 <input type="text" v-model.trim="user.postalCode">
             </section>
+                <div class="error" v-if="!$v.user.postalCode.required"></div>
 
             <section class="button">
                 <button>Submit</button>
@@ -47,31 +53,48 @@
 
 <script>
 import auth from "@/shared/auth";
-// import {required,minLength} from 'vuelidate/lib/validators'
+import {required} from 'vuelidate/lib/validators'
 
 export default {
 
     data() {
         return {
             user: {
-                firstName: '',
-                lastName: '',
-                addressOne: '',
-                addressTwo: '',
-                city: '',
-                state: '',
-                postalCode: ''
+                firstName:null ,
+                lastName: null,
+                addressOne:null,
+                addressTwo: null,
+                city: null,
+                state: null,
+                postalCode: null
             },
 
             username: auth.getUser().sub
         }
     },
-    // validations: {
-    //     firstName: {
-    //         required,
-    //         minLength: minLength(6)
-    //     }
-    // },
+    validations: {
+        user:{
+            firstName: {
+                required
+            },
+            lastName:{
+                required
+            },
+            addressOne:{
+                required
+            },
+            city:{
+                required
+            },
+            state:{
+                required
+            },
+            postalCode:{
+                required
+            }
+
+        }
+    },
 
 methods: {
     /**
