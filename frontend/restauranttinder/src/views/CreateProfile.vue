@@ -5,15 +5,16 @@
         <div class="error" v-if="$v.user.$invalid">*Please complete all required fields*</div>
             <section>
                 <label>*First Name:</label>
-                <input type="text" v-model.trim="user.firstName">
+                <input type="text" v-model.trim="user.firstName"> 
             </section>
-                <div class="error" v-if="!$v.user.firstName.required"></div>
+                <div class="error" v-if="!$v.user.firstName.required">*</div>
+               
             
             <section>
                 <label>*Last Name:</label>
                 <input type="text" v-model.trim ="user.lastName">
             </section>
-            <div class="error" v-if="!$v.user.lastName.required"></div>
+            <div class="error" v-if="!$v.user.lastName.required">*</div>
 
             <section>
                 <label>*Street Address:</label>
@@ -41,8 +42,8 @@
             <section>
                 <label>*Postal Code:</label>
                 <input type="text" v-model.trim="user.postalCode">
-            </section>
                 <div class="error" v-if="!$v.user.postalCode.required"></div>
+            </section>
 
             <section class="button">
                 <button>Submit</button>
@@ -60,7 +61,7 @@ export default {
     data() {
         return {
             user: {
-                firstName:null ,
+                firstName:null,
                 lastName: null,
                 addressOne:null,
                 addressTwo: null,

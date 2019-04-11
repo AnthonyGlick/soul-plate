@@ -170,7 +170,7 @@ namespace SampleApi.DAL
                     cmd.Parameters.AddWithValue("@firstname", user.FirstName);
                     cmd.Parameters.AddWithValue("@lastname", user.LastName);
                     cmd.Parameters.AddWithValue("@address1", user.AddressOne);
-
+                    //cmd.Parameters.AddWithValue("@address1", user.AddressTwo);
                     if (!String.IsNullOrEmpty(user.AddressTwo))
                     {
                         cmd.Parameters.AddWithValue("@address2", user.AddressTwo);
