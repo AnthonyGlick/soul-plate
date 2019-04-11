@@ -81,7 +81,7 @@
         />
 
         <div class="form-actions">
-          <button class="btn btn-primary">Sign Up</button>
+          <button class="btn btn-primary" v-bind:disabled="$v.signupForm.$invalid">Sign Up</button>
           <div class="extras">
             <a v-on:click="toggleForm">Back to Login</a>
           </div>
@@ -94,6 +94,7 @@
 <script>
 import auth from "@/shared/auth";
 import ErrorMessage from "@/components/ui/ErrorMessage.vue";
+import { sameAs } from "vuelidate/lib/validators";
 
 export default {
   components: { ErrorMessage },
@@ -114,6 +115,13 @@ export default {
       },
       image: require('../assets/imgs/restaurant-1724294_1280.png')
     };
+  },
+  validations: {
+    signupForm: {
+      confirmPassword: {
+        sameAsPassword: sameAs('password')
+      }
+    }
   },
   methods: {
     /**
