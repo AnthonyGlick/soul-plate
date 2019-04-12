@@ -3,16 +3,19 @@
     <h1>Home</h1>
     <form>
       <auto-complete name="Cuisine" placeholder="Cuisine" id="Cuisine" :choices="cuisineNames"></auto-complete>
+      <google-map/>
     </form>
   </div>
 </template>
 
 <script>
 import AutoComplete from "@/components/query/AutoComplete.vue";
+import GoogleMap from "@/components/maps/GoogleMap.vue";
 export default {
   name: "home",
   components: {
-    AutoComplete
+    AutoComplete, 
+    GoogleMap
   },
   data() {
     return {
