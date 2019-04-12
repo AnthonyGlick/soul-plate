@@ -7,6 +7,7 @@
         @summaryRejected = "handleSummaryRejected"
         @summaryRemove = "handleSummaryRemove"
         />
+    <!-- <h1 v-on:click="newMethod">{{visibleSummaries[test]}}</h1> -->
     </div>
 </template>
 
@@ -22,6 +23,7 @@ export default {
     data() {
         return{
             visibleSummaries: ["testTitle1","testTitle2","testTitle3","testTitle4"]
+            // test: 0
         };
     },
     methods: {
@@ -33,7 +35,10 @@ export default {
         },
         handleSummaryRemove() {
             this.visibleSummaries.shift();
-        }
+        },
+        // newMethod() {
+        //     this.test = this.test + 1;
+        // }
     }
 };
 </script>

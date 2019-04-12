@@ -5,6 +5,9 @@
             :key="summary"
             :summary="summary"
             :is-current="index === 0"
+            @summaryAccepted="$emit('summaryAccepted');"
+            @summaryRejected="$emit('summaryRejected');"
+            @summaryCard="$emit('hideSummary');"
         />
     </div>
 </template>
