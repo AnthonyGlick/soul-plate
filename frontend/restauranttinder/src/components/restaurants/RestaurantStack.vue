@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import RestaurantSummary from "@/components/restaurants/RestaurantSummary";
+import RestaurantSummary from "@/components/restaurants/RestaurantSummary.vue";
 export default {
     components:{
         RestaurantSummary

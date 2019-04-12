@@ -1,5 +1,6 @@
 <template>
     <div id="summary-view">
+    <h3> Summary test title restaurant</h3>
         <RestaurantStack
         :summaries="visibleSummaries"
         @summaryAccepted ="handleSummaryAccepted"
@@ -10,7 +11,8 @@
 </template>
 
 <script>
-import RestaurantStack from "./components/restaurants/RestaurantStack";
+import RestaurantStack from "@/components/restaurants/RestaurantStack.vue";
+import auth from "@/shared/auth";
 
 export default {
     name:"Summary",
