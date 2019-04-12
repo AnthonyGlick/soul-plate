@@ -1,9 +1,10 @@
 <template>
     <!--Make sure the form has the autocomplete function switched off:-->
   <div class="autocomplete">
-    <input type="text" v-model="search" @input="onChange" :placeholder="placeholder" :name="name" :id="id"/>
+    <input type="text" v-model="search" @input="onChange" @keydown.down="onArrowDown" @keydown.up="onArrowUp" @keydown.enter.prevent="onEnter" :placeholder="placeholder" :name="name" :id="id"/>
     <ul v-show="isOpen" class="autocomplete-results">
-      <li v-for="(result, i) in results" :key="i" class="autocomplete-result">
+      <li class="loading" v-if="isLoading">Loading Results...</li> 
+      <li v-else v-for="(result, i) in results" :key="i" @click="setResult(result)" class="autocomplete-result" :class="{'is-active':i===arrowCounter}">
           {{result}}
       </li>
     </ul>
@@ -18,18 +19,61 @@ export default {
             search: '',
             results: [],
             isOpen: false,
+            isLoading: false,
+            arrowCounter: -1,
         };
     },
     methods: {
         onChange() {
-            this.isOpen = true;
-            this.filterResults();
+            this.$emit('input', this.search);
+
+            if (this.isAsync){
+              this.isLoading = true;
+            }
+            else {
+              this.isOpen = true;
+              this.filterResults();
+            }
         },
         filterResults() {
             this.results = this.choices.filter(choice => {
                 return choice.toLowerCase().indexOf(this.search.toLowerCase()) > -1
             });
+        },
+        setResult(result) {
+          this.search = result;
+          this.isOpen = false;
+        },
+        onArrowDown() {
+          if(this.arrowCounter < this.results.length) {
+            this.arrowCounter = this.arrowCounter + 1;
+          }
+        },
+        onArrowUp() {
+          if(this.arrowCounter > 0){
+            this.arrowCounter = this.arrowCounter - 1;
+          }
+        },
+        onEnter() {
+          this.search = this.results[this.arrowCounter];
+          this.isOpen = false;
+          this.arrowCounter = -1;
+        },
+        handleClickOutside(evt) {
+          if(!this.$el.contains(evt.target)){
+            this.isOpen = false;
+            this.arrowCounter = -1;
+          }
         }
+    },
+    watch: {
+      choices: function(value,oldValue){
+        if (this.isAsync) {
+          this.results = value;
+          this.isOpen = true;
+          this.isLoading = false;
+        }
+      }
     },
     props: {
         placeholder: String,
@@ -40,7 +84,18 @@ export default {
             required: false,
             default: () => [],
         },
+        isAsync: {
+          type: Boolean,
+          required: false,
+          default: false
+        }
     },
+    mounted(){
+      document.addEventListener('click', this.handleClickOutside);
+    },
+    destroyed(){
+      document.removeEventListener('click', this.handleClickOutside);
+    }
 }
 </script>
 
@@ -64,7 +119,7 @@ export default {
     padding: 4px 2px;
     cursor: pointer;
   }
-
+  .autocomplete-result.is-active,
   .autocomplete-result:hover {
     background-color: #4AAE9B;
     color: white;
