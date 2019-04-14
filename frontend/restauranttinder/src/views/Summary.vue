@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import RestaurantStack from "@/components/restaurants/RestaurantStack.vue";
+// import RestaurantStack from "@/components/restaurants/RestaurantStack.vue";
 import auth from "@/shared/auth";
 
 export default {
