@@ -25,7 +25,7 @@
 import AutoComplete from "@/components/query/AutoComplete.vue";
 import auth from "@/shared/auth";
 export default {
-  name: "home",
+  name: "RestaurantSearch",
   components: {
     AutoComplete
   },

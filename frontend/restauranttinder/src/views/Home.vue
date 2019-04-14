@@ -18,7 +18,7 @@ import RestaurantSummary from "@/components/Home/RestaurantSummary.vue"
 
 export default {
   name: "Home",
-  componenets: {
+  components: {
     RestaurantSearch,
     RestaurantSummary
   },
