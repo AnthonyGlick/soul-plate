@@ -68,7 +68,7 @@
         <input
           v-model.trim="signupForm.password"
           type="password"
-          placeholder="min 6 characters"
+          placeholder="Min 8 characters"
           id="password2"
         />
 
@@ -76,7 +76,7 @@
         <input
           v-model.trim="signupForm.confirmPassword"
           type="password"
-          placeholder="confirm password"
+          placeholder="Confirm password"
           id="password3"
         />
 
@@ -94,7 +94,7 @@
 <script>
 import auth from "@/shared/auth";
 import ErrorMessage from "@/components/ui/ErrorMessage.vue";
-import { sameAs } from "vuelidate/lib/validators";
+import { minLength, sameAs } from "vuelidate/lib/validators";
 
 export default {
   components: { ErrorMessage },
@@ -118,6 +118,9 @@ export default {
   },
   validations: {
     signupForm: {
+      password: {
+        minLength: minLength(8)
+      },
       confirmPassword: {
         sameAsPassword: sameAs('password')
       }

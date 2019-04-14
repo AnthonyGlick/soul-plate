@@ -1,16 +1,20 @@
 <template>
-  <header>
-    <div>
-        <nav>
-      <li v-if="isAuthenticated">
-        <button class="btn btn-primary" href="/logout" v-on:click.prevent="logout">Logout</button>
-      </li>
-      <li v-else>
-        <router-link to="/login">Login</router-link>
-      </li>
-      </nav>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Soul Plate</a>
     </div>
-  </header>
+    <ul class="header-right">
+      <li><button href="/" class="btn btn-primary">View Favorites</button></li>
+      <li><button href="/createprofile" class="btn btn-primary">Edit Profile</button></li>
+      <li v-if="isAuthenticated">
+        <router-link to="/login">
+        <button class="btn btn-primary" v-on:click.prevent="logout">Logout</button>
+        </router-link>
+        </li>
+    </ul>
+  </div>
+</nav>
 </template>
 
 <script>
@@ -42,4 +46,12 @@ export default {
 </script>
 
 <style scoped>
+.header-right {
+  display: flex;
+  justify-content: flex-end;
+}
+li {
+  list-style: none;
+  padding: 5px;
+}
 </style>
