@@ -44,10 +44,7 @@ const router = new Router({
         requiresAuth: true
       }
     },
-<<<<<<< HEAD
-=======
   
->>>>>>> remotes/origin/search-component
       
   ]
 });
