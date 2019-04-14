@@ -19,10 +19,25 @@
 <script>
 export default {
   name: "RestaurantSummary",
+  props: {
+    testurl: String
+  },
   data() {
     return {
       summaries: []
     };
+  },
+  created() {
+    fetch(this.testurl, {
+      method: 'GET',
+      headers: {
+        "user-key": `${process.end.VUE_APP_ZOMATO_KEY}`
+      }
+    }).then( (response) => {
+      return response.json();
+    }).then( (json) => {
+      this.summaries = json;
+    }).catch( (error) => console.error(error));
   }
   //TODO // methods:{
   //        removeReviewFromArray(id) {
