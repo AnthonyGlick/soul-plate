@@ -9,7 +9,7 @@
 
     <div class="text-infor">    
         <h3 class="name">{{summaries.restaurants[restaurantNumber].restaurant.name}}</h3>
-        <h3 class="rating">Rating:{{summaries.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}}</h3>
+        <h3 class="rating">Rating:{{summaries.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}} out of 5</h3>
         <h3 class="location">Location:{{summaries.restaurants[restaurantNumber].restaurant.location.locality}}</h3>
         <h3 class="cuisines">{{summaries.restaurants[restaurantNumber].restaurant.cuisines}}</h3>
         <h3 class="price-range">Price: {{dollarprice}}</h3>
