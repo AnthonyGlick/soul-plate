@@ -1,16 +1,16 @@
 <template>
   <div class="restaurant-summaries">
-    <div class="summary" v-for="summary in summaries" :key="summary.id">
+    <div class="summary" v-for="restaurant in summaries.restaurants" :key="restaurant.restaurant.id">
       <div class="featuredimage">
-          <img :src ="summary.featured_image">
+          <img :src ="restaurant.restaurant.featured_image">
       </div>
 
     <div class="text-infor">    
-        <h3 class="name">{{summary.name}}</h3>
-        <h3 class="rating">{{summary.user_rating.aggregate_rating}}</h3>
-        <h3 class="location">{{summary.location.locality}}</h3>
-        <h3 class="cuisines">{{summary.cuisines}}</h3>
-        <h3 class="price-range">{{summary.price_range}}</h3>
+        <h3 class="name">{{restaurant.restaurant.name}}</h3>
+        <h3 class="rating">{{restaurant.restaurant.user_rating.aggregate_rating}}</h3>
+        <h3 class="location">{{restaurant.restaurant.location.locality}}</h3>
+        <h3 class="cuisines">{{restaurant.restaurant.cuisines}}</h3>
+        <h3 class="price-range">{{restaurant.restaurant.price_range}}</h3>
       </div> 
     </div>
   </div>
@@ -31,7 +31,8 @@ export default {
     fetch(this.testurl, {
       method: 'GET',
       headers: {
-        "user-key": `${process.end.VUE_APP_ZOMATO_KEY}`
+        "Content-Type": "application/json",
+        "user-key": `${process.env.VUE_APP_ZOMATO_KEY}`
       }
     }).then( (response) => {
       return response.json();
