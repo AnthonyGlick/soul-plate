@@ -2,7 +2,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/"><img class="logo" v-bind:src='image'></a>
+      <a class="navbar-brand" href="/"><img class="logo" v-bind:src='image'>  Soul Plate</a>
     </div>
     <ul class="header-right">
       <li><button href="/" class="btn btn-primary">View Favorites</button></li>
@@ -65,4 +65,57 @@ li {
   filter: grayscale(100%)
   
 }
+
+.navbar.navbar-inverse {
+  background-color: #ff9933;
+}
+
+.navbar-brand {
+  font-family: 'Vollkorn', sans-serif;
+  color: black;
+  font-size: 35px;
+}
+
+.btn.btn-primary {
+  font-family: 'Vollkorn', sans-serif;
+  background: black;
+  font-size: 18px;
+}
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.logo:hover {
+  -webkit-animation: rotating 2s linear infinite;
+  -moz-animation: rotating 2s linear infinite;
+  -ms-animation: rotating 2s linear infinite;
+  -o-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
+}
+
 </style>
