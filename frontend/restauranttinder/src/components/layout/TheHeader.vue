@@ -2,7 +2,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">Soul Plate</a>
+      <a class="navbar-brand" href="/"><img class="logo" v-bind:src='image'></a>
     </div>
     <ul class="header-right">
       <li><button href="/" class="btn btn-primary">View Favorites</button></li>
@@ -26,6 +26,7 @@ export default {
   name: "the-header",
   data() {
     return {
+      image: require('../../assets/imgs/restaurant-1724294_1280.png'),
       isAuthenticated: auth.getUser() !== null
     };
   },
@@ -55,5 +56,13 @@ export default {
 li {
   list-style: none;
   padding: 5px;
+}
+
+.logo {
+  height: 75px;
+  width:auto;
+  padding-bottom: 10px;
+  filter: grayscale(100%)
+  
 }
 </style>
