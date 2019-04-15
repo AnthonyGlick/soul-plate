@@ -6,7 +6,9 @@
     </div>
     <ul class="header-right">
       <li><button href="/" class="btn btn-primary">View Favorites</button></li>
-      <li><button href="/createprofile" class="btn btn-primary">Edit Profile</button></li>
+        <router-link to="/createprofile">
+          <li><button href="/createprofile" class="btn btn-primary">Edit Profile</button></li>
+        </router-link>
       <li v-if="isAuthenticated">
         <router-link to="/login">
         <button class="btn btn-primary" v-on:click.prevent="logout">Logout</button>
