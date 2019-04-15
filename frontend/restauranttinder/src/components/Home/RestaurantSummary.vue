@@ -1,16 +1,16 @@
 <template>
   <div class="restaurant-summaries">
-    <div class="summary" v-for="restaurant in summaries.restaurants" :key="restaurant.restaurant.id">
+    <div class="summary" :key="restaurantNumber">
       <div class="featuredimage">
-          <img :src ="restaurant.restaurant.featured_image">
+          <img :src ="summaries.restaurants[restaurantNumber].restaurant.featured_image">
       </div>
 
     <div class="text-infor">    
-        <h3 class="name">{{restaurant.restaurant.name}}</h3>
-        <h3 class="rating">{{restaurant.restaurant.user_rating.aggregate_rating}}</h3>
-        <h3 class="location">{{restaurant.restaurant.location.locality}}</h3>
-        <h3 class="cuisines">{{restaurant.restaurant.cuisines}}</h3>
-        <h3 class="price-range">{{restaurant.restaurant.price_range}}</h3>
+        <h3 class="name">{{summaries.restaurants[restaurantNumber].restaurant.name}}</h3>
+        <h3 class="rating">{{summaries.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}}</h3>
+        <h3 class="location">{{summaries.restaurants[restaurantNumber].restaurant.location.locality}}</h3>
+        <h3 class="cuisines">{{summaries.restaurants[restaurantNumber].restaurant.cuisines}}</h3>
+        <h3 class="price-range">{{summaries.restaurants[restaurantNumber].restaurant.price_range}}</h3>
       </div> 
     </div>
   </div>
@@ -24,6 +24,7 @@ export default {
   },
   data() {
     return {
+      restaurantNumber: 0,
       summaries: []
     };
   },
