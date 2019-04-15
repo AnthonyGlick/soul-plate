@@ -1,9 +1,11 @@
 <template>
   <div class="restaurant-summaries">
     <div class="summary" :key="restaurantNumber">
-      <div class="featuredimage">
-          <img :src ="summaries.restaurants[restaurantNumber].restaurant.featured_image">
+
+      <div v-if="summaries.restaurants[restaurantNumber].restaurant.featured_image" class="featuredimage">
+        <img :src="summaries.restaurants[restaurantNumber].restaurant.featured_image">
       </div>
+      <div v-else><img class="featuredimage" src= "https://via.placeholder.com/1200x464"></div>
 
     <div class="text-infor">    
         <h3 class="name">{{summaries.restaurants[restaurantNumber].restaurant.name}}</h3>
@@ -30,16 +32,19 @@ export default {
   },
   created() {
     fetch(this.testurl, {
-      method: 'GET',
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         "user-key": `${process.env.VUE_APP_ZOMATO_KEY}`
       }
-    }).then( (response) => {
-      return response.json();
-    }).then( (json) => {
-      this.summaries = json;
-    }).catch( (error) => console.error(error));
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(json => {
+        this.summaries = json;
+      })
+      .catch(error => console.error(error));
   }
   //TODO // methods:{
   //        removeReviewFromArray(id) {
@@ -53,4 +58,12 @@ export default {
 </script>
 
 <style>
+
+.summary{
+  border: 1px solid black;
+  display:flex;
+  flex-direction: column;
+}
+
+
 </style>
