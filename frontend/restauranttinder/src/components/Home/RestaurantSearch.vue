@@ -45,7 +45,7 @@ export default {
       restaurants: {}
     };
   },
-  method: {
+  methods: {
     toggleCoords() {
       this.latToggle();
       this.lonToggle();
@@ -120,7 +120,7 @@ export default {
         this.currentUser = json;
       });
       /** TODO NOT HARD CODE vvvvv */
-      fetch(`https://maps.googleapis.com/maps/api/geocode/json?311+Bettie+Lane,+Brunswick,+OH&key=${process.env.VUE_APP_GOOGLE_KEY}`,{
+      fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=311+Bettie+Lane,+Brunswick,+OH&key=${process.env.VUE_APP_GOOGLE_KEY}`,{
         method: "GET",
       headers: {
         "Content-Type": "application/json",
