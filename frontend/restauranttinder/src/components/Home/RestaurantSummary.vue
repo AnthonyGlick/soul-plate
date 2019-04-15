@@ -31,7 +31,7 @@ export default {
     fetch(this.testurl, {
       method: 'GET',
       headers: {
-        "user-key": `${process.end.VUE_APP_ZOMATO_KEY}`
+        "user-key": `${process.env.VUE_APP_ZOMATO_KEY}`
       }
     }).then( (response) => {
       return response.json();

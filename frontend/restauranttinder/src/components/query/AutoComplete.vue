@@ -1,5 +1,4 @@
 <template>
-    <!--Make sure the form has the autocomplete function switched off:-->
   <div class="autocomplete">
     <input type="text" v-model="search" @input="onChange" @keydown.down="onArrowDown" @keydown.up="onArrowUp" @keydown.enter.prevent="onEnter" :placeholder="placeholder" :name="name" :id="id"/>
     <ul v-show="isOpen" class="autocomplete-results">
@@ -20,7 +19,7 @@ export default {
             results: [],
             isOpen: false,
             isLoading: false,
-            arrowCounter: -1,
+            arrowCounter: 0,
         };
     },
     methods: {

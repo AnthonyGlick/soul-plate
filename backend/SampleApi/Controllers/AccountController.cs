@@ -96,6 +96,19 @@ namespace SampleApi.Controllers
             return result;
         }
 
+        [HttpGet("{username}")]
+        public ActionResult GetProfile([FromRoute]string username)
+        {
+            var user = userDao.GetUser(username);
+
+            if(user != null)
+            {
+                return Ok(user);
+            }
+
+            return NotFound();
+        }
+
         [HttpPut("{username}")]
         public ActionResult UpdateProfile([FromRoute]string username, [FromBody] SampleApi.Models.User user)
         {
