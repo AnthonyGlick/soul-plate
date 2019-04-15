@@ -15,8 +15,8 @@
         <option value="400">400</option>
         <option value="500">500</option>
       </select>
-      <input type="hidden" id="lat" :value="latToggle">
-      <input type="hidden" id="lon" :value="lonToggle">
+      <input type="hidden" id="lat" :value="currentCoords.lat">
+      <input type="hidden" id="lon" :value="currentCoords.lon">
     </form>
   </div>
 </template>
@@ -135,16 +135,16 @@ showPosition(position) {
         this.currentUser = json;
       });
       /** TODO NOT HARD CODE vvvvv */
-      fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=311+Bettie+Lane,+Brunswick,+OH&key=${process.env.VUE_APP_GOOGLE_KEY}`,{
-        method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      }
-      }).then(response => {
-        return response.json();
-      }).then(json => {
-        this.addressCoords = json;
-      })
+      // fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=311+Bettie+Lane,+Brunswick,+OH&key=${process.env.VUE_APP_GOOGLE_KEY}`,{
+      //   method: "GET",
+      // headers: {
+      //   "Content-Type": "application/json",
+      // }
+      // }).then(response => {
+      //   return response.json();
+      // }).then(json => {
+      //   this.addressCoords = json;
+      // })
 
       this.getLocation();
   }
