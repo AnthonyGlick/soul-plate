@@ -28,8 +28,11 @@ export default {
   computed:{
     dollarprice: function() {
       let dollarsigns= "";
-      for(let i =0;i<this.summaries.restaurants[this.restaurantNumber].restaurant.price_range;i++){
-        dollarsigns += "$"
+
+      if (this.summaries && this.summaries.restaurants) {
+        for(let i =0;i<this.summaries.restaurants[this.restaurantNumber].restaurant.price_range;i++){
+          dollarsigns += "$"
+        }
       }
       return dollarsigns;
     },
@@ -67,7 +70,7 @@ export default {
   methods: {
     rejectRestaurant() {
       if (this.summaries.restaurants.length < 1) {
-       return emptyArray; 
+       return this.emptyArray; 
       }
       if (this.restaurantNumber < this.summaries.restaurants.length) {
         this.restaurantNumber = this.restaurantNumber + 1;
