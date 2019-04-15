@@ -9,10 +9,10 @@
 
     <div class="text-infor">    
         <h3 class="name">{{summaries.restaurants[restaurantNumber].restaurant.name}}</h3>
-        <h3 class="rating">{{summaries.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}}</h3>
-        <h3 class="location">{{summaries.restaurants[restaurantNumber].restaurant.location.locality}}</h3>
+        <h3 class="rating">Rating:{{summaries.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}}</h3>
+        <h3 class="location">Location:{{summaries.restaurants[restaurantNumber].restaurant.location.locality}}</h3>
         <h3 class="cuisines">{{summaries.restaurants[restaurantNumber].restaurant.cuisines}}</h3>
-        <h3 class="price-range">{{summaries.restaurants[restaurantNumber].restaurant.price_range}}</h3>
+        <h3 class="price-range">Price: {{dollarprice}}</h3>
       </div> 
     </div>
   </div>
@@ -24,6 +24,22 @@ export default {
   props: {
     testurl: String
   },
+  computed:{
+    dollarprice: function() {
+      let dollarsigns= "";
+      for(let i =0;i<this.summaries.restaurants[this.restaurantNumber].restaurant.price_range;i++){
+        dollarsigns += "$"
+      }
+      return dollarsigns;
+    },
+
+    // starrating: function(){
+      
+    // }
+
+
+  },
+
   data() {
     return {
       restaurantNumber: 0,
