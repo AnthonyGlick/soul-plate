@@ -15,6 +15,7 @@
         <h3 class="price-range">{{summaries.restaurants[restaurantNumber].restaurant.price_range}}</h3>
       </div> 
     </div>
+    <button v-on:click="rejectRestaurant">Next Restaurant</button>
   </div>
 </template>
 
@@ -27,6 +28,7 @@ export default {
   data() {
     return {
       restaurantNumber: 0,
+      emptyArray: "Still hungry? Search again!",
       summaries: []
     };
   },
@@ -45,6 +47,19 @@ export default {
         this.summaries = json;
       })
       .catch(error => console.error(error));
+  },
+  methods: {
+    rejectRestaurant() {
+      if (this.summaries.restaurants.length < 1) {
+       return emptyArray; 
+      }
+      if (this.restaurantNumber < this.summaries.restaurants.length) {
+        this.restaurantNumber = this.restaurantNumber + 1;
+      }
+      else {
+        this.restaurantNumber = 0;
+      }
+    }
   }
   //TODO // methods:{
   //        removeReviewFromArray(id) {
