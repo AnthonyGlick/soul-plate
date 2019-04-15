@@ -30,4 +30,14 @@ export default {
 
 <style>
 
+h1 {
+  font-family: 'Vollkorn', sans-serif;
+  padding: 8px;
+}
+
+span {
+  font-family: 'Vollkorn', sans-serif;
+  font-size: 18px;
+}
+
 </style>

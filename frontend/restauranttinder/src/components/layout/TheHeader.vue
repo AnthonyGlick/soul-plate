@@ -2,7 +2,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/"><img class="logo" v-bind:src='image'></a>
+      <a class="navbar-brand" href="/"><img class="logo" v-bind:src='image'>  Soul Plate</a>
     </div>
     <ul class="header-right">
       <li><button href="/" class="btn btn-primary">View Favorites</button></li>
@@ -64,5 +64,21 @@ li {
   padding-bottom: 10px;
   filter: grayscale(100%)
   
+}
+
+.navbar.navbar-inverse {
+  background-color: #ff9933;
+}
+
+.navbar-brand {
+  font-family: 'Vollkorn', sans-serif;
+  color: black;
+  font-size: 35px;
+}
+
+.btn.btn-primary {
+  font-family: 'Vollkorn', sans-serif;
+  background: black;
+  font-size: 18px;
 }
 </style>
