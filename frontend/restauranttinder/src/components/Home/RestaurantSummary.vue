@@ -1,7 +1,6 @@
 <template>
   <div class="restaurant-summaries">
-    <div class="summary" :key="restaurantNumber">
-
+    <div class="summary" v-if="summaries.restaurants" :key="restaurantNumber">
       <div v-if="summaries.restaurants[restaurantNumber].restaurant.featured_image" class="featuredimage">
         <img :src="summaries.restaurants[restaurantNumber].restaurant.featured_image">
       </div>

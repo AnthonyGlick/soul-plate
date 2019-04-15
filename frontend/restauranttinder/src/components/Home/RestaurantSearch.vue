@@ -135,16 +135,15 @@ showPosition(position) {
         this.currentUser = json;
       });
       /** TODO NOT HARD CODE vvvvv */
-      // fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=311+Bettie+Lane,+Brunswick,+OH&key=${process.env.VUE_APP_GOOGLE_KEY}`,{
-      //   method: "GET",
-      // headers: {
-      //   "Content-Type": "application/json",
-      // }
-      // }).then(response => {
-      //   return response.json();
-      // }).then(json => {
-      //   this.addressCoords = json;
-      // })
+      fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=311+Bettie+Lane,+Brunswick,+OH&key=${process.env.VUE_APP_GOOGLE_KEY}`,{
+        method: "GET",
+      headers: {
+      }
+      }).then(response => {
+        return response.json();
+      }).then(json => {
+        this.addressCoords = json;
+      })
 
       this.getLocation();
   }
