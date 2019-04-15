@@ -37,7 +37,7 @@ export default {
       username: auth.getUser().sub,
       currentCoords: {
         lat: "",
-        long: ""
+        lon: ""
       },
       addressCoords: {},
       radius: "",
@@ -88,7 +88,22 @@ export default {
         return cuisine.name.toLowerCase() === cuisineName.toLowerCase();
       })
       this.chosenCuisine = tempCuisine.cuisine_id;
-    }
+    },
+    getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(this.showPosition);
+  }
+},
+showPosition(position) {
+  console.log(position.coords.latitude)
+  // var currentCoords = {
+  //   lat: 0,
+  //   lon: 0
+  // }
+  this.currentCoords.lat = position.coords.latitude;
+  this.currentCoords.lon = position.coords.longitude;
+  console.log(this.currentCoords);
+}
   },
   created() {
     fetch(`${process.env.VUE_APP_ZOMATO_API}/cuisines?city_id=1033`, {
@@ -131,18 +146,10 @@ export default {
         this.addressCoords = json;
       })
 
-      getLocation();
+      this.getLocation();
   }
 };
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  }
-}
-function showPosition(position) {
-  this.currentCoords.lat = position.coords.latitude;
-  this.currentCoords.lon = position.coords.longitude;
-}
+
 </script>
 
 <style>
