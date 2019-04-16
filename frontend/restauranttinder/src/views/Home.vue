@@ -12,6 +12,7 @@
 <script>
 import RestaurantSearch from "@/components/Home/RestaurantSearch.vue"
 import RestaurantSummary from "@/components/Home/RestaurantSummary.vue"
+import RejectButton from "@/components/Home/RejectButton.vue"
 
 export default {
   name: "Home",

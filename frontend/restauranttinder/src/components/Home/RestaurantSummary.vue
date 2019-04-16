@@ -20,10 +20,15 @@
 </template>
 
 <script>
+import RejectButton from "@/components/Home/RejectButton.vue"
+ 
 export default {
   name: "RestaurantSummary",
   props: {
     summaries: Object
+  },
+  components:{
+    RejectButton
   },
   computed:{
     dollarprice: function() {

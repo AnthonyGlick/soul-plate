@@ -2,12 +2,7 @@
   <div class="form-block">
     <h1>Home</h1>
     <form method="GET" @submit.prevent="onSubmit()">
-      <auto-complete
-        name="Cuisine"
-        placeholder="Cuisine"
-        id="Cuisine"
-        :choices="cuisineNames"
-      ></auto-complete>
+      <auto-complete name="Cuisine" placeholder="Cuisine" id="Cuisine" :choices="cuisineNames"></auto-complete>
       <section>
         <input id="checkbox" type="checkbox" @change="toggleCoords">
         <span>Check for current location, uncheck for saved address</span>
@@ -87,7 +82,7 @@ export default {
         "&radius=" +
         this.radius +
         "&cuisines=" +
-        (document.getElementById('Cuisine').value); /** TODO convert miles meters */
+        this.chosenCuisine
       fetch(`${process.env.VUE_APP_ZOMATO_API}${this.endpoint}`, {
         method: "GET",
         headers: {
@@ -103,28 +98,33 @@ export default {
         })
         .catch(error => console.error(error));
     },
-    getCuisineId(cuisineName) {
-    let tempCuisine = this.cuisines.filter(cuisine => {
-      return cuisine.name.toLowerCase() === cuisineName.toLowerCase();
-    });
-    this.chosenCuisine = tempCuisine.cuisine_id;
-  },
-  getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.showPosition);
+
+    getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(this.showPosition);
+      }
+    },
+    showPosition(position) {
+      console.log(position.coords.latitude);
+      // var currentCoords = {
+      //   lat: 0,
+      //   lon: 0
+      // }
+      this.currentCoords.lat = position.coords.latitude;
+      this.currentCoords.lon = position.coords.longitude;
+      console.log(this.currentCoords);
     }
   },
-  showPosition(position) {
-    console.log(position.coords.latitude);
-    // var currentCoords = {
-    //   lat: 0,
-    //   lon: 0
-    // }
-    this.currentCoords.lat = position.coords.latitude;
-    this.currentCoords.lon = position.coords.longitude;
-    console.log(this.currentCoords);
+
+  computed: {
+    getCuisineId() {
+      let tempCuisine = this.cuisines.filter(cuisine => {
+        return cuisine.name.toLowerCase() === document.getElementById("Cuisine").value.toLowerCase();
+      });
+      this.chosenCuisine = tempCuisine.cuisine_id;
+    }
   },
-  },
+
   created() {
     fetch(`${process.env.VUE_APP_ZOMATO_API}/cuisines?city_id=1033`, {
       method: "GET",
