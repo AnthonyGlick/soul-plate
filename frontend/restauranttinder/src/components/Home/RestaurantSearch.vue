@@ -2,19 +2,25 @@
   <div class="form-block">
     <h1>Home</h1>
     <form method="GET" @submit.prevent="onSubmit()">
-      <auto-complete name="Cuisine" placeholder="Cuisine" id="Cuisine" :choices="cuisineNames" 
-      @change="getCuisineId(document.getElementById(Cuisine).value)"></auto-complete>
+      <auto-complete
+        name="Cuisine"
+        placeholder="Cuisine"
+        id="Cuisine"
+        :choices="cuisineNames"
+        @change="getCuisineId(document.getElementById(Cuisine).value)"
+      ></auto-complete>
       <section>
         <input id="checkbox" type="checkbox" @change="toggleCoords">
         <span>Check for current location, uncheck for saved address</span>
       </section>
-      <select v-model="radius" name="" id="">
+      <select v-model="radius" name id>
         <option value="100">100</option>
         <option value="200">200</option>
         <option value="300">300</option>
         <option value="400">400</option>
         <option value="500">500</option>
       </select>
+      <input type="submit" v-on:click.prevent="performSearch" value="Submit">
       <input type="hidden" id="lat" :value="currentCoords.lat">
       <input type="hidden" id="lon" :value="currentCoords.lon">
     </form>
@@ -45,6 +51,9 @@ export default {
       restaurants: {}
     };
   },
+  props: {
+    searchUrl: String
+  },
   methods: {
     toggleCoords() {
       this.latToggle();
@@ -52,24 +61,35 @@ export default {
     },
     latToggle() {
       if (document.getElementById("lat").value == this.currentCoords.lat) {
-        document.getElementById("lat").value = this.addressCoords.results.geometry.location.lat;
+        document.getElementById(
+          "lat"
+        ).value = this.addressCoords.results.geometry.location.lat;
       } else {
         document.getElementById("lat").value = this.currentCoords.lat;
       }
     },
     lonToggle() {
       if (document.getElementById("lon").value == this.currentCoords.lon) {
-        document.getElementById("lon").value = this.addressCoords.results.geometry.location.lng;
+        document.getElementById(
+          "lon"
+        ).value = this.addressCoords.results.geometry.location.lng;
       } else {
         document.getElementById("lon").value = this.currentCoords.lon;
       }
     },
-    onSubmit() {
+    performSearch() {
       const currentLat = document.getElementById("lat").value;
       const currentLon = document.getElementById("lon").value;
-      const endpoint =
-        "/search?lat=" + currentLat + "&lon=" + currentLon + "&radius=" + this.radius + "&cuisine=" + this.chosenCuisine /** TODO convert miles meters */;
-      fetch(`${process.env.VUE_APP_ZOMATO_API}${endpoint}`, {
+      this.endpoint =
+        "/search?lat=" +
+        currentLat +
+        "&lon=" +
+        currentLon +
+        "&radius=" +
+        this.radius +
+        "&cuisine=" +
+        this.chosenCuisine; /** TODO convert miles meters */
+      fetch(`${process.env.VUE_APP_ZOMATO_API}${this.endpoint}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -80,30 +100,31 @@ export default {
           return response.json();
         })
         .then(json => {
-          this.restaurants = json;
-        }).catch(error => console.error(error));
+          this.$emit("search-results", json);
+        })
+        .catch(error => console.error(error));
     },
     getCuisineId(cuisineName) {
-      let tempCuisine = this.cuisines.filter(cuisine => {
-        return cuisine.name.toLowerCase() === cuisineName.toLowerCase();
-      })
-      this.chosenCuisine = tempCuisine.cuisine_id;
-    },
-    getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(this.showPosition);
-  }
-},
-showPosition(position) {
-  console.log(position.coords.latitude)
-  // var currentCoords = {
-  //   lat: 0,
-  //   lon: 0
-  // }
-  this.currentCoords.lat = position.coords.latitude;
-  this.currentCoords.lon = position.coords.longitude;
-  console.log(this.currentCoords);
-}
+    let tempCuisine = this.cuisines.filter(cuisine => {
+      return cuisine.name.toLowerCase() === cuisineName.toLowerCase();
+    });
+    this.chosenCuisine = tempCuisine.cuisine_id;
+  },
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.showPosition);
+    }
+  },
+  showPosition(position) {
+    console.log(position.coords.latitude);
+    // var currentCoords = {
+    //   lat: 0,
+    //   lon: 0
+    // }
+    this.currentCoords.lat = position.coords.latitude;
+    this.currentCoords.lon = position.coords.longitude;
+    console.log(this.currentCoords);
+  },
   },
   created() {
     fetch(`${process.env.VUE_APP_ZOMATO_API}/cuisines?city_id=1033`, {
@@ -124,31 +145,38 @@ showPosition(position) {
       })
       .catch(error => console.error(error));
 
-      fetch(`${process.env.VUE_APP_REMOTE_API}/Account/${this.username}`, {
-        method: "GET",
+    fetch(`${process.env.VUE_APP_REMOTE_API}/Account/${this.username}`, {
+      method: "GET",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       }
-      }).then(response => {
+    })
+      .then(response => {
         return response.json();
-      }).then(json => {
+      })
+      .then(json => {
         this.currentUser = json;
       });
-      /** TODO NOT HARD CODE vvvvv */
-      fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=311+Bettie+Lane,+Brunswick,+OH&key=${process.env.VUE_APP_GOOGLE_KEY}`,{
+    /** TODO NOT HARD CODE vvvvv */
+    fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=311+Bettie+Lane,+Brunswick,+OH&key=${
+        process.env.VUE_APP_GOOGLE_KEY
+      }`,
+      {
         method: "GET",
-      headers: {
+        headers: {}
       }
-      }).then(response => {
+    )
+      .then(response => {
         return response.json();
-      }).then(json => {
-        this.addressCoords = json;
       })
+      .then(json => {
+        this.addressCoords = json;
+      });
 
-      this.getLocation();
+    this.getLocation();
   }
 };
-
 </script>
 
 <style>

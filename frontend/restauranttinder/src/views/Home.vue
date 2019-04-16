@@ -1,9 +1,10 @@
 <template>
  <div id="Home">
-   <restaurant-search/>
-   <!-- TODO remove hardcoded restaurant -->
+   <restaurant-search
+      v-on:search-results="performSearch"
+   />
    <restaurant-summary
-       v-bind:testurl="test_url"
+       v-bind:summaries="summaries"
    />
  </div>
 </template>
@@ -21,10 +22,15 @@ export default {
 
   data(){
     return {
-      test_url: "https://developers.zomato.com/api/v2.1/search?entity_type=city&lat=&lon=1&radius=3&cuisines=55"
+      summaries: []
     }
   },
+methods: {
+  performSearch(summaries) {
+    this.summaries = summaries;
+  },
 
+}
 }
 </script>
 

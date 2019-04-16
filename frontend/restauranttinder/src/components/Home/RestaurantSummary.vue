@@ -1,6 +1,7 @@
 <template>
   <div class="restaurant-summaries">
     <div class="summary" v-if="summaries.restaurants" :key="restaurantNumber">
+
       <div v-if="summaries.restaurants[restaurantNumber].restaurant.featured_image" class="featuredimage">
         <img :src="summaries.restaurants[restaurantNumber].restaurant.featured_image">
       </div>
@@ -22,7 +23,7 @@
 export default {
   name: "RestaurantSummary",
   props: {
-    testurl: String
+    summaries: Object
   },
   computed:{
     dollarprice: function() {
@@ -46,25 +47,8 @@ export default {
   data() {
     return {
       restaurantNumber: 0,
-      emptyArray: "Still hungry? Search again!",
-      summaries: []
+      emptyArray: "Still hungry? Search again!"
     };
-  },
-  created() {
-    fetch(this.testurl, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "user-key": `${process.env.VUE_APP_ZOMATO_KEY}`
-      }
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(json => {
-        this.summaries = json;
-      })
-      .catch(error => console.error(error));
   },
   methods: {
     rejectRestaurant() {
