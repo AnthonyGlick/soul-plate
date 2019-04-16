@@ -8,10 +8,10 @@
       <div v-else><img class="featuredimage" src= "https://via.placeholder.com/1200x464"></div>
 
     <div class="text-infor">    
-        <h3 class="name">{{summaries.restaurants[restaurantNumber].restaurant.name}}</h3>
-        <h3 class="rating">Rating:{{summaries.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}} out of 5</h3>
-        <h3 class="location">Location:{{summaries.restaurants[restaurantNumber].restaurant.location.locality}}</h3>
-        <h3 class="cuisines">{{summaries.restaurants[restaurantNumber].restaurant.cuisines}}</h3>
+        <h3 class="name"> {{summaries.restaurants[restaurantNumber].restaurant.name}}</h3>
+        <h3 class="rating">Rating: {{summaries.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}} out of 5</h3>
+        <h3 class="location">Location: {{summaries.restaurants[restaurantNumber].restaurant.location.locality}}</h3>
+        <h3 class="cuisines"> {{summaries.restaurants[restaurantNumber].restaurant.cuisines}}</h3>
         <h3 class="price-range">Price: {{dollarprice}}</h3>
       </div> 
     </div>
@@ -77,13 +77,22 @@ export default {
 <style>
 
 .summary{
-  border: 1px solid black;
   display:flex;
   flex-direction: column;
 }
 
 div.text-infor {
   font-family: 'Vollkorn', sans-serif;
+  display: inline-block;
+  background-color: white;
 }
 
+img.featuredimage {
+  height: 100%;
+  width: 600px;
+}
+
+div.text-infor {
+  background-color: rgba(255,255,255,0.8)
+}
 </style>
