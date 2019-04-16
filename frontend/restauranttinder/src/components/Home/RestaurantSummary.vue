@@ -15,7 +15,9 @@
         <h3 class="price-range">Price: {{dollarprice}}</h3>
       </div> 
     </div>
-    <button v-on:click="rejectRestaurant">Next Restaurant</button>
+    <button v-on:click="nextRestaurant">Next Restaurant</button>
+    <reject-button
+      v-on:Reject="rejectRestaurant"/>
   </div>
 </template>
 
@@ -51,7 +53,7 @@ export default {
     };
   },
   methods: {
-    rejectRestaurant() {
+    nextRestaurant() {
       if (this.summaries.restaurants.length < 1) {
        return this.emptyArray; 
       }
@@ -61,16 +63,13 @@ export default {
       else {
         this.restaurantNumber = 0;
       }
+    },
+    
+    rejectRestaurant(restaurantNumber){
+      this.summaries.restaurants.splice(restaurantNumber,1)
     }
+
   }
-  //TODO // methods:{
-  //        removeReviewFromArray(id) {
-  //       const reviewsMinusDeleted = this.reviews.filter((review) => {
-  //         return review.id !== id;
-  //       });
-  //       this.reviews = reviewsMinusDeleted;
-  // },
-  // }
 };
 </script>
 
