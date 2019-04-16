@@ -95,7 +95,17 @@ div.text-infor {
   background-color: rgba(255,255,255,0.8)
 }
 
-.next-res {
-  
+.restaurant-summaries {
+  position: absolute;
+  margin-top: 350px;
+  left: 0;
+  right: 0;
 }
+
+.text-infor {
+  margin-left: 500px;
+  margin-right: 500px;
+  margin-top: 10px;
+}
+
 </style>

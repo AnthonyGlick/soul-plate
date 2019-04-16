@@ -1,13 +1,12 @@
 <template>
   <div class="form-block">
-    <h1>Home</h1>
+    <h1>TELL US WHAT YOU LIKE</h1>
     <form method="GET" @submit.prevent="onSubmit()">
-      <label class="Food-search"> Food Search </label>
       <auto-complete name="Cuisine" placeholder="Cuisine" id="Cuisine" :choices="cuisineNames"></auto-complete>
       <!-- <section>
         <input id="checkbox" type="checkbox" @change="toggleCoords">
         <span>Check for current location, uncheck for saved address</span>
-      </section> -->
+      </section>-->
       <select v-model="radius" name id>
         <option value="1609">1 mile</option>
         <option value="8046">5 miles</option>
@@ -15,7 +14,7 @@
         <option value="40233">25 miles</option>
         <option value="80467">50 miles</option>
       </select>
-      <input type="submit" v-on:click.prevent="performSearch" value="Submit">
+      <input class="btn btn-success" type="submit" v-on:click.prevent="performSearch" value="Submit">
       <input type="hidden" id="lat" :value="currentCoords.lat">
       <input type="hidden" id="lon" :value="currentCoords.lon">
     </form>
@@ -83,7 +82,7 @@ export default {
         "&radius=" +
         this.radius +
         "&cuisines=" +
-        this.chosenCuisine
+        this.chosenCuisine;
       fetch(`${process.env.VUE_APP_ZOMATO_API}${this.endpoint}`, {
         method: "GET",
         headers: {
@@ -120,7 +119,10 @@ export default {
   computed: {
     getCuisineId() {
       let tempCuisine = this.cuisines.filter(cuisine => {
-        return cuisine.name.toLowerCase() === document.getElementById("Cuisine").value.toLowerCase();
+        return (
+          cuisine.name.toLowerCase() ===
+          document.getElementById("Cuisine").value.toLowerCase()
+        );
       });
       this.chosenCuisine = tempCuisine.cuisine_id;
     }
@@ -187,19 +189,26 @@ html {
 div.form-block {
   border: 1px solid black;
   position: absolute;
-  padding: 100px;
-  background-color: orange;
+  padding: 50px;
+  background-color: #ff9933;
   opacity: 0.8;
   border-radius: 5px;
   right: 0;
   left: 0;
-  margin-left: 300px;
-  margin-right: 300px;
-  margin-top: 100px;
-
+  margin-left: 400px;
+  margin-right: 400px;
+  margin-top: 10px;
+  /* display: flex; */
 }
 
-label.Food-search {
-  justify-content: left;
+form {
+  display: flex;
+  justify-content: space-around;
 }
+
+input:focus {
+  border:2px solid blue;
+}
+
+
 </style>

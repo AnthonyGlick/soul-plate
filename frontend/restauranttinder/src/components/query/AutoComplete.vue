@@ -104,12 +104,23 @@ export default {
     width: 130px;
   }
 
+  li:empty {
+    display: none;
+  }
+
+  input[type=text]{
+    width: inherit;
+  }
+
   .autocomplete-results {
     padding: 0;
     margin: 0;
     border: 1px solid #eeeeee;
     height: 120px;
     overflow: auto;
+    position: absolute;
+    z-index: 100;
+    width: inherit;
   }
 
   .autocomplete-result {
@@ -117,6 +128,7 @@ export default {
     text-align: left;
     padding: 4px 2px;
     cursor: pointer;
+    background-color: white;
   }
   .autocomplete-result.is-active,
   .autocomplete-result:hover {
