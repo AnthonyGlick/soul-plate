@@ -22,15 +22,10 @@
 </template>
 
 <script>
-import RejectButton from "@/components/Home/RejectButton.vue"
- 
 export default {
   name: "RestaurantSummary",
   props: {
     summaries: Object
-  },
-  components:{
-    RejectButton
   },
   computed:{
     dollarprice: function() {
@@ -98,5 +93,9 @@ img.featuredimage {
 
 div.text-infor {
   background-color: rgba(255,255,255,0.8)
+}
+
+input#Cuisine {
+  
 }
 </style>

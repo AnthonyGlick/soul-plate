@@ -2,17 +2,18 @@
   <div class="form-block">
     <h1>Home</h1>
     <form method="GET" @submit.prevent="onSubmit()">
+      <label class="Food-search"> Food Search </label>
       <auto-complete name="Cuisine" placeholder="Cuisine" id="Cuisine" :choices="cuisineNames"></auto-complete>
-      <section>
+      <!-- <section>
         <input id="checkbox" type="checkbox" @change="toggleCoords">
         <span>Check for current location, uncheck for saved address</span>
-      </section>
+      </section> -->
       <select v-model="radius" name id>
-        <option value="1609">1</option>
-        <option value="8046">5</option>
-        <option value="16093">10</option>
-        <option value="40233">25</option>
-        <option value="80467">50</option>
+        <option value="1609">1 mile</option>
+        <option value="8046">5 miles</option>
+        <option value="16093">10 miles</option>
+        <option value="40233">25 miles</option>
+        <option value="80467">50 miles</option>
       </select>
       <input type="submit" v-on:click.prevent="performSearch" value="Submit">
       <input type="hidden" id="lat" :value="currentCoords.lat">
@@ -187,5 +188,9 @@ export default {
 <style>
 html {
   color: white;
+}
+
+label.Food-search {
+  justify-content: left;
 }
 </style>
