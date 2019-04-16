@@ -3,7 +3,7 @@
     <h1>Home</h1>
     <form method="GET" @submit.prevent="onSubmit()">
       <label class="Food-search"> Food Search </label>
-      <auto-complete name="Cuisine" placeholder="Cuisine" id="Cuisine" :choices="cuisineNames"></auto-complete>
+      <auto-complete v-on:input="setCuisineString" name="Cuisine" placeholder="Cuisine" id="Cuisine" :choices="cuisineNames"></auto-complete>
       <!-- <section>
         <input id="checkbox" type="checkbox" @change="toggleCoords">
         <span>Check for current location, uncheck for saved address</span>
@@ -15,7 +15,7 @@
         <option value="40233">25 miles</option>
         <option value="80467">50 miles</option>
       </select>
-      <input type="submit" v-on:click="performSearch" value="Submit">
+      <input type="submit" v-on:click.prevent="performSearch" value="Submit">
       <input type="hidden" id="lat" :value="currentCoords.lat">
       <input type="hidden" id="lon" :value="currentCoords.lon">
     </form>
@@ -35,6 +35,7 @@ export default {
       cuisines: [],
       cuisineNames: [],
       currentUser: [],
+      cuisineString:"",
       username: auth.getUser().sub,
       currentCoords: {
         lat: "",
@@ -50,6 +51,9 @@ export default {
     searchUrl: String
   },
   methods: {
+    setCuisineString(value){
+      this.cuisineString = value 
+    },
     toggleCoords() {
       this.latToggle();
       this.lonToggle();
@@ -116,7 +120,7 @@ export default {
   computed: {
     cuisineId() {
       let tempCuisine = this.cuisines.filter( (cuisine) => {
-        return cuisine.cuisine.cuisine_name.toLowerCase() === document.getElementById("Cuisine").value.toLowerCase();
+        return cuisine.cuisine.cuisine_name.toLowerCase() === this.cuisineString.toLowerCase();
       });
       if (tempCuisine.length === 0){
         return "";
