@@ -152,6 +152,9 @@ namespace SampleApi.DAL
                 City = Convert.ToString(reader["city"]),
                 State = Convert.ToString(reader["state"]),
                 PostalCode = Convert.ToString(reader["postalcode"])
+
+                
+
             };
         }
 
@@ -195,6 +198,44 @@ namespace SampleApi.DAL
                 throw ex;
             }
         }
+
+        //public void UpdateFavorites()
+        //{
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(connectionString))
+        //        {
+        //            conn.Open();
+        //            SqlCommand cmd = new SqlCommand("UPDATE users SET firstname = @firstname, lastname = @lastname, address1 = @address1, address2 = @address2, city = @city, state = @state, postalcode = @postalcode WHERE username = @username;", conn);
+        //            cmd.Parameters.AddWithValue("@firstname", user.FirstName);
+        //            cmd.Parameters.AddWithValue("@lastname", user.LastName);
+        //            cmd.Parameters.AddWithValue("@address1", user.AddressOne);
+        //            //cmd.Parameters.AddWithValue("@address1", user.AddressTwo);
+        //            if (!String.IsNullOrEmpty(user.AddressTwo))
+        //            {
+        //                cmd.Parameters.AddWithValue("@address2", user.AddressTwo);
+        //            }
+        //            else
+        //            {
+        //                cmd.Parameters.AddWithValue("@address2", DBNull.Value);
+        //            }
+
+        //            cmd.Parameters.AddWithValue("@city", user.City);
+        //            cmd.Parameters.AddWithValue("@state", user.State);
+        //            cmd.Parameters.AddWithValue("@postalcode", user.PostalCode);
+        //            cmd.Parameters.AddWithValue("@username", user.Username);
+
+        //            cmd.ExecuteNonQuery();
+
+        //            return;
+        //        }
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        throw ex;
+        //    }
+
+        //}
 
     }
 }
