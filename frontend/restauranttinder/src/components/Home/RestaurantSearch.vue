@@ -41,7 +41,7 @@ export default {
       },
       addressCoords: {},
       radius: "",
-      chosenCuisine: "",
+      //chosenCuisine: "",
       restaurants: {}
     };
   },
@@ -82,7 +82,7 @@ export default {
         "&radius=" +
         this.radius +
         "&cuisines=" +
-        this.chosenCuisine
+        this.cuisineId
       fetch(`${process.env.VUE_APP_ZOMATO_API}${this.endpoint}`, {
         method: "GET",
         headers: {
@@ -117,11 +117,17 @@ export default {
   },
 
   computed: {
-    getCuisineId() {
-      let tempCuisine = this.cuisines.filter(cuisine => {
-        return cuisine.name.toLowerCase() === document.getElementById("Cuisine").value.toLowerCase();
+    cuisineId() {
+      let tempCuisine = this.cuisines.filter( (cuisine) => {
+        return cuisine.cuisine.cuisine_name.toLowerCase() === document.getElementById("Cuisine").value.toLowerCase();
       });
-      this.chosenCuisine = tempCuisine.cuisine_id;
+      if (tempCuisine.length === 0){
+        return "";
+      }
+      else {
+        return tempCuisine[0].cuisine.cuisine_id;
+      }
+
     }
   },
 
