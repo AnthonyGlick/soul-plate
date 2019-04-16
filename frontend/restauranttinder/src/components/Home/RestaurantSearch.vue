@@ -7,7 +7,6 @@
         placeholder="Cuisine"
         id="Cuisine"
         :choices="cuisineNames"
-        @change="getCuisineId(document.getElementById(Cuisine).value)"
       ></auto-complete>
       <section>
         <input id="checkbox" type="checkbox" @change="toggleCoords">
@@ -87,8 +86,8 @@ export default {
         currentLon +
         "&radius=" +
         this.radius +
-        "&cuisine=" +
-        this.chosenCuisine; /** TODO convert miles meters */
+        "&cuisines=" +
+        (document.getElementById('Cuisine').value); /** TODO convert miles meters */
       fetch(`${process.env.VUE_APP_ZOMATO_API}${this.endpoint}`, {
         method: "GET",
         headers: {
