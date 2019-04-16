@@ -192,7 +192,8 @@ div.form-block {
   padding: 50px;
   background-color: #ff9933;
   opacity: 0.8;
-  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   right: 0;
   left: 0;
   margin-left: 400px;
@@ -209,5 +210,35 @@ input:focus {
   border:2px solid blue;
 }
 
+@media screen and (max-width: 1280px)
+{
+  div.form-block{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    margin-right: 62%;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
 
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 79px;
+  }
+
+  form > *{
+    margin-bottom: 15px;
+  }
+
+  input[type=submit], select{
+    width: 36%;
+  }
+
+  h1 {
+    font-size: 2em;
+    padding-bottom: 28px;
+  }
+}
 </style>
