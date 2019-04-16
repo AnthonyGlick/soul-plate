@@ -25,7 +25,7 @@
     </div>
     <button v-on:click="nextRestaurant" v-if="summaries.restaurants">Next Restaurant</button>
     <reject-button v-on:Reject="rejectRestaurant" v-if="summaries.restaurants"/>
-    <like-button v-if="summaries.restaurants"/>
+    <like-button v-on:Like="likeRestaurant" v-if="summaries.restaurants"/>
     
   </div>
 </template>
@@ -77,15 +77,24 @@ export default {
       if (this.summaries.restaurants.length < 1) {
         return this.emptyArray;
       }
-      if (this.restaurantNumber < this.summaries.restaurants.length) {
+      if (this.restaurantNumber < this.summaries.restaurants.length - 1) {
         this.restaurantNumber = this.restaurantNumber + 1;
       } else {
         this.restaurantNumber = 0;
       }
     },
-
-    rejectRestaurant(restaurantNumber) {
-      this.summaries.restaurants.splice(restaurantNumber, 1);
+    rejectRestaurant() {
+      this.summaries.restaurants.splice(this.restaurantNumber, 1);
+    },
+    likeRestaurant() {
+      if (this.summaries.restaurants.length < 1) {
+      return this.emptyArray;
+      }
+      if (this.restaurantNumber < this.summaries.restaurants.length - 1) {
+        this.restaurantNumber = this.restaurantNumber + 1;
+      } else {
+        this.restaurantNumber = 0;
+      }
     }
   }
 };
