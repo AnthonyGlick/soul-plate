@@ -22,10 +22,17 @@
 </template>
 
 <script>
+import RejectButton from "@/components/Home/RejectButton.vue"
+import LikeButton from "@/components/Home/LikeButton.vue"
+ 
 export default {
   name: "RestaurantSummary",
   props: {
     summaries: Object
+  },
+  components:{
+    RejectButton,
+    LikeButton
   },
   computed:{
     dollarprice: function() {
@@ -68,7 +75,6 @@ export default {
     rejectRestaurant(restaurantNumber){
       this.summaries.restaurants.splice(restaurantNumber,1)
     }
-
   }
 };
 </script>
@@ -93,9 +99,5 @@ img.featuredimage {
 
 div.text-infor {
   background-color: rgba(255,255,255,0.8)
-}
-
-input#Cuisine {
-  
 }
 </style>

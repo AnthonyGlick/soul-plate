@@ -15,7 +15,7 @@
         <option value="40233">25 miles</option>
         <option value="80467">50 miles</option>
       </select>
-      <input type="submit" v-on:click.prevent="performSearch" value="Submit">
+      <input type="submit" v-on:click="performSearch" value="Submit">
       <input type="hidden" id="lat" :value="currentCoords.lat">
       <input type="hidden" id="lon" :value="currentCoords.lon">
     </form>
@@ -107,10 +107,6 @@ export default {
     },
     showPosition(position) {
       console.log(position.coords.latitude);
-      // var currentCoords = {
-      //   lat: 0,
-      //   lon: 0
-      // }
       this.currentCoords.lat = position.coords.latitude;
       this.currentCoords.lon = position.coords.longitude;
       console.log(this.currentCoords);
