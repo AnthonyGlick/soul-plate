@@ -113,11 +113,40 @@ div.text-infor {
 }
 
 img.featuredimage {
-  height: 100%;
-  width: 600px;
+  height: 300px;
+  width: 100%;
 }
 
 div.text-infor {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255,255,255,0.8)
+}
+
+.restaurant-summaries {
+  position: absolute;
+  margin-top: 250px;
+  left: 0;
+  right: 0;
+  margin-left: 400px;
+  margin-right: 400px;
+}
+
+.text-infor {
+  margin-top: 10px;
+  width: inherit;
+}
+
+@media screen and (max-width: 1280px){
+  .restaurant-summaries {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    margin-left: 40%;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+
+  .text-infor {
+    text-align: left;
+  }
 }
 </style>

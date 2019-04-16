@@ -1,6 +1,6 @@
 <template>
   <div class="autocomplete">
-    <input type="text" v-model="search" @input="onChange" @keydown.down="onArrowDown" @keydown.up="onArrowUp" @keydown.enter.prevent="onEnter" :placeholder="placeholder" :name="name" :id="id"/>
+    <input autocomplete="off" type="text" v-model="search" @input="onChange" @keydown.down="onArrowDown" @keydown.up="onArrowUp" @keydown.enter.prevent="onEnter" :placeholder="placeholder" :name="name" :id="id"/>
     <ul v-show="isOpen" class="autocomplete-results">
       <li class="loading" v-if="isLoading">Loading Results...</li> 
       <li v-else v-for="(result, i) in results" :key="i" @click="setResult(result)" class="autocomplete-result" :class="{'is-active':i===arrowCounter}">
@@ -106,12 +106,19 @@ export default {
     width: 130px;
   }
 
+  input[type=text]{
+    width: inherit;
+  }
+
   .autocomplete-results {
     padding: 0;
     margin: 0;
     border: 1px solid #eeeeee;
     height: 120px;
     overflow: auto;
+    position: absolute;
+    z-index: 100;
+    width: inherit;
   }
 
   .autocomplete-result {
@@ -119,6 +126,7 @@ export default {
     text-align: left;
     padding: 4px 2px;
     cursor: pointer;
+    background-color: white;
   }
   .autocomplete-result.is-active,
   .autocomplete-result:hover {

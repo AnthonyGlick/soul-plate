@@ -1,13 +1,13 @@
 <template>
   <div class="form-block">
-    <h1>Home</h1>
+    <h1>TELL US WHAT YOU LIKE</h1>
     <form method="GET" @submit.prevent="onSubmit()">
       <label class="Food-search"> Food Search </label>
       <auto-complete v-on:input="setCuisineString" name="Cuisine" placeholder="Cuisine" id="Cuisine" :choices="cuisineNames"></auto-complete>
       <!-- <section>
         <input id="checkbox" type="checkbox" @change="toggleCoords">
         <span>Check for current location, uncheck for saved address</span>
-      </section> -->
+      </section>-->
       <select v-model="radius" name id>
         <option value="1609">1 mile</option>
         <option value="8046">5 miles</option>
@@ -15,7 +15,7 @@
         <option value="40233">25 miles</option>
         <option value="80467">50 miles</option>
       </select>
-      <input type="submit" v-on:click.prevent="performSearch" value="Submit">
+      <input class="btn btn-success" type="submit" v-on:click.prevent="performSearch" value="Submit">
       <input type="hidden" id="lat" :value="currentCoords.lat">
       <input type="hidden" id="lon" :value="currentCoords.lon">
     </form>
@@ -185,12 +185,64 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 html {
   color: white;
 }
 
-label.Food-search {
-  justify-content: left;
+div.form-block {
+  border: 1px solid black;
+  position: absolute;
+  padding: 50px;
+  background-color: #ff9933;
+  opacity: 0.8;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  right: 0;
+  left: 0;
+  margin-left: 400px;
+  margin-right: 400px;
+  margin-top: 10px;
+}
+
+form {
+  display: flex;
+  justify-content: space-around;
+}
+
+input:focus {
+  border:2px solid blue;
+}
+
+@media screen and (max-width: 1280px)
+{
+  div.form-block{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    margin-right: 62%;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 79px;
+  }
+
+  form > *{
+    margin-bottom: 15px;
+  }
+
+  input[type=submit], select{
+    width: 36%;
+  }
+
+  h1 {
+    font-size: 2em;
+    padding-bottom: 28px;
+  }
 }
 </style>
