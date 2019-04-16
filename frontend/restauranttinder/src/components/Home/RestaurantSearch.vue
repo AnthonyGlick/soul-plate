@@ -13,11 +13,11 @@
         <span>Check for current location, uncheck for saved address</span>
       </section>
       <select v-model="radius" name id>
-        <option value="100">100</option>
-        <option value="200">200</option>
-        <option value="300">300</option>
-        <option value="400">400</option>
-        <option value="500">500</option>
+        <option value="1609">1</option>
+        <option value="8046">5</option>
+        <option value="16093">10</option>
+        <option value="40233">25</option>
+        <option value="80467">50</option>
       </select>
       <input type="submit" v-on:click.prevent="performSearch" value="Submit">
       <input type="hidden" id="lat" :value="currentCoords.lat">
