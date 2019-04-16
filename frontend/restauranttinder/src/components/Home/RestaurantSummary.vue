@@ -15,7 +15,7 @@
         <h3 class="price-range">Price: {{dollarprice}}</h3>
       </div> 
     </div>
-    <button v-on:click="nextRestaurant">Next Restaurant</button>
+    <button class="next-res" v-on:click="nextRestaurant">Next Restaurant</button>
     <reject-button
       v-on:Reject="rejectRestaurant"/>
   </div>
@@ -95,7 +95,7 @@ div.text-infor {
   background-color: rgba(255,255,255,0.8)
 }
 
-input#Cuisine {
+.next-res {
   
 }
 </style>

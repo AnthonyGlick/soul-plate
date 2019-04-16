@@ -184,6 +184,21 @@ html {
   color: white;
 }
 
+div.form-block {
+  border: 1px solid black;
+  position: absolute;
+  padding: 100px;
+  background-color: orange;
+  opacity: 0.8;
+  border-radius: 5px;
+  right: 0;
+  left: 0;
+  margin-left: 300px;
+  margin-right: 300px;
+  margin-top: 100px;
+
+}
+
 label.Food-search {
   justify-content: left;
 }
