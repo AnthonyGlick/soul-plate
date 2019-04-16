@@ -82,5 +82,8 @@ export default {
   flex-direction: column;
 }
 
+div.text-infor {
+  font-family: 'Vollkorn', sans-serif;
+}
 
 </style>
