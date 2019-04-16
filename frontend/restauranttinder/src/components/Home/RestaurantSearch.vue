@@ -2,7 +2,8 @@
   <div class="form-block">
     <h1>TELL US WHAT YOU LIKE</h1>
     <form method="GET" @submit.prevent="onSubmit()">
-      <auto-complete name="Cuisine" placeholder="Cuisine" id="Cuisine" :choices="cuisineNames"></auto-complete>
+      <label class="Food-search"> Food Search </label>
+      <auto-complete v-on:input="setCuisineString" name="Cuisine" placeholder="Cuisine" id="Cuisine" :choices="cuisineNames"></auto-complete>
       <!-- <section>
         <input id="checkbox" type="checkbox" @change="toggleCoords">
         <span>Check for current location, uncheck for saved address</span>
@@ -34,6 +35,7 @@ export default {
       cuisines: [],
       cuisineNames: [],
       currentUser: [],
+      cuisineString:"",
       username: auth.getUser().sub,
       currentCoords: {
         lat: "",
@@ -41,7 +43,7 @@ export default {
       },
       addressCoords: {},
       radius: "",
-      chosenCuisine: "",
+      //chosenCuisine: "",
       restaurants: {}
     };
   },
@@ -49,6 +51,9 @@ export default {
     searchUrl: String
   },
   methods: {
+    setCuisineString(value){
+      this.cuisineString = value 
+    },
     toggleCoords() {
       this.latToggle();
       this.lonToggle();
@@ -82,7 +87,7 @@ export default {
         "&radius=" +
         this.radius +
         "&cuisines=" +
-        this.chosenCuisine;
+        this.cuisineId
       fetch(`${process.env.VUE_APP_ZOMATO_API}${this.endpoint}`, {
         method: "GET",
         headers: {
@@ -106,10 +111,6 @@ export default {
     },
     showPosition(position) {
       console.log(position.coords.latitude);
-      // var currentCoords = {
-      //   lat: 0,
-      //   lon: 0
-      // }
       this.currentCoords.lat = position.coords.latitude;
       this.currentCoords.lon = position.coords.longitude;
       console.log(this.currentCoords);
@@ -117,14 +118,17 @@ export default {
   },
 
   computed: {
-    getCuisineId() {
-      let tempCuisine = this.cuisines.filter(cuisine => {
-        return (
-          cuisine.name.toLowerCase() ===
-          document.getElementById("Cuisine").value.toLowerCase()
-        );
+    cuisineId() {
+      let tempCuisine = this.cuisines.filter( (cuisine) => {
+        return cuisine.cuisine.cuisine_name.toLowerCase() === this.cuisineString.toLowerCase();
       });
-      this.chosenCuisine = tempCuisine.cuisine_id;
+      if (tempCuisine.length === 0){
+        return "";
+      }
+      else {
+        return tempCuisine[0].cuisine.cuisine_id;
+      }
+
     }
   },
 

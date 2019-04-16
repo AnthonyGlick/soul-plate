@@ -1,49 +1,69 @@
 <template>
   <div class="restaurant-summaries">
     <div class="summary" v-if="summaries.restaurants" :key="restaurantNumber">
-
-      <div v-if="summaries.restaurants[restaurantNumber].restaurant.featured_image" class="featuredimage">
+      <div
+        v-if="summaries.restaurants[restaurantNumber].restaurant.featured_image"
+        class="featuredimage"
+      >
         <img :src="summaries.restaurants[restaurantNumber].restaurant.featured_image">
       </div>
-      <div v-else><img class="featuredimage" src= "https://via.placeholder.com/1200x464"></div>
+      <div v-else>
+        <img class="featuredimage" src="https://via.placeholder.com/1200x464">
+      </div>
 
-    <div class="text-infor">    
-        <h3 class="name"> {{summaries.restaurants[restaurantNumber].restaurant.name}}</h3>
-        <h3 class="rating">Rating: {{summaries.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}} out of 5</h3>
-        <h3 class="location">Location: {{summaries.restaurants[restaurantNumber].restaurant.location.locality}}</h3>
-        <h3 class="cuisines"> {{summaries.restaurants[restaurantNumber].restaurant.cuisines}}</h3>
+      <div class="text-infor">
+        <h3 class="name">{{summaries.restaurants[restaurantNumber].restaurant.name}}</h3>
+        <h3
+          class="rating"
+        >Rating: {{summaries.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}} out of 5</h3>
+        <h3
+          class="location"
+        >Location: {{summaries.restaurants[restaurantNumber].restaurant.location.locality}}</h3>
+        <h3 class="cuisines">{{summaries.restaurants[restaurantNumber].restaurant.cuisines}}</h3>
         <h3 class="price-range">Price: {{dollarprice}}</h3>
-      </div> 
+      </div>
     </div>
-    <button class="next-res" v-on:click="nextRestaurant">Next Restaurant</button>
-    <reject-button
-      v-on:Reject="rejectRestaurant"/>
+    <button v-on:click="nextRestaurant" v-if="summaries.restaurants">Next Restaurant</button>
+    <reject-button v-on:Reject="rejectRestaurant" v-if="summaries.restaurants"/>
+    <like-button v-on:Like="likeRestaurant" v-if="summaries.restaurants"/>
+    
   </div>
 </template>
 
 <script>
+import RejectButton from "@/components/Home/RejectButton.vue";
+import LikeButton from "@/components/Home/LikeButton.vue";
+
 export default {
   name: "RestaurantSummary",
   props: {
     summaries: Object
   },
-  computed:{
+  components: {
+    RejectButton,
+    LikeButton
+  },
+  computed: {
     dollarprice: function() {
-      let dollarsigns= "";
+      let dollarsigns = "";
 
       if (this.summaries && this.summaries.restaurants) {
-        for(let i =0;i<this.summaries.restaurants[this.restaurantNumber].restaurant.price_range;i++){
-          dollarsigns += "$"
+        for (
+          let i = 0;
+          i <
+          this.summaries.restaurants[this.restaurantNumber].restaurant
+            .price_range;
+          i++
+        ) {
+          dollarsigns += "$";
         }
       }
       return dollarsigns;
-    },
+    }
 
     // starrating: function(){
-      
+
     // }
-
-
   },
 
   data() {
@@ -55,32 +75,39 @@ export default {
   methods: {
     nextRestaurant() {
       if (this.summaries.restaurants.length < 1) {
-       return this.emptyArray; 
+        return this.emptyArray;
       }
-      if (this.restaurantNumber < this.summaries.restaurants.length) {
+      if (this.restaurantNumber < this.summaries.restaurants.length - 1) {
         this.restaurantNumber = this.restaurantNumber + 1;
-      }
-      else {
+      } else {
         this.restaurantNumber = 0;
       }
     },
-    
-    rejectRestaurant(restaurantNumber){
-      this.summaries.restaurants.splice(restaurantNumber,1)
+    rejectRestaurant() {
+      this.summaries.restaurants.splice(this.restaurantNumber, 1);
+    },
+    likeRestaurant() {
+      if (this.summaries.restaurants.length < 1) {
+      return this.emptyArray;
+      }
+      if (this.restaurantNumber < this.summaries.restaurants.length - 1) {
+        this.restaurantNumber = this.restaurantNumber + 1;
+      } else {
+        this.restaurantNumber = 0;
+      }
     }
-
   }
 };
 </script>
 
 <style>
-.summary{
-  display:flex;
+.summary {
+  display: flex;
   flex-direction: column;
 }
 
 div.text-infor {
-  font-family: 'Vollkorn', sans-serif;
+  font-family: "Vollkorn", sans-serif;
   display: inline-block;
   background-color: white;
 }

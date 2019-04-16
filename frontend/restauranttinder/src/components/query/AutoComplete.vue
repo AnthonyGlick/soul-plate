@@ -24,7 +24,7 @@ export default {
     },
     methods: {
         onChange() {
-            this.$emit('input', this.search);
+            //this.$emit('input', this.search);
 
             if (this.isAsync){
               this.isLoading = true;
@@ -42,6 +42,7 @@ export default {
         setResult(result) {
           this.search = result;
           this.isOpen = false;
+          this.$emit('input', this.search);
         },
         onArrowDown() {
           if(this.arrowCounter < this.results.length) {
@@ -54,8 +55,9 @@ export default {
           }
         },
         onEnter() {
-          this.search = this.results[this.arrowCounter];
-          this.isOpen = false;
+          //this.search = this.results[this.arrowCounter];
+          this.setResult(this.results[this.arrowCounter])
+          //this.isOpen = false;
           this.arrowCounter = -1;
         },
         handleClickOutside(evt) {
