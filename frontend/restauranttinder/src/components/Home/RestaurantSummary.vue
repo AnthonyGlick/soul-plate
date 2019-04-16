@@ -74,7 +74,6 @@ export default {
 </script>
 
 <style>
-
 .summary{
   display:flex;
   flex-direction: column;

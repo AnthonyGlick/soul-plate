@@ -181,7 +181,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 html {
   color: white;
 }
@@ -198,7 +198,6 @@ div.form-block {
   margin-left: 400px;
   margin-right: 400px;
   margin-top: 10px;
-  /* display: flex; */
 }
 
 form {
