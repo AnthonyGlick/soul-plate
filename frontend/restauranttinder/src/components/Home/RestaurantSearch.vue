@@ -2,7 +2,7 @@
   <div class="form-block">
     <h1>TELL US WHAT YOU LIKE</h1>
     <form method="GET" @submit.prevent="onSubmit()">
-      <label class="Food-search"> Food Search </label>
+      <label class="food-search"> Food Search </label>
       <auto-complete v-on:input="setCuisineString" name="Cuisine" placeholder="Cuisine" id="Cuisine" :choices="cuisineNames"></auto-complete>
       <!-- <section>
         <input id="checkbox" type="checkbox" @change="toggleCoords">
@@ -212,6 +212,13 @@ form {
 
 input:focus {
   border:2px solid blue;
+}
+
+.food-search {
+  font-weight: bold;
+  font-family: 'Vollkorn', sans-serif;
+  font-size: 22px;
+  margin: 0px;
 }
 
 @media screen and (max-width: 1280px)
