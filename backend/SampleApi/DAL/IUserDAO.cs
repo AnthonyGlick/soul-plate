@@ -31,12 +31,6 @@ namespace SampleApi.DAL
         void UpdateUser(User user);
 
         /// <summary>
-        /// Deletes a user from the system.
-        /// </summary>
-        /// <param name="user"></param>
-        void DeleteUser(User user);
-
-        /// <summary>
         /// Updates the user profile with lastname, firstname,etc.
         /// </summary>
         /// <param name="user"></param>

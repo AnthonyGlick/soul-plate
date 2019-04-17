@@ -51,30 +51,6 @@ namespace SampleApi.DAL
             }
         }
 
-        /// <summary>
-        /// Deletes the user from the database.
-        /// </summary>
-        /// <param name="user"></param>
-        public void DeleteUser(User user)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand("DELETE FROM users WHERE id = @id;", conn);
-                    cmd.Parameters.AddWithValue("@id", user.Id);                    
-
-                    cmd.ExecuteNonQuery();
-
-                    return;
-                }
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-        }
 
         /// <summary>
         /// Gets the user from the database.
@@ -119,11 +95,11 @@ namespace SampleApi.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("UPDATE users SET password = @password, salt = @salt, role = @role WHERE id = @id;", conn);                    
+                    SqlCommand cmd = new SqlCommand("UPDATE users SET password = @password, salt = @salt, role = @role WHERE username = @username;", conn);                    
                     cmd.Parameters.AddWithValue("@password", user.Password);
                     cmd.Parameters.AddWithValue("@salt", user.Salt);
                     cmd.Parameters.AddWithValue("@role", user.Role);
-                    cmd.Parameters.AddWithValue("@id", user.Id);
+                    cmd.Parameters.AddWithValue("@username", user.Username);
 
                     cmd.ExecuteNonQuery();
 
@@ -140,7 +116,6 @@ namespace SampleApi.DAL
         {
             return new User()
             {
-                Id = Convert.ToInt32(reader["id"]),
                 Username = Convert.ToString(reader["username"]),
                 Password = Convert.ToString(reader["password"]),
                 Salt = Convert.ToString(reader["salt"]),

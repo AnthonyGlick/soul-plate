@@ -12,11 +12,6 @@ namespace SampleApi.Models
     public class User
     {
         /// <summary>
-        /// The user's id.
-        /// </summary>        
-        public int Id { get; set; }
-
-        /// <summary>
         /// The user's username.
         /// </summary>   
         public string Username { get; set; }

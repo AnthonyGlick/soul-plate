@@ -4,26 +4,29 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SampleApi.DAL;
 
 namespace SampleApi.Controllers
 {
     [Authorize]
-    // TODO correct route
-    //[Route("api/Home/{userId:int}/[controller]")]
+    [Route("api/[controller]/{username: string}")]
     [ApiController]
     public class FavoritesController : ControllerBase
     {
-        //private IFavoriteDAO favoriteDAO;
-        //public FavoritesController(IFavoriteDAO favoriteDAO, IUserDAO userDao) : base(userDao)
-        //{
-        //    this.favoriteDAO = favoriteDAO;
-        //}
+        private IFavoriteDAO favoriteDAO;
+        private IUserDAO userDAO;
 
-        //[Route("/api/[controller]")]
-        //[HttpGet]
-        //public ActionResult GetFavorites()
-        //{
-        //    return Ok(favoriteDAO.GetFavoritesByUserId(CurrentUser.Id));
-        //}
+        public FavoritesController(IFavoriteDAO favoriteDAO, IUserDAO userDAO) 
+        {
+            this.favoriteDAO = favoriteDAO;
+            this.userDAO = userDAO;
+        }
+
+        [Route("/api/[controller]")]
+        [HttpGet ("{username}")]
+        public ActionResult GetFavorites([FromRoute] string username)
+        {
+            return Ok(favoriteDAO.GetFavoritesByUser(username));
+        }
     }
 }
