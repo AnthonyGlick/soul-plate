@@ -79,6 +79,7 @@ li {
   height: 50px;
   width: auto;
   filter: grayscale(100%);
+  padding-bottom: 0;
 }
 
 .navbar.navbar-inverse {
