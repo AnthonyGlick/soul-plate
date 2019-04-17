@@ -235,5 +235,30 @@ namespace SampleApi.DAL
 
         }
 
+        public void DeleteFavorite()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("DE", conn);
+                        cmd.Parameters.AddWithValue();
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException exception)
+                    {
+                        throw;
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+        }
+
     }
 }
