@@ -1,7 +1,6 @@
 <template>
     <div class="like-container">
-       <button class="btn btn-primary" v-on:click="LikeRestaurant">Like</button>
-
+       <button id="like" class="btn btn-primary" v-on:click="LikeRestaurant">Like</button>
     </div>
 </template>
 
@@ -17,5 +16,9 @@ export default {
 </script>
 
 <style>
+
+div.like-container {
+    display: inline-block;
+}
 
 </style>

@@ -18,7 +18,8 @@ export default {
   name: "Home",
   components: {
     RestaurantSearch,
-    RestaurantSummary
+    RestaurantSummary,
+    RejectButton
   },
 
   data(){

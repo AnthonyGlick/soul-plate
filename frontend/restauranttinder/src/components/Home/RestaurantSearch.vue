@@ -236,21 +236,8 @@ input:focus {
   border: 2px solid blue;
 }
 
-<<<<<<< HEAD
-.food-search {
-  font-weight: bold;
-  font-family: 'Vollkorn', sans-serif;
-  font-size: 22px;
-  margin: 0px;
-}
-
-@media screen and (max-width: 1280px)
-{
-  div.form-block{
-=======
 @media screen and (max-width: 1280px) {
   div.form-block {
->>>>>>> 9b30833415e17800d7b176fde0779e476c017479
     margin: 0;
     display: flex;
     flex-direction: column;
