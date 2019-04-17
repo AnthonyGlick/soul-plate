@@ -32,3 +32,8 @@ CREATE TABLE [favorites] (
 
 	CONSTRAINT fk_favorites FOREIGN KEY ([user_username]) references users ([username])
 );
+
+INSERT INTO favorites(user_username, restaurant_id) VALUES('test',16962117)
+SELECT TOP (1000) [user_username]
+      ,[restaurant_id]
+  FROM [soulplate].[dbo].[favorites]

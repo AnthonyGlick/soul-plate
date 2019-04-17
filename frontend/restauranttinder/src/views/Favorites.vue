@@ -2,7 +2,7 @@
   <div class="favorite-page">
     <h1 class="favorites">Favorites</h1>
     <div class="user-favorites">
-      <favorite v-for="favorite in dummyData" v-bind:key="favorite"/>
+      <favorite v-for="favorite in userFavorites" v-bind:key="favorite"/>
     </div>
   </div>
 </template>
@@ -16,8 +16,25 @@ export default {
   },
   data() {
     return {
-      dummyData: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      userFavorites: [],
+    //   dummyData: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     };
+  },
+
+  created() {
+    fetch(`${process.env.VUE_APP_REMOTE_API}/Account/${this.username}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(json => {
+        this.userFavorites = json;
+        console.log(this.userFavorites);
+      });
   }
 };
 </script>
@@ -46,9 +63,8 @@ export default {
 }
 
 @media screen and (max-width: 425px) {
-    .user-favorites {
-      margin: 0;
-    }
+  .user-favorites {
+    margin: 0;
+  }
 }
-
 </style>
