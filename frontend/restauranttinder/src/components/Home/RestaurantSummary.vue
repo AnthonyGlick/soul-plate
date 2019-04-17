@@ -15,18 +15,21 @@
         <h3 class="name">{{summaries.restaurants[restaurantNumber].restaurant.name}}</h3>
         <h3
           class="rating"
-        >Rating: {{summaries.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}} out of 5</h3>
+        ><span class="rating-object"> Rating:</span> {{summaries.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}} out of 5</h3>
         <h3
           class="location"
-        >Location: {{summaries.restaurants[restaurantNumber].restaurant.location.locality}}</h3>
-        <h3 class="cuisines">{{summaries.restaurants[restaurantNumber].restaurant.cuisines}}</h3>
-        <h3 class="price-range">Price: {{dollarprice}}</h3>
+        ><span class="location-object">Location:</span> {{summaries.restaurants[restaurantNumber].restaurant.location.locality}}</h3>
+        <h3 
+        ><span class="cuisine-object">Cuisine:</span> {{summaries.restaurants[restaurantNumber].restaurant.cuisines}}</h3>
+        <h3
+        ><span class="price-range">Price: </span> <span class="dollar-sign">{{dollarprice}}</span></h3>
       </div>
     </div>
-    <button v-on:click="nextRestaurant" v-if="summaries.restaurants">Next Restaurant</button>
+    <!-- <button v-on:click="nextRestaurant" v-if="summaries.restaurants">Next Restaurant</button> -->
+    <div id="buttons">
     <reject-button v-on:Reject="rejectRestaurant" v-if="summaries.restaurants"/>
     <like-button v-on:Like="likeRestaurant" v-if="summaries.restaurants"/>
-    
+    </div>
   </div>
 </template>
 
@@ -152,6 +155,48 @@ div.text-infor {
   width: inherit;
 }
 
+ span.dollar-sign {
+    color: #28A745;
+    font-size: 30px;
+  }
+
+    .text-infor {
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 8px;
+  }
+
+  h3.name {
+    font-size: 36px;
+    font-weight: bold;
+  }
+
+  span.rating-object {
+    font-size: 26px;
+    font-weight: 700;
+  }
+
+  span.location-object {
+    font-size: 26px;
+    font-weight: 700;
+  }
+
+  span.cuisine-object {
+    font-size: 26px;
+    font-weight: 700;
+  }
+
+  span.price-range {
+    font-size: 26px;
+    font-weight: 700;
+  }
+
+  #buttons {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 10px;
+  }
+
 @media screen and (max-width: 1280px){
   .restaurant-summaries {
     display: flex;
@@ -161,9 +206,16 @@ div.text-infor {
     margin-right: 10px;
     margin-top: 10px;
   }
+}
 
-  .text-infor {
-    text-align: left;
+@media screen and (max-width: 425px) {
+  .restaurant-summaries {
+    margin-left: 10px;
+    margin-top: 275px;
+  }
+
+  #buttons {
+    margin-bottom: 10px;
   }
 }
 </style>

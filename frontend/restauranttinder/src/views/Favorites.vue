@@ -1,24 +1,54 @@
 <template>
-    <div id="Favorites">
-        <ul>
-            <li></li>
-            <li></li>
-        </ul>
-
+  <div class="favorite-page">
+    <h1 class="favorites">Favorites</h1>
+    <div class="user-favorites">
+      <favorite v-for="favorite in dummyData" v-bind:key="favorite"/>
     </div>
+  </div>
 </template>
 
 <script>
-import RestaurantSummary from "@/components/Home/RestaurantSummary.vue"
-
+import Favorite from "@/components/Favorites/Favorite.vue";
 export default {
-    name: "Favorites",
-    components: {
-        RestaurantSummary
-    }
-}
+  name: "Favorites",
+  components: {
+    Favorite
+  },
+  data() {
+    return {
+      dummyData: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    };
+  }
+};
 </script>
 
 <style>
+.user-favorites {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0px 100px;
+}
+
+.favorite-page {
+  margin: 20px;
+  position: absolute;
+  background-color: #ff9933;
+  opacity: 0.9;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.favorites {
+  color: black;
+  font-size: 48px;
+  font-family: "Vollkorn", sans-serif;
+}
+
+@media screen and (max-width: 425px) {
+    .user-favorites {
+      margin: 0;
+    }
+}
 
 </style>

@@ -1,8 +1,8 @@
 <template>
   <div class="form-block">
-    <h1>TELL US WHAT YOU LIKE</h1>
+    <h1 class="question">What are you in the mood for?</h1>
     <form method="GET" @submit.prevent="onSubmit()">
-      <label class="Food-search">Food Search</label>
+      <!-- <label class="Food-search">Food Search</label> -->
       <auto-complete
         v-on:input="setCuisineString"
         name="Cuisine"
@@ -12,7 +12,7 @@
       ></auto-complete>
       <section>
         <input id="checkbox" type="checkbox" @change="toggleCoords">
-        <span>Check for current location, uncheck for saved address</span>
+        <span id="check-location">Check for saved address, uncheck for current location</span>
       </section>
       <select v-model="radius" name id>
         <option value="1609">1 mile</option>
@@ -21,7 +21,8 @@
         <option value="40233">25 miles</option>
         <option value="80467">50 miles</option>
       </select>
-      <input
+      <input 
+        id="submit-button"
         class="btn btn-success"
         type="submit"
         v-on:click.prevent="performSearch"
@@ -244,6 +245,7 @@ input:focus {
     margin-right: 62%;
     margin-top: 10px;
     margin-left: 10px;
+    padding-top: 13px;
   }
 
   form {
@@ -264,7 +266,34 @@ input:focus {
 
   h1 {
     font-size: 2em;
-    padding-bottom: 28px;
+    padding-bottom: 65px;
   }
+
+  #Cuisine {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  div.form-block {
+    padding-bottom: 50px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #submit-button {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  div.form-block{
+    margin-right: 10px;
+  }
+
+  .question {
+    font-size: 24px;
+  }
+
 }
 </style>

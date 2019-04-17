@@ -1,6 +1,6 @@
 <template>
     <div class="reject-button">
-        <button class="btn btn-primary" v-on:click="RejectRestaurant">Reject</button>
+        <button class="btn btn-danger" v-on:click="RejectRestaurant">Reject</button>
     </div>
 </template>
 
@@ -17,5 +17,8 @@ export default {
 </script>
 
 <style>
+
+button.btn.btn-danger {
+}
 
 </style>

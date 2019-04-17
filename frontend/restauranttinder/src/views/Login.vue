@@ -18,7 +18,7 @@
         <img class="logo" v-bind:src='image' />
       <h1>Soul Plate</h1>
       <p>
-        Find what belongs in your stomach~
+        SWIPE RIGHT TO DINNER
       </p>
     </section>
     <section id="login-signup" v-bind:class="{ showSignupForm: !showLoginForm }">
