@@ -136,32 +136,32 @@ namespace SampleApi.Controllers
             return Ok();
         }
 
-        [HttpPut("{username}")]
-        public ActionResult UpdateFavorites([FromRoute] string username, [FromBody] SampleApi.Models.User user)
-        {
-            var existingUser = userDao.GetUser(username);
+        //[HttpPut("{username}")]
+        //public ActionResult UpdateFavorites([FromRoute] string username, [FromBody] SampleApi.Models.User user)
+        //{
+        //    var existingUser = userDao.GetUser(username);
 
-            if(existingUser == null)
-            {
-                return NotFound();
-            }
+        //    if(existingUser == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            existingUser.FavOne = user.FavOne;
-            existingUser.FavTwo = user.FavTwo;
-            existingUser.FavThree = user.FavThree;
-            existingUser.FavFour = user.FavFour;
-            existingUser.FavFive = user.FavFive;
-            existingUser.FavSix = user.FavSix;
-            existingUser.FavSeven = user.FavSeven;
-            existingUser.FavEight = user.FavEight;
-            existingUser.FavNine = user.FavNine;
-            existingUser.FavTen = user.FavTen;
+        //    existingUser.FavOne = user.FavOne;
+        //    existingUser.FavTwo = user.FavTwo;
+        //    existingUser.FavThree = user.FavThree;
+        //    existingUser.FavFour = user.FavFour;
+        //    existingUser.FavFive = user.FavFive;
+        //    existingUser.FavSix = user.FavSix;
+        //    existingUser.FavSeven = user.FavSeven;
+        //    existingUser.FavEight = user.FavEight;
+        //    existingUser.FavNine = user.FavNine;
+        //    existingUser.FavTen = user.FavTen;
 
-            userDao.UpdateFavorites(existingUser);
+        //    userDao.UpdateFavorites(existingUser);
 
-            // Return 200
-            return Ok();
+        //    // Return 200
+        //    return Ok();
 
-        }
+        //}
     }
 }

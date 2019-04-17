@@ -71,16 +71,16 @@ namespace SampleApi.Models
         /// </summary>
         public string PostalCode { get; set; }
 
-        public string FavOne { get; set; }
-        public string FavTwo { get; set; }
-        public string FavThree { get; set; }
-        public string FavFour { get; set; }
-        public string FavFive { get; set; }
-        public string FavSix { get; set; }
-        public string FavSeven { get; set; }
-        public string FavEight { get; set; }
-        public string FavNine { get; set; }
-        public string FavTen { get; set; }
+        //public string FavOne { get; set; }
+        //public string FavTwo { get; set; }
+        //public string FavThree { get; set; }
+        //public string FavFour { get; set; }
+        //public string FavFive { get; set; }
+        //public string FavSix { get; set; }
+        //public string FavSeven { get; set; }
+        //public string FavEight { get; set; }
+        //public string FavNine { get; set; }
+        //public string FavTen { get; set; }
 
     }
 }
