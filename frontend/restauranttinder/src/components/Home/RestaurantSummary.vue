@@ -36,6 +36,7 @@
 <script>
 import RejectButton from "@/components/Home/RejectButton.vue";
 import LikeButton from "@/components/Home/LikeButton.vue";
+import {bus} from "../../main.js"
 
 export default {
   name: "RestaurantSummary",
@@ -116,6 +117,10 @@ export default {
     }
     return a;
 }
+  },
+  mounted() {
+    bus.$on('rejectSwipe', this.rejectRestaurant);
+    bus.$on('likeSwipe', this.likeRestaurant)
   }
 };
 </script>

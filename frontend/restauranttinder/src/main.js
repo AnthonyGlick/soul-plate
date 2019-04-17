@@ -6,9 +6,13 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Vuelidate from 'vuelidate'
 import * as VueGoogleMaps from 'vue2-google-maps';
+import VueTouch from 'vue-touch';
+
+export const bus = new Vue();
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
+Vue.use(VueTouch);
 Vue.use(Vuelidate);
 Vue.use(VueGoogleMaps, {
   load: {
