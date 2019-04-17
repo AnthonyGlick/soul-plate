@@ -1,6 +1,6 @@
 <template>
     <div class="user-favorite">
-        <img src="https://via.placeholder.com/300x300" />
+        <img class="pic" src="https://via.placeholder.com/300x300" />
         <p class="name">Chicken Xperience</p>
     </div>
 </template>
@@ -25,4 +25,8 @@ export default {
     font-size: 1.2em;
 }
 
+.pic {
+    padding-bottom: 5px;
+    border-radius: 10px;
+}
 </style>

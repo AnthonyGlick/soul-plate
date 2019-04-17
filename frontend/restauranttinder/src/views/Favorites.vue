@@ -31,15 +31,12 @@ export default {
 }
 
 .favorite-page {
-  margin-top: 25px;
+  margin: 20px;
   position: absolute;
   background-color: #ff9933;
   opacity: 0.9;
   border: 1px solid black;
-  margin-left: 20px;
-  margin-right: 20px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-radius: 5px;
 }
 
 .favorites {
@@ -47,4 +44,11 @@ export default {
   font-size: 48px;
   font-family: "Vollkorn", sans-serif;
 }
+
+@media screen and (max-width: 425px) {
+    .user-favorites {
+      margin: 0;
+    }
+}
+
 </style>

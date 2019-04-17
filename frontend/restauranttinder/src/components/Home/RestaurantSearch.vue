@@ -1,6 +1,6 @@
 <template>
   <div class="form-block">
-    <h1>What are you in the mood for?</h1>
+    <h1 class="question">What are you in the mood for?</h1>
     <form method="GET" @submit.prevent="onSubmit()">
       <!-- <label class="Food-search">Food Search</label> -->
       <auto-complete
@@ -272,9 +272,6 @@ input:focus {
   #Cuisine {
     margin-top: 20px;
   }
-
-
-
 }
 
 @media screen and (max-width: 768px) {
@@ -287,7 +284,16 @@ input:focus {
   #submit-button {
     width: 50%;
   }
+}
 
+@media screen and (max-width: 425px) {
+  div.form-block{
+    margin-right: 10px;
+  }
+
+  .question {
+    font-size: 24px;
+  }
 
 }
 </style>

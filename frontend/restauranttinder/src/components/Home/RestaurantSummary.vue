@@ -190,4 +190,15 @@ div.text-infor {
     margin-top: 10px;
   }
 }
+
+@media screen and (max-width: 425px) {
+  .restaurant-summaries {
+    margin-left: 10px;
+    margin-top: 275px;
+  }
+
+  #buttons {
+    margin-bottom: 10px;
+  }
+}
 </style>
