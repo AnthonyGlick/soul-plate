@@ -1,22 +1,30 @@
 <template>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/"><img class="logo" v-bind:src='image'>  Soul Plate</a>
-    </div>
-    <ul class="header-right">
-      <li><button href="/" class="btn btn-primary">View Favorites</button></li>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">
+          <img class="logo" v-bind:src="image"> Soul Plate
+        </a>
+      </div>
+      <ul class="header-right">
+        <router-link to="/favorites">
+          <li>
+            <button href="/favorites" class="btn btn-primary">View Favorites</button>
+          </li>
+        </router-link>
         <router-link to="/createprofile">
-          <li><button href="/createprofile" class="btn btn-primary">Edit Profile</button></li>
+          <li>
+            <button href="/createprofile" class="btn btn-primary">Edit Profile</button>
+          </li>
         </router-link>
-      <li v-if="isAuthenticated">
-        <router-link to="/login">
-        <button class="btn btn-primary" v-on:click.prevent="logout">Logout</button>
-        </router-link>
+        <li v-if="isAuthenticated">
+          <router-link to="/login">
+            <button class="btn btn-primary" v-on:click.prevent="logout">Logout</button>
+          </router-link>
         </li>
-    </ul>
-  </div>
-</nav>
+      </ul>
+    </div>
+  </nav>
 </template>
 
 <script>
@@ -26,7 +34,7 @@ export default {
   name: "the-header",
   data() {
     return {
-      image: require('../../assets/imgs/restaurant-1724294_1280.png'),
+      image: require("../../assets/imgs/restaurant-1724294_1280.png"),
       isAuthenticated: auth.getUser() !== null
     };
   },
@@ -60,10 +68,9 @@ li {
 
 .logo {
   height: 75px;
-  width:auto;
+  width: auto;
   padding-bottom: 10px;
-  filter: grayscale(100%)
-  
+  filter: grayscale(100%);
 }
 
 .navbar.navbar-inverse {
@@ -71,13 +78,13 @@ li {
 }
 
 .navbar-brand {
-  font-family: 'Vollkorn', sans-serif;
+  font-family: "Vollkorn", sans-serif;
   color: black;
   font-size: 35px;
 }
 
 .btn.btn-primary {
-  font-family: 'Vollkorn', sans-serif;
+  font-family: "Vollkorn", sans-serif;
   background: black;
   font-size: 18px;
 }
@@ -117,5 +124,4 @@ li {
   -o-animation: rotating 2s linear infinite;
   animation: rotating 2s linear infinite;
 }
-
 </style>

@@ -4,6 +4,7 @@ import Login from "./views/Login.vue";
 import Home from "./views/Home.vue";
 import auth from "./shared/auth";
 import CreateProfile from "./views/CreateProfile";
+import Favorites from "./views/Favorites";
 
 Vue.use(Router);
 
@@ -32,6 +33,14 @@ const router = new Router({
       path: "/createprofile",
       name: "create-profile",
       component: CreateProfile,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/favorites",
+      name: "favorites",
+      component: Favorites,
       meta: {
         requiresAuth: true
       }
