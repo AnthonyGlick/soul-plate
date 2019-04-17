@@ -26,9 +26,10 @@
       </div>
     </div>
     <!-- <button v-on:click="nextRestaurant" v-if="summaries.restaurants">Next Restaurant</button> -->
+    <div id="buttons">
     <reject-button v-on:Reject="rejectRestaurant" v-if="summaries.restaurants"/>
     <like-button v-on:Like="likeRestaurant" v-if="summaries.restaurants"/>
-    
+    </div>
   </div>
 </template>
 
@@ -137,17 +138,12 @@ div.text-infor {
   width: inherit;
 }
 
-@media screen and (max-width: 1280px){
-  .restaurant-summaries {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    margin-left: 40%;
-    margin-right: 10px;
-    margin-top: 10px;
+ span.dollar-sign {
+    color: #28A745;
+    font-size: 30px;
   }
 
-  .text-infor {
+    .text-infor {
     text-align: left;
     padding-left: 10px;
     padding-top: 8px;
@@ -178,9 +174,20 @@ div.text-infor {
     font-weight: 700;
   }
 
-  span.dollar-sign {
-    color: #28A745;
-    font-size: 30px;
+  #buttons {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 10px;
+  }
+
+@media screen and (max-width: 1280px){
+  .restaurant-summaries {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    margin-left: 40%;
+    margin-right: 10px;
+    margin-top: 10px;
   }
 }
 </style>
