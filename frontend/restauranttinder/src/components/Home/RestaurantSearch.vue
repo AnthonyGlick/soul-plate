@@ -12,7 +12,7 @@
       ></auto-complete>
       <section>
         <input id="checkbox" type="checkbox" @change="toggleCoords">
-        <span>Check for saved address, uncheck for current location</span>
+        <span>Check for current location, uncheck for saved address</span>
       </section>
       <select v-model="radius" name id>
         <option value="1609">1 mile</option>
@@ -125,7 +125,7 @@ export default {
       this.currentCoords.lat = position.coords.latitude;
       this.currentCoords.lon = position.coords.longitude;
       console.log(this.currentCoords);
-    }
+    },
   },
 
   computed: {

@@ -72,6 +72,13 @@ export default {
       emptyArray: "Still hungry? Search again!"
     };
   },
+  watch: {
+    summaries: function (shuffled, unshuffled) {
+      let shuffArray = shuffled.restaurants;
+      console.log(shuffArray)
+        this.shuffle(shuffArray);
+    }
+  },
   methods: {
     nextRestaurant() {
       if (this.summaries.restaurants.length < 1) {
@@ -95,7 +102,17 @@ export default {
       } else {
         this.restaurantNumber = 0;
       }
+    },
+    shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
     }
+    return a;
+}
   }
 };
 </script>
