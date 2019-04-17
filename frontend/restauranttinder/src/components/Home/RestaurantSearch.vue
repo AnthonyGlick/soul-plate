@@ -126,7 +126,7 @@ export default {
       this.currentCoords.lat = position.coords.latitude;
       this.currentCoords.lon = position.coords.longitude;
       console.log(this.currentCoords);
-    }
+    },
   },
 
   computed: {

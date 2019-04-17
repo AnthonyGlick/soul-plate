@@ -10,10 +10,8 @@ GO
 
 USE soulplate;
 GO
-
 CREATE TABLE [users] (
-	[id]			int				IDENTITY (1, 1) NOT NULL,
-	[username]		nvarchar(50)	NOT NULL,
+	[username]		nvarchar(50)	NOT NULL UNIQUE,
 	[password]		varchar(50)		NOT NULL,
 	[salt]			varchar(50)		NOT NULL,
 	[role]			varchar(50)		NULL,	
@@ -25,12 +23,12 @@ CREATE TABLE [users] (
 	[state]			nvarchar(50)	NULL,
 	[postalcode]	char(5)			NULL,
 
-	CONSTRAINT pk_user PRIMARY KEY (id),
+	CONSTRAINT pk_user PRIMARY KEY (username),
 );
 
 CREATE TABLE [favorites] (
-    [user_id]		INT			NOT NULL,
-    [restaurant_id] INT			NOT NULL,
+    [user_username]		nvarchar(50)	NOT NULL,
+    [restaurant_id]		INT				NOT NULL,
 
-	CONSTRAINT fk_users FOREIGN KEY ([user_id]) references users ([id])
+	CONSTRAINT fk_favorites FOREIGN KEY ([user_username]) references users ([username])
 );
