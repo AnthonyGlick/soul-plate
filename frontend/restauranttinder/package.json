@@ -15,6 +15,7 @@
     "glyphicons": "^0.2.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
+    "vue-touch": "^2.0.0-beta.4",
     "vue2-google-maps": "^0.10.6",
     "vuelidate": "^0.7.4"
   },
