@@ -2,12 +2,18 @@
   <div class="form-block">
     <h1>TELL US WHAT YOU LIKE</h1>
     <form method="GET" @submit.prevent="onSubmit()">
-      <label class="food-search"> Food Search </label>
-      <auto-complete v-on:input="setCuisineString" name="Cuisine" placeholder="Cuisine" id="Cuisine" :choices="cuisineNames"></auto-complete>
-      <!-- <section>
+      <label class="Food-search">Food Search</label>
+      <auto-complete
+        v-on:input="setCuisineString"
+        name="Cuisine"
+        placeholder="Cuisine"
+        id="Cuisine"
+        :choices="cuisineNames"
+      ></auto-complete>
+      <section>
         <input id="checkbox" type="checkbox" @change="toggleCoords">
-        <span>Check for current location, uncheck for saved address</span>
-      </section>-->
+        <span>Check for saved address, uncheck for current location</span>
+      </section>
       <select v-model="radius" name id>
         <option value="1609">1 mile</option>
         <option value="8046">5 miles</option>
@@ -15,7 +21,12 @@
         <option value="40233">25 miles</option>
         <option value="80467">50 miles</option>
       </select>
-      <input class="btn btn-success" type="submit" v-on:click.prevent="performSearch" value="Submit">
+      <input
+        class="btn btn-success"
+        type="submit"
+        v-on:click.prevent="performSearch"
+        value="Submit"
+      >
       <input type="hidden" id="lat" :value="currentCoords.lat">
       <input type="hidden" id="lon" :value="currentCoords.lon">
     </form>
@@ -34,8 +45,8 @@ export default {
     return {
       cuisines: [],
       cuisineNames: [],
-      currentUser: [],
-      cuisineString:"",
+      currentUser: {},
+      cuisineString: "",
       username: auth.getUser().sub,
       currentCoords: {
         lat: "",
@@ -51,8 +62,8 @@ export default {
     searchUrl: String
   },
   methods: {
-    setCuisineString(value){
-      this.cuisineString = value 
+    setCuisineString(value) {
+      this.cuisineString = value;
     },
     toggleCoords() {
       this.latToggle();
@@ -62,7 +73,7 @@ export default {
       if (document.getElementById("lat").value == this.currentCoords.lat) {
         document.getElementById(
           "lat"
-        ).value = this.addressCoords.results.geometry.location.lat;
+        ).value = this.addressCoords.results[0].geometry.location.lat;
       } else {
         document.getElementById("lat").value = this.currentCoords.lat;
       }
@@ -71,7 +82,7 @@ export default {
       if (document.getElementById("lon").value == this.currentCoords.lon) {
         document.getElementById(
           "lon"
-        ).value = this.addressCoords.results.geometry.location.lng;
+        ).value = this.addressCoords.results[0].geometry.location.lng;
       } else {
         document.getElementById("lon").value = this.currentCoords.lon;
       }
@@ -87,7 +98,7 @@ export default {
         "&radius=" +
         this.radius +
         "&cuisines=" +
-        this.cuisineId
+        this.cuisineId;
       fetch(`${process.env.VUE_APP_ZOMATO_API}${this.endpoint}`, {
         method: "GET",
         headers: {
@@ -119,20 +130,34 @@ export default {
 
   computed: {
     cuisineId() {
-      let tempCuisine = this.cuisines.filter( (cuisine) => {
-        return cuisine.cuisine.cuisine_name.toLowerCase() === this.cuisineString.toLowerCase();
+      let tempCuisine = this.cuisines.filter(cuisine => {
+        return (
+          cuisine.cuisine.cuisine_name.toLowerCase() ===
+          this.cuisineString.toLowerCase()
+        );
       });
-      if (tempCuisine.length === 0){
+      if (tempCuisine.length === 0) {
         return "";
-      }
-      else {
+      } else {
         return tempCuisine[0].cuisine.cuisine_id;
       }
-
     }
   },
 
   created() {
+    fetch(`${process.env.VUE_APP_REMOTE_API}/Account/${this.username}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(json => {
+        this.currentUser = json;
+        console.log(this.currentUser);
+      });
     fetch(`${process.env.VUE_APP_ZOMATO_API}/cuisines?city_id=1033`, {
       method: "GET",
       headers: {
@@ -151,36 +176,33 @@ export default {
       })
       .catch(error => console.error(error));
 
-    fetch(`${process.env.VUE_APP_REMOTE_API}/Account/${this.username}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(json => {
-        this.currentUser = json;
-      });
     /** TODO NOT HARD CODE vvvvv */
-    fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=311+Bettie+Lane,+Brunswick,+OH&key=${
-        process.env.VUE_APP_GOOGLE_KEY
-      }`,
-      {
-        method: "GET",
-        headers: {}
-      }
-    )
-      .then(response => {
-        return response.json();
-      })
-      .then(json => {
-        this.addressCoords = json;
-      });
 
     this.getLocation();
+  },
+  watch: {
+    currentUser: function(newId, oldId) {
+      if (newId !== oldId) {
+        fetch(
+          `https://maps.googleapis.com/maps/api/geocode/json?address=
+      ${this.currentUser.addressOne.replace(" ", "+")},+
+      ${this.currentUser.city.replace(" ", "+")},+
+      ${this.currentUser.state}&key=
+      ${process.env.VUE_APP_GOOGLE_KEY}`,
+          {
+            method: "GET",
+            headers: {}
+          }
+        )
+          .then(response => {
+            return response.json();
+          })
+          .then(json => {
+            this.addressCoords = json;
+            console.log(this.addressCoords);
+          });
+      }
+    }
   }
 };
 </script>
@@ -211,9 +233,10 @@ form {
 }
 
 input:focus {
-  border:2px solid blue;
+  border: 2px solid blue;
 }
 
+<<<<<<< HEAD
 .food-search {
   font-weight: bold;
   font-family: 'Vollkorn', sans-serif;
@@ -224,6 +247,10 @@ input:focus {
 @media screen and (max-width: 1280px)
 {
   div.form-block{
+=======
+@media screen and (max-width: 1280px) {
+  div.form-block {
+>>>>>>> 9b30833415e17800d7b176fde0779e476c017479
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -239,11 +266,12 @@ input:focus {
     height: 79px;
   }
 
-  form > *{
+  form > * {
     margin-bottom: 15px;
   }
 
-  input[type=submit], select{
+  input[type="submit"],
+  select {
     width: 36%;
   }
 

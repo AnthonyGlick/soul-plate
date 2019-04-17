@@ -199,41 +199,66 @@ namespace SampleApi.DAL
             }
         }
 
-        /// <summary>
-        /// Takes in a users choice and add to favorites
-        /// </summary>
-        /// <param name="user"></param>
-        public void UpdateFavorites(User user)
-        {
-            //try
-            //{
-            //    using (SqlConnection conn = new SqlConnection(connectionString))
-            //    {
-            //        conn.Open();
-            //        SqlCommand cmd = new SqlCommand("UPDATE users SET fav01 = @favOne, fav02 = @favTwo, fav03 = @favThree, fav04= @favFour, fav05 = @favFive, fav06 = @favSix, fav07=@favSeven, fav08 = @favEight, fav09 = @favNine, fav10 = @favTen;", conn);
-            //        cmd.Parameters.AddWithValue("@favOne", user.FavOne);
-            //        cmd.Parameters.AddWithValue("@favTwo", user.FavTwo);
-            //        cmd.Parameters.AddWithValue("@favThree", user.FavThree);
-            //        cmd.Parameters.AddWithValue("@favFour", user.FavFour);
-            //        cmd.Parameters.AddWithValue("@favFive", user.FavFive);
-            //        cmd.Parameters.AddWithValue("@favSix", user.FavSix);
-            //        cmd.Parameters.AddWithValue("@favSeven", user.FavSeven);
-            //        cmd.Parameters.AddWithValue("@favEight", user.FavEight);
-            //        cmd.Parameters.AddWithValue("@favNine", user.FavNine);
-            //        cmd.Parameters.AddWithValue("@favTen", user.FavTen);
+        ///// <summary>
+        ///// Takes in a users choice and add to favorites
+        ///// </summary>
+        ///// <param name="user"></param>
+        //public void UpdateFavorites(User user)
+        //{
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(connectionString))
+        //        {
+        //            conn.Open();
+        //            SqlCommand cmd = new SqlCommand("UPDATE users SET fav01 = @favOne, fav02 = @favTwo, fav03 = @favThree, fav04= @favFour, fav05 = @favFive, fav06 = @favSix, fav07=@favSeven, fav08 = @favEight, fav09 = @favNine, fav10 = @favTen;", conn);
+        //            cmd.Parameters.AddWithValue("@favOne", user.FavOne);
+        //            cmd.Parameters.AddWithValue("@favTwo", user.FavTwo);
+        //            cmd.Parameters.AddWithValue("@favThree", user.FavThree);
+        //            cmd.Parameters.AddWithValue("@favFour", user.FavFour);
+        //            cmd.Parameters.AddWithValue("@favFive", user.FavFive);
+        //            cmd.Parameters.AddWithValue("@favSix", user.FavSix);
+        //            cmd.Parameters.AddWithValue("@favSeven", user.FavSeven);
+        //            cmd.Parameters.AddWithValue("@favEight", user.FavEight);
+        //            cmd.Parameters.AddWithValue("@favNine", user.FavNine);
+        //            cmd.Parameters.AddWithValue("@favTen", user.FavTen);
 
 
-            //        cmd.ExecuteNonQuery();
+        //            cmd.ExecuteNonQuery();
 
-            //        return;
-            //    }
-            //}
-            //catch (SqlException ex)
-            //{
-            //    throw ex;
-            //}
+        //            return;
+        //        }
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        throw ex;
+        //    }
 
-        }
+        //}
+
+        //public void DeleteFavorite()
+        //{
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(connectionString))
+        //        {
+        //            conn.Open();
+        //            try
+        //            {
+        //                SqlCommand cmd = new SqlCommand("DE", conn);
+        //                cmd.Parameters.AddWithValue();
+        //                cmd.ExecuteNonQuery();
+        //            }
+        //            catch (SqlException exception)
+        //            {
+        //                throw;
+        //            }
+        //        }
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        throw;    
+        //    }
+        //}
 
     }
 }

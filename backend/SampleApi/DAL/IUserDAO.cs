@@ -42,11 +42,11 @@ namespace SampleApi.DAL
         /// <param name="user"></param>
         void UpdateProfile(User user);
 
-        /// <summary>
-        /// Updates the favorites list when swiping right
-        /// </summary>
-        /// <param name="user"></param>
-        void UpdateFavorites(User user);
+        ///// <summary>
+        ///// Updates the favorites list when swiping right
+        ///// </summary>
+        ///// <param name="user"></param>
+        //void UpdateFavorites(User user);
 
     }
 }
