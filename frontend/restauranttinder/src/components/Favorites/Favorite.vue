@@ -23,7 +23,6 @@ export default {
     color: black;
     font-family: 'Vollkorn', sans-serif;
     font-size: 1.2em;
-    font-weight: bold;
 }
 
 </style>
