@@ -199,43 +199,41 @@ namespace SampleApi.DAL
             }
         }
 
-        //public void UpdateFavorites()
-        //{
-        //    try
-        //    {
-        //        using (SqlConnection conn = new SqlConnection(connectionString))
-        //        {
-        //            conn.Open();
-        //            SqlCommand cmd = new SqlCommand("UPDATE users SET firstname = @firstname, lastname = @lastname, address1 = @address1, address2 = @address2, city = @city, state = @state, postalcode = @postalcode WHERE username = @username;", conn);
-        //            cmd.Parameters.AddWithValue("@firstname", user.FirstName);
-        //            cmd.Parameters.AddWithValue("@lastname", user.LastName);
-        //            cmd.Parameters.AddWithValue("@address1", user.AddressOne);
-        //            //cmd.Parameters.AddWithValue("@address1", user.AddressTwo);
-        //            if (!String.IsNullOrEmpty(user.AddressTwo))
-        //            {
-        //                cmd.Parameters.AddWithValue("@address2", user.AddressTwo);
-        //            }
-        //            else
-        //            {
-        //                cmd.Parameters.AddWithValue("@address2", DBNull.Value);
-        //            }
+        /// <summary>
+        /// Takes in a users choice and add to favorites
+        /// </summary>
+        /// <param name="user"></param>
+        public void UpdateFavorites(User user)
+        {
+            //try
+            //{
+            //    using (SqlConnection conn = new SqlConnection(connectionString))
+            //    {
+            //        conn.Open();
+            //        SqlCommand cmd = new SqlCommand("UPDATE users SET fav01 = @favOne, fav02 = @favTwo, fav03 = @favThree, fav04= @favFour, fav05 = @favFive, fav06 = @favSix, fav07=@favSeven, fav08 = @favEight, fav09 = @favNine, fav10 = @favTen;", conn);
+            //        cmd.Parameters.AddWithValue("@favOne", user.FavOne);
+            //        cmd.Parameters.AddWithValue("@favTwo", user.FavTwo);
+            //        cmd.Parameters.AddWithValue("@favThree", user.FavThree);
+            //        cmd.Parameters.AddWithValue("@favFour", user.FavFour);
+            //        cmd.Parameters.AddWithValue("@favFive", user.FavFive);
+            //        cmd.Parameters.AddWithValue("@favSix", user.FavSix);
+            //        cmd.Parameters.AddWithValue("@favSeven", user.FavSeven);
+            //        cmd.Parameters.AddWithValue("@favEight", user.FavEight);
+            //        cmd.Parameters.AddWithValue("@favNine", user.FavNine);
+            //        cmd.Parameters.AddWithValue("@favTen", user.FavTen);
 
-        //            cmd.Parameters.AddWithValue("@city", user.City);
-        //            cmd.Parameters.AddWithValue("@state", user.State);
-        //            cmd.Parameters.AddWithValue("@postalcode", user.PostalCode);
-        //            cmd.Parameters.AddWithValue("@username", user.Username);
 
-        //            cmd.ExecuteNonQuery();
+            //        cmd.ExecuteNonQuery();
 
-        //            return;
-        //        }
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        throw ex;
-        //    }
+            //        return;
+            //    }
+            //}
+            //catch (SqlException ex)
+            //{
+            //    throw ex;
+            //}
 
-        //}
+        }
 
     }
 }
