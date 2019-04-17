@@ -9,7 +9,7 @@ using SampleApi.DAL;
 namespace SampleApi.Controllers
 {
     [Authorize]
-    [Route("api/[controller]/{username: string}")]
+    [Route("api/[controller]")]
     [ApiController]
     public class FavoritesController : ControllerBase
     {
@@ -22,7 +22,6 @@ namespace SampleApi.Controllers
             this.userDAO = userDAO;
         }
 
-        [Route("/api/[controller]")]
         [HttpGet ("{username}")]
         public ActionResult GetFavorites([FromRoute] string username)
         {
