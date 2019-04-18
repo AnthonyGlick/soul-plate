@@ -21,6 +21,13 @@ Vue.use(VueGoogleMaps, {
   }
 });
 
+VueTouch.config.swipe = {
+  direction: 'horizontal'
+};
+VueTouch.config.pan = {
+  direction: 'horizontal'
+};
+
 new Vue({
   router,
   render: h => h(App),

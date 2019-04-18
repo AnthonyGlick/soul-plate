@@ -232,6 +232,7 @@ export default {
   width: auto;
   padding-bottom: 10px;
   filter: grayscale(100%);
+  padding-top: 20px;
 }
 
 #content {
