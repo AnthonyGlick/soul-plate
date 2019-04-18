@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import auth from "@/shared/auth";
 import Favorite from "@/components/Favorites/Favorite.vue";
 export default {
   name: "Favorites",
@@ -17,15 +18,16 @@ export default {
   data() {
     return {
       userFavorites: [],
+      username: auth.getUser().sub
     //   dummyData: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     };
   },
 
   created() {
-    fetch(`${process.env.VUE_APP_REMOTE_API}/Account/${this.username}`, {
+    fetch(`${process.env.VUE_APP_REMOTE_API}/Favorites/${this.username}`, {
       method: "GET",
       headers: {
-        "Content-Type": "application/json"
+        "Authorization": 'Bearer ' + auth.getToken() 
       }
     })
       .then(response => {
