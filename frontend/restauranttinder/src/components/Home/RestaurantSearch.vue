@@ -2,7 +2,6 @@
   <div class="form-block">
     <h1 class="question">What are you in the mood for?</h1>
     <form method="GET" @submit.prevent="onSubmit()">
-      <!-- <label class="Food-search">Food Search</label> -->
       <auto-complete
         v-on:input="setCuisineString"
         name="Cuisine"

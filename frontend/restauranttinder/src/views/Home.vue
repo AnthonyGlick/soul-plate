@@ -1,6 +1,6 @@
 <template>
   <v-touch @swipeleft="rejectRestaurant">
-    <v-touch v-if="test" @swiperight="likeRestaurant">
+    <v-touch @swiperight="likeRestaurant">
       <div id="Home">
         <restaurant-search v-on:search-results="performSearch"/>
         <restaurant-summary v-bind:summaries="summaries"/>
