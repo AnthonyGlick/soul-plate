@@ -71,7 +71,7 @@ export default {
       this.lonToggle();
     },
     latToggle() {
-      if (document.getElementById("lat").value == this.currentCoords.lat) {
+      if (document.getElementById('checkbox').checked == true) {
         document.getElementById(
           "lat"
         ).value = this.addressCoords.results[0].geometry.location.lat;
@@ -80,7 +80,7 @@ export default {
       }
     },
     lonToggle() {
-      if (document.getElementById("lon").value == this.currentCoords.lon) {
+      if (document.getElementById('checkbox').checked == true) {
         document.getElementById(
           "lon"
         ).value = this.addressCoords.results[0].geometry.location.lng;
