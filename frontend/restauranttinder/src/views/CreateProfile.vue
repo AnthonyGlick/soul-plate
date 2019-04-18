@@ -1,6 +1,6 @@
 <template>
   <div class="profile-form">
-    <form class="form" v-on:submit.prevent="submitInfo">
+    <form id="form-id" class="form" v-on:submit.prevent="submitInfo">
       <h1 class="create-profile">Create Profile</h1>
       <div class="error" v-if="$v.user.$invalid">*Please complete all required fields*</div>
       <section>
@@ -178,6 +178,38 @@ label {
   }
   form section {
     flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #app > div > form {
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  #app > div > form {
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  #app > div > form {
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  #app > div > form {
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 10px;
   }
 }
 </style>

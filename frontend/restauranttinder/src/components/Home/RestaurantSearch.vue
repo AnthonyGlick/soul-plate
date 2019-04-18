@@ -1,7 +1,7 @@
 <template>
   <div class="form-block">
     <h1 class="question">What are you in the mood for?</h1>
-    <form method="GET" @submit.prevent="onSubmit()">
+    <form class="form" method="GET" @submit.prevent="onSubmit()">
       <auto-complete
         v-on:input="setCuisineString"
         name="Cuisine"
@@ -11,7 +11,7 @@
       ></auto-complete>
       <section>
         <input id="checkbox" type="checkbox" @change="toggleCoords" :checked="useSavedAddress">
-        <span id="check-location">Check for saved address, uncheck for current location</span>
+        <span id="check-location"> Used saved address</span>
       </section>
       <select v-model="radius" id="radius">
         <option value="1609">1 mile</option>
@@ -233,6 +233,14 @@ input:focus {
   border: 2px solid blue;
 }
 
+#radius {
+  margin-bottom: 0;
+}
+
+h1.question {
+  padding-bottom: 40px;
+}
+
 @media screen and (max-width: 1280px) {
   div.form-block {
     margin: 0;
@@ -290,5 +298,20 @@ input:focus {
   .question {
     font-size: 24px;
   }
+}
+
+@media screen and (max-width: 320px) {
+  h1.question {
+    font-size: 21px;
+  }
+
+  .form {
+    padding-top: 10px;
+  }
+
+  #submit-button {
+    margin-top: 10px;
+  }
+  
 }
 </style>

@@ -164,9 +164,9 @@ li {
   }
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 320px) {
   li span {
-    font-size: 13px;
+    font-size: 10px;
   }
 }
 </style>
