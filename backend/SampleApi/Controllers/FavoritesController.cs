@@ -47,6 +47,7 @@ namespace SampleApi.Controllers
             favoriteDAO.LikeRestaurant(model.RestaurantId, User.Identity.Name);
 
             return Ok();
+
         }
     }
 }
