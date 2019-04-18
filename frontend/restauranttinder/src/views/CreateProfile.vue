@@ -114,10 +114,10 @@ export default {
         },
         body: JSON.stringify(this.user)
       })
+      // eslint-disable-next-line
         .then(response => {
           this.goHome();
         })
-        .catch(error => console.error(error));
     }
   }
 };

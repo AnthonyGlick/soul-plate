@@ -87,9 +87,8 @@ export default {
     };
   },
   watch: {
-    summaries: function(shuffled, unshuffled) {
+    summaries: function(shuffled) {
       let shuffArray = shuffled.restaurants;
-      console.log(shuffArray);
       this.shuffle(shuffArray);
     }
   },
@@ -136,7 +135,6 @@ export default {
           }
         }
       } catch (error) {
-        console.error(error);
         this.error = "There was an error attempting to save this favorite.";
       }
     },

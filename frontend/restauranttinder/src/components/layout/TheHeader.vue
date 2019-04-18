@@ -164,6 +164,12 @@ li {
   }
 }
 
+@media screen and (max-width: 360px) {
+  li span {
+    font-size: 13px;
+  }
+}
+
 @media screen and (max-width: 320px) {
   li span {
     font-size: 10px;

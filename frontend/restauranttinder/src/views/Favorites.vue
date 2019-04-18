@@ -61,7 +61,6 @@ export default {
       })
       .then(json => {
         this.userFavorites = json;
-        console.log(this.userFavorites);
       });
   }
 };

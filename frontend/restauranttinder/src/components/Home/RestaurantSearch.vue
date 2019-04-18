@@ -11,7 +11,7 @@
       ></auto-complete>
       <section>
         <input id="checkbox" type="checkbox" @change="toggleCoords" :checked="useSavedAddress">
-        <span id="check-location"> Used saved address</span>
+        <span id="check-location">Used saved address</span>
       </section>
       <select v-model="radius" id="radius">
         <option value="1609">1 mile</option>
@@ -93,7 +93,6 @@ export default {
         .then(json => {
           this.$emit("search-results", json);
         })
-        .catch(error => console.error(error));
     },
 
     getLocation() {
@@ -102,14 +101,11 @@ export default {
       }
     },
     showPosition(position) {
-      console.log(position.coords.latitude);
       this.currentCoords.lat = position.coords.latitude;
       this.currentCoords.lon = position.coords.longitude;
       this.formCoords.lat = this.currentCoords.lat;
       this.formCoords.lon = this.currentCoords.lon;
-      console.log(this.currentCoords);
-    },
-    
+    }
   },
 
   computed: {
@@ -130,8 +126,8 @@ export default {
       let coords = {
         lat: null,
         lon: null
-      }
-      if( this.useSavedAddress ) {
+      };
+      if (this.useSavedAddress) {
         coords.lat = this.addressCoords.results[0].geometry.location.lat;
         coords.lon = this.addressCoords.results[0].geometry.location.lng;
       } else {
@@ -153,7 +149,6 @@ export default {
       })
       .then(json => {
         this.currentUser = json;
-        console.log(this.currentUser);
       });
     fetch(`${process.env.VUE_APP_ZOMATO_API}/cuisines?city_id=1033`, {
       method: "GET",
@@ -171,9 +166,6 @@ export default {
           cuisine => cuisine.cuisine.cuisine_name
         );
       })
-      .catch(error => console.error(error));
-
-    /** TODO NOT HARD CODE vvvvv */
 
     this.getLocation();
   },
@@ -196,7 +188,6 @@ export default {
           })
           .then(json => {
             this.addressCoords = json;
-            console.log(this.addressCoords);
           });
       }
     }
@@ -278,6 +269,16 @@ h1.question {
   }
 }
 
+@media screen and (max-width: 1024px) {
+  #submit-button {
+    margin-top: 15px;
+  }
+
+  div.form-block {
+    padding-bottom: 50px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   div.form-block {
     padding-bottom: 50px;
@@ -287,16 +288,37 @@ h1.question {
 
   #submit-button {
     width: 50%;
+    margin-top: 15px;
+  }
+
+  #submit-button {
+    margin-top: 15px;
   }
 }
 
 @media screen and (max-width: 425px) {
+  #submit-button {
+    margin-top: 15px;
+  }
+
   div.form-block {
     margin-right: 10px;
   }
 
   .question {
     font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  #submit-button {
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  #submit-button {
+    margin-top: 15px;
   }
 }
 
@@ -312,6 +334,5 @@ h1.question {
   #submit-button {
     margin-top: 10px;
   }
-  
 }
 </style>
