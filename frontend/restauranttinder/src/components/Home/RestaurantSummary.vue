@@ -133,12 +133,10 @@ export default {
         const response = fetch(url, {
           method: "POST",
           headers: {
-            Accept: "application/json",
+            "Content-Type": "application/json",
             Authorization: "Bearer " + auth.getToken()
           },
-          body: JSON.stringify(
-            this.summaries.restaurants[this.restaurantNumber]
-          )
+          body: JSON.stringify(payload)
         });
 
         if (response.status === 400) {
