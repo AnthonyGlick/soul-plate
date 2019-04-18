@@ -1,32 +1,53 @@
 <template>
   <div class="favorite-page">
     <h1 class="favorites">Favorites</h1>
-    <div class="user-favorites">
-      <favorite v-bind:userFavorites="userFavorites" v-for="favorite in userFavorites" v-bind:key="favorite"/>
+    <div class="user-favorites" v-for="(favorite, i) in userFavorites" :key="i">
+      <!-- <div v-for="favorite in userFavorites" :key="favorite.restaurantId"/> -->
+      <div class="user-favorite">
+        <img class="pic" v-bind:src="userFavorites[i].restaurantImage">
+        <h2 class="name">{{userFavorites[i].restaurantName}}</h2>
+        <span class="dollar-sign">{{userFavorites[i].restaurantPriceRange}}</span>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import auth from "@/shared/auth";
-import Favorite from "@/components/Favorites/Favorite.vue";
+// import Favorite from "@/components/Favorites/Favorite.vue";
 export default {
   name: "Favorites",
-  components: {
-    Favorite
-  },
+  // components: {
+  //   Favorite
+  // },
   data() {
     return {
       userFavorites: [],
       username: auth.getUser().sub
     };
   },
+  computed: {
+    dollarprice: function() {
+      let dollarsigns = "";
 
+      if (this.userFavorites) {
+        for (
+          let i = 0;
+          i <
+          this.userFavorites[i].restaurantPriceRange;
+          i++
+        ) {
+          dollarsigns += "$";
+        }
+      }
+      return dollarsigns;
+    }
+  },
   created() {
     fetch(`${process.env.VUE_APP_REMOTE_API}/Favorites/${this.username}`, {
       method: "GET",
       headers: {
-        "Authorization": 'Bearer ' + auth.getToken() 
+        Authorization: "Bearer " + auth.getToken()
       }
     })
       .then(response => {
@@ -43,6 +64,7 @@ export default {
 <style>
 .user-favorites {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
   margin: 0px 100px;
@@ -67,5 +89,21 @@ export default {
   .user-favorites {
     margin: 0;
   }
+}
+.user-favorite {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.name {
+  color: black;
+  font-family: "Vollkorn", sans-serif;
+  font-size: 1.2em;
+}
+
+.pic {
+  padding-bottom: 5px;
+  border-radius: 10px;
 }
 </style>

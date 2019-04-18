@@ -13,23 +13,23 @@
 
       <div class="text-infor">
         <div class="text-container" id="text-info">
-        <h3 class="name">{{summaries.restaurants[restaurantNumber].restaurant.name}}</h3>
-        <h3 class="rating">
-          <span class="rating-object">Rating:</span>
-          {{summaries.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}} out of 5
-        </h3>
-        <h3 class="location">
-          <span class="location-object">Location:</span>
-          {{summaries.restaurants[restaurantNumber].restaurant.location.locality}}
-        </h3>
-        <h3>
-          <span class="cuisine-object">Cuisine:</span>
-          {{summaries.restaurants[restaurantNumber].restaurant.cuisines}}
-        </h3>
-        <h3>
-          <span class="price-range">Price:</span>
-          <span class="dollar-sign">{{dollarprice}}</span>
-        </h3>
+          <h3 class="name">{{summaries.restaurants[restaurantNumber].restaurant.name}}</h3>
+          <h3 class="rating">
+            <span class="rating-object">Rating:</span>
+            {{summaries.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}} out of 5
+          </h3>
+          <h3 class="location">
+            <span class="location-object">Location:</span>
+            {{summaries.restaurants[restaurantNumber].restaurant.location.locality}}
+          </h3>
+          <h3>
+            <span class="cuisine-object">Cuisine:</span>
+            {{summaries.restaurants[restaurantNumber].restaurant.cuisines}}
+          </h3>
+          <h3>
+            <span class="price-range">Price:</span>
+            <span class="dollar-sign">{{dollarprice}}</span>
+          </h3>
         </div>
       </div>
     </div>
@@ -45,7 +45,7 @@
 import auth from "@/shared/auth";
 import RejectButton from "@/components/Home/RejectButton.vue";
 import LikeButton from "@/components/Home/LikeButton.vue";
-import {bus} from "../../main.js"
+import { bus } from "../../main.js";
 
 export default {
   name: "RestaurantSummary",
@@ -87,10 +87,10 @@ export default {
     };
   },
   watch: {
-    summaries: function (shuffled, unshuffled) {
+    summaries: function(shuffled, unshuffled) {
       let shuffArray = shuffled.restaurants;
-      console.log(shuffArray)
-        this.shuffle(shuffArray);
+      console.log(shuffArray);
+      this.shuffle(shuffArray);
     }
   },
   methods: {
@@ -110,33 +110,37 @@ export default {
     likeRestaurant() {
       try {
         const payload = {
+<<<<<<< HEAD
           "RestaurantId": this.summaries.restaurants[this.restaurantNumber].restaurant.id,
           "RestaurantName": this.summaries.restaurants[this.restaurantNumber].restaurant.name,
           // "RestaurantAddress": this.summaries.restaurants[this.restaurantNumber].restaurant.address,
           "RestaurantImage": this.summaries.restaurants[this.restaurantNumber].restaurant.featured_image,
           "RestaurantPriceRange": this.summaries.restaurants[this.restaurantNumber].restaurant.price_range,
+=======
+          RestaurantId: this.summaries.restaurants[this.restaurantNumber]
+            .restaurant.id
+>>>>>>> 178f7022812e776204bb3dd08c4b065b00fa5c23
         };
         const url = `${process.env.VUE_APP_REMOTE_API}/favorites/addfavorite`;
         const response = fetch(url, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": 'Bearer ' + auth.getToken()
+            Authorization: "Bearer " + auth.getToken()
           },
           body: JSON.stringify(payload)
         });
 
         if (response.status === 400) {
-          this.error = "NOPE"
-        }
-         else {
+          this.error = "NOPE";
+        } else {
           if (this.summaries.restaurants.length < 1) {
-              return this.emptyArray;
-              }
+            return this.emptyArray;
+          }
           if (this.restaurantNumber < this.summaries.restaurants.length - 1) {
-                this.restaurantNumber = this.restaurantNumber + 1;
+            this.restaurantNumber = this.restaurantNumber + 1;
           } else {
-              this.restaurantNumber = 0;
+            this.restaurantNumber = 0;
           }
         }
       } catch (error) {
@@ -145,19 +149,19 @@ export default {
       }
     },
     shuffle(a) {
-    var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
+      var j, x, i;
+      for (i = a.length - 1; i > 0; i--) {
         j = Math.floor(Math.random() * (i + 1));
         x = a[i];
         a[i] = a[j];
         a[j] = x;
+      }
+      return a;
     }
-    return a;
-}
   },
   mounted() {
-    bus.$on('rejectSwipe', this.rejectRestaurant);
-    bus.$on('likeSwipe', this.likeRestaurant)
+    bus.$on("rejectSwipe", this.rejectRestaurant);
+    bus.$on("likeSwipe", this.likeRestaurant);
   }
 };
 </script>
@@ -166,6 +170,10 @@ export default {
 .summary {
   display: flex;
   flex-direction: column;
+}
+
+h1.question {
+  font-size: 2.5rem;
 }
 
 div.text-infor {
@@ -185,22 +193,21 @@ div.text-infor {
 
 .featuredimage img {
   width: 100%;
-
 }
 
 .featuredimage {
   width: 100%;
+  height: 50%;
 }
 
 .restaurant-summaries {
   position: absolute;
-  margin-top: 250px;
+  margin-top: 190px;
   left: 0;
   right: 0;
   margin-left: 400px;
   margin-right: 400px;
 }
-
 
 span.dollar-sign {
   color: #28a745;
@@ -211,8 +218,7 @@ span.dollar-sign {
   margin-top: 10px;
   width: inherit;
   text-align: left;
-  padding:8px;
-
+  padding: 8px;
 }
 
 h3.name {
@@ -255,7 +261,8 @@ span.price-range {
     margin-right: 10px;
     margin-top: 10px;
   }
-   #text-info > *, #text-info > * > *{
+  #text-info > *,
+  #text-info > * > * {
     font-size: 1.7rem;
   }
 }
@@ -264,19 +271,37 @@ span.price-range {
   .restaurant-summaries {
     margin-left: 10px;
     margin-top: 275px;
-    padding-top:.08%;
+    padding-top: 0.08%;
   }
 
-  #text-info > *, #text-info > * > *{
+  #text-info > *,
+  #text-info > * > * {
     font-size: 1.2rem;
   }
 
-  h3.name{
+  h3.name {
     text-align: center;
   }
 
   #buttons {
     display: none;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .restaurant-summaries {
+    margin-left: 10px;
+    margin-top: 275px;
+    padding-top: 0.08%;
+  }
+
+  #radius {
+    width: 45%;
+    height: 30px;
+  }
+
+  #submit-button {
+    height: 50px;
   }
 }
 </style>
