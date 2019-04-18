@@ -11,10 +11,10 @@
         :choices="cuisineNames"
       ></auto-complete>
       <section>
-        <input id="checkbox" type="checkbox" @change="toggleCoords">
+        <input id="checkbox" type="checkbox" @change="toggleCoords" :checked="useSavedAddress">
         <span id="check-location">Check for saved address, uncheck for current location</span>
       </section>
-      <select v-model="radius" name id>
+      <select v-model="radius" id="radius">
         <option value="1609">1 mile</option>
         <option value="8046">5 miles</option>
         <option value="16093">10 miles</option>
@@ -28,8 +28,8 @@
         v-on:click.prevent="performSearch"
         value="Submit"
       >
-      <input type="hidden" id="lat" :value="currentCoords.lat">
-      <input type="hidden" id="lon" :value="currentCoords.lon">
+      <input type="hidden" id="lat" :value="getCoords.lat">
+      <input type="hidden" id="lon" :value="getCoords.lon">
     </form>
   </div>
 </template>
@@ -44,6 +44,7 @@ export default {
   },
   data() {
     return {
+      useSavedAddress: false,
       cuisines: [],
       cuisineNames: [],
       currentUser: {},
@@ -67,26 +68,7 @@ export default {
       this.cuisineString = value;
     },
     toggleCoords() {
-      this.latToggle();
-      this.lonToggle();
-    },
-    latToggle() {
-      if (document.getElementById('checkbox').checked == true) {
-        document.getElementById(
-          "lat"
-        ).value = this.addressCoords.results[0].geometry.location.lat;
-      } else {
-        document.getElementById("lat").value = this.currentCoords.lat;
-      }
-    },
-    lonToggle() {
-      if (document.getElementById('checkbox').checked == true) {
-        document.getElementById(
-          "lon"
-        ).value = this.addressCoords.results[0].geometry.location.lng;
-      } else {
-        document.getElementById("lon").value = this.currentCoords.lon;
-      }
+      this.useSavedAddress = !this.useSavedAddress;
     },
     performSearch() {
       const currentLat = document.getElementById("lat").value;
@@ -125,8 +107,11 @@ export default {
       console.log(position.coords.latitude);
       this.currentCoords.lat = position.coords.latitude;
       this.currentCoords.lon = position.coords.longitude;
+      this.formCoords.lat = this.currentCoords.lat;
+      this.formCoords.lon = this.currentCoords.lon;
       console.log(this.currentCoords);
     },
+    
   },
 
   computed: {
@@ -142,6 +127,19 @@ export default {
       } else {
         return tempCuisine[0].cuisine.cuisine_id;
       }
+    },
+    getCoords() {
+      let coords = {
+        lat: null,
+        lon: null
+      }
+      if( this.useSavedAddress ) {
+        coords.lat = this.addressCoords.results[0].geometry.location.lat;
+        coords.lon = this.addressCoords.results[0].geometry.location.lng;
+      } else {
+        coords = this.currentCoords;
+      }
+      return coords;
     }
   },
 
