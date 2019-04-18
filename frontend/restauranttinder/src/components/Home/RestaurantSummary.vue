@@ -12,6 +12,7 @@
       </div>
 
       <div class="text-infor">
+        <div class="text-container" id="text-info">
         <h3 class="name">{{summaries.restaurants[restaurantNumber].restaurant.name}}</h3>
         <h3 class="rating">
           <span class="rating-object">Rating:</span>
@@ -29,6 +30,7 @@
           <span class="price-range">Price:</span>
           <span class="dollar-sign">{{dollarprice}}</span>
         </h3>
+        </div>
       </div>
     </div>
     <!-- <button v-on:click="nextRestaurant" v-if="summaries.restaurants">Next Restaurant</button> -->
@@ -179,6 +181,7 @@ div.text-infor {
 
 .featuredimage img {
   width: 100%;
+
 }
 
 .featuredimage {
@@ -194,10 +197,6 @@ div.text-infor {
   margin-right: 400px;
 }
 
-.text-infor {
-  margin-top: 10px;
-  width: inherit;
-}
 
 span.dollar-sign {
   color: #28a745;
@@ -205,9 +204,11 @@ span.dollar-sign {
 }
 
 .text-infor {
+  margin-top: 10px;
+  width: inherit;
   text-align: left;
-  padding-left: 10px;
-  padding-top: 8px;
+  padding:8px;
+
 }
 
 h3.name {
@@ -250,12 +251,24 @@ span.price-range {
     margin-right: 10px;
     margin-top: 10px;
   }
+   #text-info > *, #text-info > * > *{
+    font-size: 1.7rem;
+  }
 }
 
 @media screen and (max-width: 425px) {
   .restaurant-summaries {
     margin-left: 10px;
     margin-top: 275px;
+    padding-top:.08%;
+  }
+
+  #text-info > *, #text-info > * > *{
+    font-size: 1.2rem;
+  }
+
+  h3.name{
+    text-align: center;
   }
 
   #buttons {
