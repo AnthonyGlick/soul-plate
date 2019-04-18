@@ -107,14 +107,17 @@ export default {
     },
     likeRestaurant() {
       try {
+        const payload = {
+          "RestaurantId": this.summaries.restaurants[this.restaurantNumber].restaurant.id
+        };
         const url = `${process.env.VUE_APP_REMOTE_API}/favorites/addfavorite`;
         const response = fetch(url, {
           method: "POST",
           headers: {
-            Accept: "application/json",
+            "Content-Type": "application/json",
             "Authorization": 'Bearer ' + auth.getToken()
           },
-          body: JSON.stringify(this.summaries.restaurants[this.restaurantNumber])
+          body: JSON.stringify(payload)
         });
 
         if (response.status === 400) {
