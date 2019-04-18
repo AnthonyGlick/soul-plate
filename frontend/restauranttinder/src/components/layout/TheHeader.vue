@@ -3,26 +3,32 @@
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="/">
-            <div class="header-logo-name">
-              <img class="logo" v-bind:src="image">
-              <span class="navbar-text">Soul Plate</span>
-            </div>
-          </a>
+          <div class="header-logo-name">
+            <img class="logo" v-bind:src="image">
+            <span class="navbar-text">Soul Plate</span>
+          </div>
+        </a>
       </div>
       <ul class="header-right">
         <router-link to="/favorites">
           <li>
-            <button href="/favorites" class="btn btn-primary"><span>View Favorites </span></button>
+            <button href="/favorites" class="btn btn-primary">
+              <span>View Favorites</span>
+            </button>
           </li>
         </router-link>
         <router-link to="/createprofile">
           <li>
-            <button href="/createprofile" class="btn btn-primary"><span>Edit Profile</span></button>
+            <button href="/createprofile" class="btn btn-primary">
+              <span>Edit Profile</span>
+            </button>
           </li>
         </router-link>
         <li v-if="isAuthenticated">
           <router-link to="/login">
-            <button class="btn btn-primary" v-on:click.prevent="logout"><span>Logout</span></button>
+            <button class="btn btn-primary" v-on:click.prevent="logout">
+              <span>Logout</span>
+            </button>
           </router-link>
         </li>
       </ul>

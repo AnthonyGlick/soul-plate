@@ -2,7 +2,6 @@
   <div class="form-block">
     <h1 class="question">What are you in the mood for?</h1>
     <form method="GET" @submit.prevent="onSubmit()">
-      <!-- <label class="Food-search">Food Search</label> -->
       <auto-complete
         v-on:input="setCuisineString"
         name="Cuisine"
@@ -21,7 +20,7 @@
         <option value="40233">25 miles</option>
         <option value="80467">50 miles</option>
       </select>
-      <input 
+      <input
         id="submit-button"
         class="btn btn-success"
         type="submit"
@@ -56,7 +55,6 @@ export default {
       },
       addressCoords: {},
       radius: "",
-      //chosenCuisine: "",
       restaurants: {}
     };
   },
@@ -285,13 +283,12 @@ input:focus {
 }
 
 @media screen and (max-width: 425px) {
-  div.form-block{
+  div.form-block {
     margin-right: 10px;
   }
 
   .question {
     font-size: 24px;
   }
-
 }
 </style>

@@ -15,11 +15,9 @@
 <template>
   <div id="login">
     <section id="content">
-        <img class="logo" v-bind:src='image' />
+      <img class="logo" v-bind:src="image">
       <h1>Soul Plate</h1>
-      <p>
-        SWIPE RIGHT TO DINNER
-      </p>
+      <p>SWIPE RIGHT TO DINNER</p>
     </section>
     <section id="login-signup" v-bind:class="{ showSignupForm: !showLoginForm }">
       <form v-if="showLoginForm" v-on:submit.prevent="login">
@@ -33,7 +31,7 @@
           type="text"
           placeholder="Indecisive Foodie"
           id="email"
-        />
+        >
 
         <label for="password">Password</label>
         <input
@@ -41,7 +39,7 @@
           type="password"
           placeholder="password"
           id="password"
-        />
+        >
 
         <div class="form-actions">
           <button class="btn btn-primary">Log In</button>
@@ -57,12 +55,7 @@
         <error-message :error="error"></error-message>
 
         <label for="email2">Username</label>
-        <input
-          v-model.trim="signupForm.username"
-          type="text"
-          placeholder="New User!"
-          id="email2"
-        />
+        <input v-model.trim="signupForm.username" type="text" placeholder="New User!" id="email2">
 
         <label for="password2">Password</label>
         <input
@@ -70,7 +63,7 @@
           type="password"
           placeholder="Min 8 characters"
           id="password2"
-        />
+        >
 
         <label for="password3">Confirm Password</label>
         <input
@@ -78,7 +71,7 @@
           type="password"
           placeholder="Confirm password"
           id="password3"
-        />
+        >
 
         <div class="form-actions">
           <button class="btn btn-primary" v-bind:disabled="$v.signupForm.$invalid">Sign Up</button>
@@ -113,7 +106,7 @@ export default {
         username: "",
         role: "user"
       },
-      image: require('../assets/imgs/restaurant-1724294_1280.png')
+      image: require("../assets/imgs/restaurant-1724294_1280.png")
     };
   },
   validations: {
@@ -122,7 +115,7 @@ export default {
         minLength: minLength(8)
       },
       confirmPassword: {
-        sameAsPassword: sameAs('password')
+        sameAsPassword: sameAs("password")
       }
     }
   },
@@ -209,9 +202,8 @@ export default {
         const data = await response.json();
 
         if (response.status === 400) {
-          this.error = data.message
-        }
-         else {
+          this.error = data.message;
+        } else {
           auth.saveToken(data);
           this.goCreateProfile();
         }
@@ -233,15 +225,13 @@ export default {
   height: 35rem;
   justify-content: center;
   margin: 4rem auto;
-  
 }
 
 .logo {
   height: 200px;
-  width:auto;
+  width: auto;
   padding-bottom: 10px;
-  filter: grayscale(100%)
-  
+  filter: grayscale(100%);
 }
 
 #content {
@@ -257,9 +247,9 @@ export default {
 }
 
 #login-signup {
-    /* border-bottom-right-radius: 10px;
+  /* border-bottom-right-radius: 10px;
     border-top-right-radius: 10px; */
-    background-color: #fcfcfc;
+  background-color: #fcfcfc;
 }
 
 #content,
@@ -269,12 +259,12 @@ export default {
 
 #content h1,
 #login-signup h1 {
- margin-bottom: 2rem;
-    font-family: 'Vollkorn', sans-serif;
+  margin-bottom: 2rem;
+  font-family: "Vollkorn", sans-serif;
 }
 
 #content h1 {
-      font-size: 3rem;
+  font-size: 3rem;
 }
 
 form h1 {

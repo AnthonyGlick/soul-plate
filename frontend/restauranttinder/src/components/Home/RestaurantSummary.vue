@@ -1,16 +1,9 @@
 <template>
   <div class="restaurant-summaries">
     <div class="summary" v-if="summaries.restaurants" :key="restaurantNumber">
-      <div
-        v-if="summaries.restaurants[restaurantNumber].restaurant.featured_image"
-        class="featuredimage"
-      >
-        <img :src="summaries.restaurants[restaurantNumber].restaurant.featured_image">
+      <div class="featuredimage">
+        <img :src="getImage">
       </div>
-      <div v-else>
-        <img class="featuredimage" src="https://via.placeholder.com/1200x464">
-      </div>
-
       <div class="text-infor">
         <div class="text-container" id="text-info">
           <h3 class="name">{{summaries.restaurants[restaurantNumber].restaurant.name}}</h3>
@@ -33,7 +26,6 @@
         </div>
       </div>
     </div>
-    <!-- <button v-on:click="nextRestaurant" v-if="summaries.restaurants">Next Restaurant</button> -->
     <div id="buttons">
       <reject-button v-on:Reject="rejectRestaurant" v-if="summaries.restaurants"/>
       <like-button v-on:Like="likeRestaurant" v-if="summaries.restaurants"/>
@@ -46,6 +38,7 @@ import auth from "@/shared/auth";
 import RejectButton from "@/components/Home/RejectButton.vue";
 import LikeButton from "@/components/Home/LikeButton.vue";
 import { bus } from "../../main.js";
+import restaurantimagejson from "../../assets/data/restaurantimage.json";
 
 export default {
   name: "RestaurantSummary",
@@ -72,18 +65,38 @@ export default {
         }
       }
       return dollarsigns;
+    },
+    getImage() {
+      let thisRestaurant = this.summaries.restaurants[this.restaurantNumber].restaurant;
+      if (
+        thisRestaurant.featured_image
+      ) {
+        return thisRestaurant.featured_image;
+      } 
+      
+      let filteredList = this.restaurantimage.filter(image => {
+          return (image.id == thisRestaurant.id);
+        });
+
+      if (filteredList.length > 0) {
+        if (filteredList[0].id ==
+          thisRestaurant.id
+        ) {
+          return filteredList[0].featured_image;
+        }
+      } 
+      
+      return "https://via.placeholder.com/1200x464";
     }
-
-    // starrating: function(){
-
-    // }
   },
 
   data() {
     return {
       restaurantNumber: 0,
       emptyArray: "Still hungry? Search again!",
-      username: auth.getUser().sub
+      username: auth.getUser().sub,
+      restaurantimage: restaurantimagejson,
+      oneImage: ""
     };
   },
   watch: {
@@ -120,10 +133,12 @@ export default {
         const response = fetch(url, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            Accept: "application/json",
             Authorization: "Bearer " + auth.getToken()
           },
-          body: JSON.stringify(payload)
+          body: JSON.stringify(
+            this.summaries.restaurants[this.restaurantNumber]
+          )
         });
 
         if (response.status === 400) {
@@ -177,8 +192,11 @@ div.text-infor {
   background-color: white;
 }
 
-img.featuredimage {
-  height: 300px;
+.featuredimage img {
+  width: 100%;
+}
+
+.featuredimage {
   width: 100%;
 }
 
