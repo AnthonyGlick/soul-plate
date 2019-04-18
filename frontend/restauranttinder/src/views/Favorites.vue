@@ -6,7 +6,13 @@
       <div class="user-favorite">
         <img class="pic" v-bind:src="userFavorites[i].restaurantImage">
         <h2 class="name">{{userFavorites[i].restaurantName}}</h2>
-        <span class="dollar-sign">{{userFavorites[i].restaurantPriceRange}}</span>
+        <div>
+        <span class="dollar-sign" v-if="userFavorites[i].restaurantPriceRange === 1">$</span>
+        <span class="dollar-sign" v-else-if="userFavorites[i].restaurantPriceRange === 2">$$</span>
+        <span class="dollar-sign" v-else-if="userFavorites[i].restaurantPriceRange === 3">$$$</span>
+        <span class="dollar-sign" v-else-if="userFavorites[i].restaurantPriceRange === 4">$$$$</span>
+        <span class="dollar-sign" v-else>$$$$$</span>
+        </div>
       </div>
     </div>
   </div>
