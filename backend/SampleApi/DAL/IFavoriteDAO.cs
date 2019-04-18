@@ -8,7 +8,7 @@ namespace SampleApi.DAL
 {
     public interface IFavoriteDAO
     {
-        void LikeRestaurant(int restaurantId, string userUsername, string restaurantName);
+        void LikeRestaurant(int restaurantId, string userUsername, string restaurantName,/* string restaurantAddress,*/ string restaurantImage, int restaurantPriceRange);
 
         void DislikeRestaurant(int restaurantId, string userUsername);
 

@@ -109,7 +109,10 @@ export default {
       try {
         const payload = {
           "RestaurantId": this.summaries.restaurants[this.restaurantNumber].restaurant.id,
-          "RestaurantName": this.summaries.restaurants[this.restaurantNumber].restaurant.name
+          "RestaurantName": this.summaries.restaurants[this.restaurantNumber].restaurant.name,
+          // "RestaurantAddress": this.summaries.restaurants[this.restaurantNumber].restaurant.address,
+          "RestaurantImage": this.summaries.restaurants[this.restaurantNumber].restaurant.featured_image,
+          "RestaurantPriceRange": this.summaries.restaurants[this.restaurantNumber].restaurant.price_range,
         };
         const url = `${process.env.VUE_APP_REMOTE_API}/favorites/addfavorite`;
         const response = fetch(url, {

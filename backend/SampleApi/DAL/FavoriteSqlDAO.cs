@@ -11,7 +11,8 @@ namespace SampleApi.DAL
     {
         private readonly string connectionString;
 
-        private const string ADD_FAVORITE = "INSERT INTO favorites(user_username, restaurant_id, name) VALUES(@userUsername, @restaurantId, @restaurantName)";
+        // TODO: readd address to sql statement (if we uncomment it elsewhere)
+        private const string ADD_FAVORITE = "INSERT INTO favorites(user_username, restaurant_id, name, featured_image, price_range) VALUES(@userUsername, @restaurantId, @restaurantName, @restaurantImage, @restaurantPriceRange)";
         private const string DELETE_FAVORITE = "DELETE favorites WHERE user_username=@userUsername AND restaurant_id=@restaurantId";
         private const string GET_FAVORITES = "SELECT * FROM favorites WHERE user_username=@userUsername";
 
@@ -78,11 +79,14 @@ namespace SampleApi.DAL
             favorite.RestaurantId = Convert.ToInt32(reader["restaurant_id"]);
             favorite.UserUsername = Convert.ToString(reader["user_username"]);
             favorite.RestaurantName = Convert.ToString(reader["name"]);
+            //favorite.RestaurantAddress = Convert.ToString(reader["address"]);
+            favorite.RestaurantImage = Convert.ToString(reader["featured_image"]);
+            favorite.RestaurantPriceRange = Convert.ToInt32(reader["price_range"]);
 
             return favorite;
         }
 
-        public void LikeRestaurant(int restaurantId, string userUsername, string restaurantName)
+        public void LikeRestaurant(int restaurantId, string userUsername, string restaurantName, /*string restaurantAddress, */string restaurantImage, int restaurantPriceRange)
         {
             try
             {
@@ -95,6 +99,9 @@ namespace SampleApi.DAL
                     cmd.Parameters.AddWithValue("@restaurantId", restaurantId);
                     cmd.Parameters.AddWithValue("@userUsername", userUsername);
                     cmd.Parameters.AddWithValue("@restaurantName", restaurantName);
+                    //cmd.Parameters.AddWithValue("@restaurantAddress", restaurantAddress);
+                    cmd.Parameters.AddWithValue("@restaurantImage", restaurantImage);
+                    cmd.Parameters.AddWithValue("@restaurantPriceRange", restaurantPriceRange);
 
                     cmd.ExecuteNonQuery();
                 }

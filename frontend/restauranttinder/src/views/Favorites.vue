@@ -2,7 +2,7 @@
   <div class="favorite-page">
     <h1 class="favorites">Favorites</h1>
     <div class="user-favorites">
-      <favorite v-for="favorite in userFavorites" v-bind:key="favorite"/>
+      <favorite v-bind:userFavorites="userFavorites" v-for="favorite in userFavorites" v-bind:key="favorite"/>
     </div>
   </div>
 </template>
@@ -19,7 +19,6 @@ export default {
     return {
       userFavorites: [],
       username: auth.getUser().sub
-    //   dummyData: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     };
   },
 

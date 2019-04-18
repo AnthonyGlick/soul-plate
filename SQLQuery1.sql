@@ -31,8 +31,8 @@ CREATE TABLE [favorites] (
     [restaurant_id]		INT				NOT NULL,
 	[name]				nvarchar(50)	NOT NULL,
 	--[address]			nvarchar(100),	
-	--[featured_image]	nvarchar(200),
-	--[price_range]		int,
+	[featured_image]	nvarchar(200),
+	[price_range]		int,
 
 	CONSTRAINT fk_favorites FOREIGN KEY ([user_username]) references users ([username])
 );

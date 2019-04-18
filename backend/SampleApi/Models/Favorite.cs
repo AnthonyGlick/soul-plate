@@ -23,18 +23,18 @@ namespace SampleApi.Models
         public string RestaurantName { get; set; }
 
         ///// <summary>
-        ///// Address of favorited restaurant (number, street, city, state)
+        ///// address of favorited restaurant (number, street, city, state)
         ///// </summary>
         //public string RestaurantAddress { get; set; }
 
-        ///// <summary>
-        ///// Image URL of favorited restaurant
-        ///// </summary>
-        //public string RestaurantImage { get; set; }
+        /// <summary>
+        /// image url of favorited restaurant
+        /// </summary>
+        public string RestaurantImage { get; set; }
 
-        ///// <summary>
-        ///// Price range (integer 1-4) of favorited restaurant
-        ///// </summary>
-        //public int RestaurantPriceRange { get; set; }
+        /// <summary>
+        /// price range (integer 1-4) of favorited restaurant
+        /// </summary>
+        public int RestaurantPriceRange { get; set; }
     }
 }
