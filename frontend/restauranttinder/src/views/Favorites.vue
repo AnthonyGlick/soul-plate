@@ -1,6 +1,8 @@
 <template>
+
   <div class="favorite-page">
     <h1 class="favorites">Favorites</h1>
+    <div class="favorite-container">
     <div class="user-favorites" v-for="(favorite, i) in userFavorites" :key="i">
       <!-- <div v-for="favorite in userFavorites" :key="favorite.restaurantId"/> -->
       <div class="user-favorite">
@@ -14,6 +16,7 @@
         <span class="dollar-sign" v-else>$$$$$</span>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -68,16 +71,22 @@ export default {
 
 <style>
 .user-favorites {
-  justify-content: space-around;
-  margin: 5%;
+  width:300px;
+  height:auto;
+  /* justify-content: space-around; */
   border: 5px dotted white;
+  margin:10px;
+
+}
+
+.favorite-container{
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: space-around;
 }
 
 .favorite-page { 
-  display: flex;
-  flex-wrap:wrap;
-  width:100%;
-  margin: 20px;
+  margin: 50px;
   position: absolute;
   background-color: #ff9933;
   opacity: 0.9;
