@@ -29,11 +29,10 @@ CREATE TABLE [users] (
 CREATE TABLE [favorites] (
     [user_username]		nvarchar(50)	NOT NULL,
     [restaurant_id]		INT				NOT NULL,
+	[name]				nvarchar(50)	NOT NULL,
+	--[address]			nvarchar(100),	
+	[featured_image]	nvarchar(200),
+	[price_range]		int,
 
 	CONSTRAINT fk_favorites FOREIGN KEY ([user_username]) references users ([username])
 );
-
-INSERT INTO favorites(user_username, restaurant_id) VALUES('test',16962117)
-SELECT TOP (1000) [user_username]
-      ,[restaurant_id]
-  FROM [soulplate].[dbo].[favorites]

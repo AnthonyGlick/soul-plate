@@ -5,23 +5,25 @@
         <img :src="getImage">
       </div>
       <div class="text-infor">
-        <h3 class="name">{{summaries.restaurants[restaurantNumber].restaurant.name}}</h3>
-        <h3 class="rating">
-          <span class="rating-object">Rating:</span>
-          {{summaries.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}} out of 5
-        </h3>
-        <h3 class="location">
-          <span class="location-object">Location:</span>
-          {{summaries.restaurants[restaurantNumber].restaurant.location.locality}}
-        </h3>
-        <h3>
-          <span class="cuisine-object">Cuisine:</span>
-          {{summaries.restaurants[restaurantNumber].restaurant.cuisines}}
-        </h3>
-        <h3>
-          <span class="price-range">Price:</span>
-          <span class="dollar-sign">{{dollarprice}}</span>
-        </h3>
+        <div class="text-container" id="text-info">
+          <h3 class="name">{{summaries.restaurants[restaurantNumber].restaurant.name}}</h3>
+          <h3 class="rating">
+            <span class="rating-object">Rating:</span>
+            {{summaries.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}} out of 5
+          </h3>
+          <h3 class="location">
+            <span class="location-object">Location:</span>
+            {{summaries.restaurants[restaurantNumber].restaurant.location.locality}}
+          </h3>
+          <h3>
+            <span class="cuisine-object">Cuisine:</span>
+            {{summaries.restaurants[restaurantNumber].restaurant.cuisines}}
+          </h3>
+          <h3>
+            <span class="price-range">Price:</span>
+            <span class="dollar-sign">{{dollarprice}}</span>
+          </h3>
+        </div>
       </div>
     </div>
     <div id="buttons">
@@ -120,6 +122,13 @@ export default {
     },
     likeRestaurant() {
       try {
+        const payload = {
+          "RestaurantId": this.summaries.restaurants[this.restaurantNumber].restaurant.id,
+          "RestaurantName": this.summaries.restaurants[this.restaurantNumber].restaurant.name,
+          // "RestaurantAddress": this.summaries.restaurants[this.restaurantNumber].restaurant.address,
+          "RestaurantImage": this.summaries.restaurants[this.restaurantNumber].restaurant.featured_image,
+          "RestaurantPriceRange": this.summaries.restaurants[this.restaurantNumber].restaurant.price_range,
+        };
         const url = `${process.env.VUE_APP_REMOTE_API}/favorites/addfavorite`;
         const response = fetch(url, {
           method: "POST",
@@ -173,6 +182,10 @@ export default {
   flex-direction: column;
 }
 
+h1.question {
+  font-size: 2.5rem;
+}
+
 div.text-infor {
   font-family: "Vollkorn", sans-serif;
   display: inline-block;
@@ -191,18 +204,22 @@ div.text-infor {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+.featuredimage img {
+  width: 100%;
+}
+
+.featuredimage {
+  width: 100%;
+  height: 50%;
+}
+
 .restaurant-summaries {
   position: absolute;
-  margin-top: 250px;
+  margin-top: 190px;
   left: 0;
   right: 0;
   margin-left: 400px;
   margin-right: 400px;
-}
-
-.text-infor {
-  margin-top: 10px;
-  width: inherit;
 }
 
 span.dollar-sign {
@@ -211,9 +228,10 @@ span.dollar-sign {
 }
 
 .text-infor {
+  margin-top: 10px;
+  width: inherit;
   text-align: left;
-  padding-left: 10px;
-  padding-top: 8px;
+  padding: 8px;
 }
 
 h3.name {
@@ -256,17 +274,47 @@ span.price-range {
     margin-right: 10px;
     margin-top: 10px;
   }
+  #text-info > *,
+  #text-info > * > * {
+    font-size: 1.7rem;
+  }
 }
 
 @media screen and (max-width: 425px) {
   .restaurant-summaries {
     margin-left: 10px;
     margin-top: 275px;
-    margin-bottom: 10px;
+    padding-top: 0.08%;
+  }
+
+  #text-info > *,
+  #text-info > * > * {
+    font-size: 1.2rem;
+  }
+
+  h3.name {
+    text-align: center;
   }
 
   #buttons {
     display: none;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .restaurant-summaries {
+    margin-left: 10px;
+    margin-top: 275px;
+    padding-top: 0.08%;
+  }
+
+  #radius {
+    width: 45%;
+    height: 30px;
+  }
+
+  #submit-button {
+    height: 50px;
   }
 }
 </style>
