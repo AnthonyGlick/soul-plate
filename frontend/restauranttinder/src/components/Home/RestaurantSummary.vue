@@ -174,6 +174,14 @@ div.text-infor {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+.featuredimage img {
+  width: 100%;
+}
+
+.featuredimage {
+  width: 100%;
+}
+
 .restaurant-summaries {
   position: absolute;
   margin-top: 250px;
@@ -248,7 +256,7 @@ span.price-range {
   }
 
   #buttons {
-    margin-bottom: 10px;
+    display: none;
   }
 }
 </style>
