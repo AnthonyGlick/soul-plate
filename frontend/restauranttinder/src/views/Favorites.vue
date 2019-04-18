@@ -6,7 +6,13 @@
       <div class="user-favorite">
         <img class="pic" v-bind:src="userFavorites[i].restaurantImage">
         <h2 class="name">{{userFavorites[i].restaurantName}}</h2>
-        <span class="dollar-sign">{{userFavorites[i].restaurantPriceRange}}</span>
+        <div>
+        <span class="dollar-sign" v-if="userFavorites[i].restaurantPriceRange === 1">$</span>
+        <span class="dollar-sign" v-else-if="userFavorites[i].restaurantPriceRange === 2">$$</span>
+        <span class="dollar-sign" v-else-if="userFavorites[i].restaurantPriceRange === 3">$$$</span>
+        <span class="dollar-sign" v-else-if="userFavorites[i].restaurantPriceRange === 4">$$$$</span>
+        <span class="dollar-sign" v-else>$$$$$</span>
+        </div>
       </div>
     </div>
   </div>
@@ -63,14 +69,15 @@ export default {
 
 <style>
 .user-favorites {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   justify-content: space-around;
-  margin: 0px 100px;
+  margin: 5%;
+  border: 5px dotted white;
 }
 
-.favorite-page {
+.favorite-page { 
+  display: flex;
+  flex-wrap:wrap;
+  width:100%;
   margin: 20px;
   position: absolute;
   background-color: #ff9933;
@@ -103,6 +110,7 @@ export default {
 }
 
 .pic {
+  width:100%;
   padding-bottom: 5px;
   border-radius: 10px;
 }
