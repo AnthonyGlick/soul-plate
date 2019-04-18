@@ -86,7 +86,8 @@ export default {
       },
       state: {
         required,
-        maxLength: maxLength(2) 
+        maxLength: maxLength(2),
+        minLength: minLength(2) 
       },
       postalCode: {
         required,
