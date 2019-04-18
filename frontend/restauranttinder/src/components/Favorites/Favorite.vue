@@ -8,6 +8,9 @@
 <script>
 export default {
     name: "Favorite"
+    // props: {
+    //     userFavorites: Array
+    // }
 
 }
 </script>
