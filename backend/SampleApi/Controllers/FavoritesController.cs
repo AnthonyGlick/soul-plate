@@ -44,7 +44,7 @@ namespace SampleApi.Controllers
         [HttpPost("addfavorite")]
         public IActionResult AddFavorite([FromBody] Favorite model)
         {
-            favoriteDAO.LikeRestaurant(model.RestaurantId, User.Identity.Name);
+            favoriteDAO.LikeRestaurant(model.RestaurantId, User.Identity.Name, model.RestaurantName);
 
             return Ok();
         }

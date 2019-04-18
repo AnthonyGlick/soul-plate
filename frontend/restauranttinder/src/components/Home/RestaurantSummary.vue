@@ -108,7 +108,8 @@ export default {
     likeRestaurant() {
       try {
         const payload = {
-          "RestaurantId": this.summaries.restaurants[this.restaurantNumber].restaurant.id
+          "RestaurantId": this.summaries.restaurants[this.restaurantNumber].restaurant.id,
+          "RestaurantName": this.summaries.restaurants[this.restaurantNumber].restaurant.name
         };
         const url = `${process.env.VUE_APP_REMOTE_API}/favorites/addfavorite`;
         const response = fetch(url, {
