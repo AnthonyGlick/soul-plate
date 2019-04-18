@@ -214,7 +214,7 @@ html {
 div.form-block {
   border: 1px solid black;
   position: absolute;
-  padding: 50px;
+  padding: 20px;
   background-color: #ff9933;
   opacity: 0.8;
   border-top-left-radius: 5px;

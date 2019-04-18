@@ -48,4 +48,9 @@ html {
     background-color: rgb(255,153,110, .5);
     background-blend-mode: screen;
 }
+
+@media screen and (max-width: 360px) {
+  background-repeat: repeat;
+}
+  
 </style>
