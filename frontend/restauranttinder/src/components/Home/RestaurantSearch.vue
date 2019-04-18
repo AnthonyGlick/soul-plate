@@ -21,7 +21,7 @@
         <option value="40233">25 miles</option>
         <option value="80467">50 miles</option>
       </select>
-      <input 
+      <input
         id="submit-button"
         class="btn btn-success"
         type="submit"
@@ -55,7 +55,6 @@ export default {
       },
       addressCoords: {},
       radius: "",
-      //chosenCuisine: "",
       restaurants: {}
     };
   },
@@ -71,7 +70,7 @@ export default {
       this.lonToggle();
     },
     latToggle() {
-      if (document.getElementById('checkbox').checked == true) {
+      if (document.getElementById("checkbox").checked == true) {
         document.getElementById(
           "lat"
         ).value = this.addressCoords.results[0].geometry.location.lat;
@@ -80,7 +79,7 @@ export default {
       }
     },
     lonToggle() {
-      if (document.getElementById('checkbox').checked == true) {
+      if (document.getElementById("checkbox").checked == true) {
         document.getElementById(
           "lon"
         ).value = this.addressCoords.results[0].geometry.location.lng;
@@ -126,7 +125,7 @@ export default {
       this.currentCoords.lat = position.coords.latitude;
       this.currentCoords.lon = position.coords.longitude;
       console.log(this.currentCoords);
-    },
+    }
   },
 
   computed: {
@@ -287,13 +286,12 @@ input:focus {
 }
 
 @media screen and (max-width: 425px) {
-  div.form-block{
+  div.form-block {
     margin-right: 10px;
   }
 
   .question {
     font-size: 24px;
   }
-
 }
 </style>

@@ -19,7 +19,6 @@ export default {
     return {
       userFavorites: [],
       username: auth.getUser().sub
-    //   dummyData: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     };
   },
 
@@ -27,7 +26,7 @@ export default {
     fetch(`${process.env.VUE_APP_REMOTE_API}/Favorites/${this.username}`, {
       method: "GET",
       headers: {
-        "Authorization": 'Bearer ' + auth.getToken() 
+        Authorization: "Bearer " + auth.getToken()
       }
     })
       .then(response => {

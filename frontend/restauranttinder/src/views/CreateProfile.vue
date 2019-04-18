@@ -47,7 +47,12 @@
 
 <script>
 import auth from "@/shared/auth";
-import { required, numeric, minLength, maxLength } from "vuelidate/lib/validators";
+import {
+  required,
+  numeric,
+  minLength,
+  maxLength
+} from "vuelidate/lib/validators";
 
 export default {
   data() {

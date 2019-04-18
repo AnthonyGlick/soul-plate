@@ -1,10 +1,10 @@
 <template>
   <v-touch @swipeleft="rejectRestaurant">
-    <v-touch @swiperight="likeRestaurant">
-  <div id="Home">
-    <restaurant-search v-on:search-results="performSearch"/>
-    <restaurant-summary v-bind:summaries="summaries"/>
-  </div>
+    <v-touch v-if="test" @swiperight="likeRestaurant">
+      <div id="Home">
+        <restaurant-search v-on:search-results="performSearch"/>
+        <restaurant-summary v-bind:summaries="summaries"/>
+      </div>
     </v-touch>
   </v-touch>
 </template>
@@ -12,7 +12,7 @@
 <script>
 import RestaurantSearch from "@/components/Home/RestaurantSearch.vue";
 import RestaurantSummary from "@/components/Home/RestaurantSummary.vue";
-import {bus} from '@/main.js'
+import { bus } from "@/main.js";
 
 export default {
   name: "Home",
@@ -31,10 +31,10 @@ export default {
       this.summaries = summaries;
     },
     rejectRestaurant() {
-      bus.$emit('rejectSwipe')
+      bus.$emit("rejectSwipe");
     },
     likeRestaurant() {
-      bus.$emit('likeSwipe')
+      bus.$emit("likeSwipe");
     }
   }
 };

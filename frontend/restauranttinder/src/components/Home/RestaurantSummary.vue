@@ -31,7 +31,6 @@
         </h3>
       </div>
     </div>
-    <!-- <button v-on:click="nextRestaurant" v-if="summaries.restaurants">Next Restaurant</button> -->
     <div id="buttons">
       <reject-button v-on:Reject="rejectRestaurant" v-if="summaries.restaurants"/>
       <like-button v-on:Like="likeRestaurant" v-if="summaries.restaurants"/>
@@ -43,7 +42,7 @@
 import auth from "@/shared/auth";
 import RejectButton from "@/components/Home/RejectButton.vue";
 import LikeButton from "@/components/Home/LikeButton.vue";
-import {bus} from "../../main.js"
+import { bus } from "../../main.js";
 
 export default {
   name: "RestaurantSummary",
@@ -71,10 +70,6 @@ export default {
       }
       return dollarsigns;
     }
-
-    // starrating: function(){
-
-    // }
   },
 
   data() {
@@ -85,10 +80,10 @@ export default {
     };
   },
   watch: {
-    summaries: function (shuffled, unshuffled) {
+    summaries: function(shuffled, unshuffled) {
       let shuffArray = shuffled.restaurants;
-      console.log(shuffArray)
-        this.shuffle(shuffArray);
+      console.log(shuffArray);
+      this.shuffle(shuffArray);
     }
   },
   methods: {
@@ -112,22 +107,23 @@ export default {
           method: "POST",
           headers: {
             Accept: "application/json",
-            "Authorization": 'Bearer ' + auth.getToken()
+            Authorization: "Bearer " + auth.getToken()
           },
-          body: JSON.stringify(this.summaries.restaurants[this.restaurantNumber])
+          body: JSON.stringify(
+            this.summaries.restaurants[this.restaurantNumber]
+          )
         });
 
         if (response.status === 400) {
-          this.error = "NOPE"
-        }
-         else {
+          this.error = "NOPE";
+        } else {
           if (this.summaries.restaurants.length < 1) {
-              return this.emptyArray;
-              }
+            return this.emptyArray;
+          }
           if (this.restaurantNumber < this.summaries.restaurants.length - 1) {
-                this.restaurantNumber = this.restaurantNumber + 1;
+            this.restaurantNumber = this.restaurantNumber + 1;
           } else {
-              this.restaurantNumber = 0;
+            this.restaurantNumber = 0;
           }
         }
       } catch (error) {
@@ -136,19 +132,19 @@ export default {
       }
     },
     shuffle(a) {
-    var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
+      var j, x, i;
+      for (i = a.length - 1; i > 0; i--) {
         j = Math.floor(Math.random() * (i + 1));
         x = a[i];
         a[i] = a[j];
         a[j] = x;
+      }
+      return a;
     }
-    return a;
-}
   },
   mounted() {
-    bus.$on('rejectSwipe', this.rejectRestaurant);
-    bus.$on('likeSwipe', this.likeRestaurant)
+    bus.$on("rejectSwipe", this.rejectRestaurant);
+    bus.$on("likeSwipe", this.likeRestaurant);
   }
 };
 </script>
@@ -165,8 +161,11 @@ div.text-infor {
   background-color: white;
 }
 
-img.featuredimage {
-  height: 300px;
+.featuredimage img {
+  width: 100%;
+}
+
+.featuredimage {
   width: 100%;
 }
 
@@ -245,10 +244,11 @@ span.price-range {
   .restaurant-summaries {
     margin-left: 10px;
     margin-top: 275px;
+    margin-bottom: 10px;
   }
 
   #buttons {
-    margin-bottom: 10px;
+    display: none;
   }
 }
 </style>
