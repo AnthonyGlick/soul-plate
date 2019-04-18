@@ -29,7 +29,7 @@
       </section>
 
       <section>
-        <label>*State:</label>
+        <label>*State (ex: OH):</label>
         <input type="text" v-model.trim="user.state">
       </section>
 
@@ -85,7 +85,9 @@ export default {
         required
       },
       state: {
-        required
+        required,
+        maxLength: maxLength(2),
+        minLength: minLength(2) 
       },
       postalCode: {
         required,
