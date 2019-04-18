@@ -42,11 +42,9 @@ namespace SampleApi.Controllers
         }
 
         [HttpPost("addfavorite")]
-        public IActionResult AddFavorite(Favorite model)
+        public IActionResult AddFavorite([FromBody] Favorite model)
         {
-            var favorite = new Favorite { UserUsername = model.UserUsername, RestaurantId = model.RestaurantId };
-
-            favoriteDAO.LikeRestaurant(model.RestaurantId, model.UserUsername);
+            favoriteDAO.LikeRestaurant(model.RestaurantId, User.Identity.Name);
 
             return Ok();
         }
