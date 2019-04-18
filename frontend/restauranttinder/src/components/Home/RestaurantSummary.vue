@@ -13,27 +13,34 @@
 
       <div class="text-infor">
         <h3 class="name">{{summaries.restaurants[restaurantNumber].restaurant.name}}</h3>
-        <h3
-          class="rating"
-        ><span class="rating-object"> Rating:</span> {{summaries.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}} out of 5</h3>
-        <h3
-          class="location"
-        ><span class="location-object">Location:</span> {{summaries.restaurants[restaurantNumber].restaurant.location.locality}}</h3>
-        <h3 
-        ><span class="cuisine-object">Cuisine:</span> {{summaries.restaurants[restaurantNumber].restaurant.cuisines}}</h3>
-        <h3
-        ><span class="price-range">Price: </span> <span class="dollar-sign">{{dollarprice}}</span></h3>
+        <h3 class="rating">
+          <span class="rating-object">Rating:</span>
+          {{summaries.restaurants[restaurantNumber].restaurant.user_rating.aggregate_rating}} out of 5
+        </h3>
+        <h3 class="location">
+          <span class="location-object">Location:</span>
+          {{summaries.restaurants[restaurantNumber].restaurant.location.locality}}
+        </h3>
+        <h3>
+          <span class="cuisine-object">Cuisine:</span>
+          {{summaries.restaurants[restaurantNumber].restaurant.cuisines}}
+        </h3>
+        <h3>
+          <span class="price-range">Price:</span>
+          <span class="dollar-sign">{{dollarprice}}</span>
+        </h3>
       </div>
     </div>
     <!-- <button v-on:click="nextRestaurant" v-if="summaries.restaurants">Next Restaurant</button> -->
     <div id="buttons">
-    <reject-button v-on:Reject="rejectRestaurant" v-if="summaries.restaurants"/>
-    <like-button v-on:Like="likeRestaurant" v-if="summaries.restaurants"/>
+      <reject-button v-on:Reject="rejectRestaurant" v-if="summaries.restaurants"/>
+      <like-button v-on:Like="likeRestaurant" v-if="summaries.restaurants"/>
     </div>
   </div>
 </template>
 
 <script>
+import auth from "@/shared/auth";
 import RejectButton from "@/components/Home/RejectButton.vue";
 import LikeButton from "@/components/Home/LikeButton.vue";
 import {bus} from "../../main.js"
@@ -73,7 +80,8 @@ export default {
   data() {
     return {
       restaurantNumber: 0,
-      emptyArray: "Still hungry? Search again!"
+      emptyArray: "Still hungry? Search again!",
+      username: auth.getUser().sub
     };
   },
   watch: {
@@ -98,13 +106,33 @@ export default {
       this.summaries.restaurants.splice(this.restaurantNumber, 1);
     },
     likeRestaurant() {
-      if (this.summaries.restaurants.length < 1) {
-      return this.emptyArray;
-      }
-      if (this.restaurantNumber < this.summaries.restaurants.length - 1) {
-        this.restaurantNumber = this.restaurantNumber + 1;
-      } else {
-        this.restaurantNumber = 0;
+      try {
+        const url = `${process.env.VUE_APP_REMOTE_API}/favorites/addfavorite`;
+        const response = fetch(url, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Authorization": 'Bearer ' + auth.getToken()
+          },
+          body: JSON.stringify(this.summaries.restaurants[this.restaurantNumber])
+        });
+
+        if (response.status === 400) {
+          this.error = "NOPE"
+        }
+         else {
+          if (this.summaries.restaurants.length < 1) {
+              return this.emptyArray;
+              }
+          if (this.restaurantNumber < this.summaries.restaurants.length - 1) {
+                this.restaurantNumber = this.restaurantNumber + 1;
+          } else {
+              this.restaurantNumber = 0;
+          }
+        }
+      } catch (error) {
+        console.error(error);
+        this.error = "There was an error attempting to save this favorite.";
       }
     },
     shuffle(a) {
@@ -143,7 +171,7 @@ img.featuredimage {
 }
 
 div.text-infor {
-  background-color: rgba(255,255,255,0.8)
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .restaurant-summaries {
@@ -160,49 +188,49 @@ div.text-infor {
   width: inherit;
 }
 
- span.dollar-sign {
-    color: #28A745;
-    font-size: 30px;
-  }
+span.dollar-sign {
+  color: #28a745;
+  font-size: 30px;
+}
 
-    .text-infor {
-    text-align: left;
-    padding-left: 10px;
-    padding-top: 8px;
-  }
+.text-infor {
+  text-align: left;
+  padding-left: 10px;
+  padding-top: 8px;
+}
 
-  h3.name {
-    font-size: 36px;
-    font-weight: bold;
-  }
+h3.name {
+  font-size: 36px;
+  font-weight: bold;
+}
 
-  span.rating-object {
-    font-size: 26px;
-    font-weight: 700;
-  }
+span.rating-object {
+  font-size: 26px;
+  font-weight: 700;
+}
 
-  span.location-object {
-    font-size: 26px;
-    font-weight: 700;
-  }
+span.location-object {
+  font-size: 26px;
+  font-weight: 700;
+}
 
-  span.cuisine-object {
-    font-size: 26px;
-    font-weight: 700;
-  }
+span.cuisine-object {
+  font-size: 26px;
+  font-weight: 700;
+}
 
-  span.price-range {
-    font-size: 26px;
-    font-weight: 700;
-  }
+span.price-range {
+  font-size: 26px;
+  font-weight: 700;
+}
 
-  #buttons {
-    display: flex;
-    justify-content: space-around;
-    padding-top: 10px;
-  }
+#buttons {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 10px;
+}
 
-@media screen and (max-width: 1280px){
+@media screen and (max-width: 1280px) {
   .restaurant-summaries {
     display: flex;
     flex-direction: column;

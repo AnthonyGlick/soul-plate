@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SampleApi.DAL;
+using SampleApi.Models;
 using SampleApi.Providers.Security;
 
 namespace SampleApi.Controllers
@@ -38,6 +39,16 @@ namespace SampleApi.Controllers
             }
 
             return NotFound();
+        }
+
+        [HttpPost("addfavorite")]
+        public IActionResult AddFavorite(Favorite model)
+        {
+            var favorite = new Favorite { UserUsername = model.UserUsername, RestaurantId = model.RestaurantId };
+
+            favoriteDAO.LikeRestaurant(model.RestaurantId, model.UserUsername);
+
+            return Ok();
         }
     }
 }
