@@ -63,14 +63,15 @@ export default {
 
 <style>
 .user-favorites {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   justify-content: space-around;
-  margin: 0px 100px;
+  margin: 5%;
+  border: 5px dotted white;
 }
 
-.favorite-page {
+.favorite-page { 
+  display: flex;
+  flex-wrap:wrap;
+  width:100%;
   margin: 20px;
   position: absolute;
   background-color: #ff9933;
@@ -103,6 +104,7 @@ export default {
 }
 
 .pic {
+  width:100%;
   padding-bottom: 5px;
   border-radius: 10px;
 }
