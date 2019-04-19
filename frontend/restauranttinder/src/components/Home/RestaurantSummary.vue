@@ -259,6 +259,16 @@ span.price-range {
   padding-top: 10px;
 }
 
+@media screen and (max-width: 1920px) {
+  .featuredimage img {
+    padding-top: 50px;
+  }
+
+  #check-location {
+    font-size: 26px;
+  }
+}
+
 @media screen and (max-width: 1280px) {
   .restaurant-summaries {
     display: flex;
