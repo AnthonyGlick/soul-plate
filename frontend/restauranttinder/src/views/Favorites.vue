@@ -103,6 +103,7 @@ export default {
 @media screen and (max-width: 425px) {
   .user-favorites {
     margin: 0;
+    margin-bottom:10px;
   }
 }
 .user-favorite {
