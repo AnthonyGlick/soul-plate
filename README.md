@@ -23,7 +23,7 @@
 ## Screenshots
 
 - Login View Page
-![LoginPage](C:\Users\TylerTeran\FinalCapstone\c-final-capstone-restaurant-tinder\screenshots\LoginPage.png)
+![LoginPage](screenshots/LoginPage.png)
 
 ## Technologies Used
 
