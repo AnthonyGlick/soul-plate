@@ -1,14 +1,41 @@
-# README
+# Restaurant Tinder aka Soul Plate
 
-This project template includes two different project structures to choose from for your capstone.
+Tech Elevator Final Capstone
+This application helps those who are looking for a good bite to eat and make a decision as to where to go next.
+soulplate.net
 
-1. mvc - For a traditional (Module 3) MVC application.
-2. backend - For a web api based backend to be used alongside a vue-based frontend.
+## Features
 
-Before starting, ensure that a majority of the team has decided which project structure to use for the capstone and delete the other. 
+- User has the ability to register for a new account so the application remembers your settings.
+- As a user you can log into the application and receive personalized restaurant recommendations for the day.
+- As a user you can fill out a user profile so you can get places to eat near you.
+- As a user who has completed the questionnaire you can view a randomly generated restaurant based on your profile so you can decide if it is a place worth eating at.
+- User can swipe right to "like" a place to eat or swipe left to "reject" the restaurant and remove it from the list.
+- Once a user has swiped right on a restaurant they can then view a favorites page where there is a list of restaurants they have swiped right on.
 
-**NOTES**
+## Features to Come
 
-* If you pick mvc, please move the files up a level out of the mvc folder.
-* If you pick web api based backend, please put the front-end code in a folder named `frontend`
-* Please delete the contents of this README and replace it with your own.
+- As a user you can go to the restaurant details page to view additional restaurant information.
+- As a user you can see which restaurants you have historically visited.
+- As a user looking at a restaurant you can view its location (and distance) from yourself on a map so that you can tell if it is nearby.
+- Animation/Transition on the swiping.
+
+## Technologies Used
+
+- Visual Studio Code 2017
+- VS Code
+- Vue.js
+- SSMS
+- C#
+- HTML
+- CSS
+- JavaScript
+- SQL
+
+## Developed By
+
+- Mariah Dawson
+- Becki Robards
+- Anthony Glick
+- Liam Butterfield
+- Tyler Teran
