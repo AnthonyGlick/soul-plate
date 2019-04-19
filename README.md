@@ -1,8 +1,8 @@
 # Restaurant Tinder aka Soul Plate
 
-Tech Elevator Final Capstone
-This application helps those who are looking for a good bite to eat and make a decision as to where to go next.
-soulplate.net
+- Tech Elevator Final Capstone
+- This application helps those who are looking for a good bite to eat and make a decision as to where to go next.
+- soulplate.net
 
 ## Features
 
@@ -23,7 +23,7 @@ soulplate.net
 ## Screenshots
 
 - Login View Page
-C:\Users\Tyler Teran\FinalCapstone\c-final-capstone-restaurant-tinder\screenshots\LoginPage.png
+![picture]C:\Users\Tyler Teran\FinalCapstone\c-final-capstone-restaurant-tinder\screenshots\LoginPage.png
 
 ## Technologies Used
 
