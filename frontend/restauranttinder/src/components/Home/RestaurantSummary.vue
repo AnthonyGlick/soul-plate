@@ -259,7 +259,7 @@ span.price-range {
   padding-top: 10px;
 }
 
-@media screen and (max-width: 1920px) {
+@media screen and (min-width: 1920px) {
   .featuredimage img {
     padding-top: 50px;
   }

@@ -20,6 +20,11 @@ soulplate.net
 - As a user looking at a restaurant you can view its location (and distance) from yourself on a map so that you can tell if it is nearby.
 - Animation/Transition on the swiping.
 
+## Screenshots
+
+- Login View Page
+C:\Users\Tyler Teran\FinalCapstone\c-final-capstone-restaurant-tinder\screenshots\LoginPage.png
+
 ## Technologies Used
 
 - Visual Studio Code 2017
