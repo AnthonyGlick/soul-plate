@@ -1,22 +1,23 @@
 <template>
-
-  <div class="favorite-page">
-    <h1 class="favorites">Favorites</h1>
-    <div class="favorite-container">
-    <div class="user-favorites" v-for="(favorite, i) in userFavorites" :key="i">
-      <!-- <div v-for="favorite in userFavorites" :key="favorite.restaurantId"/> -->
-      <div class="user-favorite">
-        <img class="pic" v-bind:src="userFavorites[i].restaurantImage">
-        <h2 class="name">{{userFavorites[i].restaurantName}}</h2>
-        <div>
-        <span class="dollar-sign" v-if="userFavorites[i].restaurantPriceRange === 1">$</span>
-        <span class="dollar-sign" v-else-if="userFavorites[i].restaurantPriceRange === 2">$$</span>
-        <span class="dollar-sign" v-else-if="userFavorites[i].restaurantPriceRange === 3">$$$</span>
-        <span class="dollar-sign" v-else-if="userFavorites[i].restaurantPriceRange === 4">$$$$</span>
-        <span class="dollar-sign" v-else>$$$$$</span>
+  <div class="big-div">
+    <div class="favorite-page">
+      <h1 class="favorites">Favorites</h1>
+      <div class="favorite-container">
+        <div class="user-favorites" v-for="(favorite, i) in userFavorites" :key="i">
+          <!-- <div v-for="favorite in userFavorites" :key="favorite.restaurantId"/> -->
+          <div class="user-favorite">
+            <img class="pic" v-bind:src="userFavorites[i].restaurantImage">
+            <h2 class="name">{{userFavorites[i].restaurantName}}</h2>
+            <div>
+              <span class="dollar-sign" v-if="userFavorites[i].restaurantPriceRange === 1">$</span>
+              <span class="dollar-sign" v-else-if="userFavorites[i].restaurantPriceRange === 2">$$</span>
+              <span class="dollar-sign" v-else-if="userFavorites[i].restaurantPriceRange === 3">$$$</span>
+              <span class="dollar-sign" v-else-if="userFavorites[i].restaurantPriceRange === 4">$$$$</span>
+              <span class="dollar-sign" v-else>$$$$$</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   </div>
 </template>
@@ -40,12 +41,7 @@ export default {
       let dollarsigns = "";
 
       if (this.userFavorites) {
-        for (
-          let i = 0;
-          i <
-          this.userFavorites[i].restaurantPriceRange;
-          i++
-        ) {
+        for (let i = 0; i < this.userFavorites[i].restaurantPriceRange; i++) {
           dollarsigns += "$";
         }
       }
@@ -70,28 +66,34 @@ export default {
 </script>
 
 <style>
-.user-favorites {
-  width:300px;
-  height:auto;
-  /* justify-content: space-around; */
-  border: 5px dotted white;
-  margin:10px;
-
+.big-div{
+  width:100%;
+  position:relative;
 }
 
-.favorite-container{
+.user-favorites {
+  width: 300px;
+  height: auto;
+  /* justify-content: space-around; */
+  border: 5px dotted white;
+  margin: 10px;
+}
+
+.favorite-container {
   display: flex;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   justify-content: space-around;
 }
 
-.favorite-page { 
+.favorite-page {
   margin: 50px;
   position: absolute;
   background-color: #ff9933;
   opacity: 0.9;
   border: 1px solid black;
   border-radius: 5px;
+  left:10%;
+  right:10%;
 }
 
 .favorites {
@@ -100,12 +102,6 @@ export default {
   font-family: "Vollkorn", sans-serif;
 }
 
-@media screen and (max-width: 425px) {
-  .user-favorites {
-    margin: 0;
-    margin-bottom:10px;
-  }
-}
 .user-favorite {
   display: flex;
   flex-wrap: wrap;
@@ -119,8 +115,20 @@ export default {
 }
 
 .pic {
-  width:100%;
+  width: 100%;
   padding-bottom: 5px;
   border-radius: 10px;
+}
+
+@media screen and (max-width: 425px) {
+  .user-favorites {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  h1.favorites{
+    font-size: 150%;
+  }
+
 }
 </style>
