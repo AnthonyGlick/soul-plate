@@ -11,7 +11,7 @@
       ></auto-complete>
       <section>
         <input id="checkbox" type="checkbox" @change="toggleCoords" :checked="useSavedAddress">
-        <span id="check-location">Used saved address</span>
+        <span id="check-location"> Use saved address</span>
       </section>
       <select v-model="radius" id="radius">
         <option value="1609">1 mile</option>
@@ -203,7 +203,7 @@ html {
 div.form-block {
   border: 1px solid black;
   position: absolute;
-  padding: 20px;
+  padding: 40px;
   background-color: #ff9933;
   opacity: 0.8;
   border-top-left-radius: 5px;
@@ -243,11 +243,16 @@ h1.question {
     padding-top: 13px;
   }
 
+
+  #submit-button {
+    margin-top: 10px;
+  }
+
   form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 79px;
+    height: 79px;   
   }
 
   form > * {
