@@ -22,8 +22,20 @@
 
 ## Screenshots
 
-- Login View Page
+- Login View
 ![LoginPage](screenshots/LoginPage.png)
+
+- Create Profile
+![CreateProfile](screenshots/CreateProfile.png)
+
+- Home
+![HomeView](screenshots/Home.png)
+
+- Restaurant Summary
+![RestaurantSummary](screenshots/Summary.png)
+
+- Favorites
+![Favorites](screenshots/Favorites.png)
 
 ## Technologies Used
 
